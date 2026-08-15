@@ -28,3 +28,4 @@ export let idCounter = { index: 3 };
 export const userMoods = [];
 export const userDepths = [];
 export const userJournalEntries = [];
+export const contactUsData = [];
