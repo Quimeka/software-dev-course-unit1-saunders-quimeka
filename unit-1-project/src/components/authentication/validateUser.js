@@ -1,6 +1,6 @@
 import { onyxUsers } from '../common/userGlobals.js';
 
-export default function validateUser(email, password){
+export default function validateUser(email, password) {
     const userFound = onyxUsers.find(user => user.user_email === email && user.user_password === password);
 
     if (userFound) {
