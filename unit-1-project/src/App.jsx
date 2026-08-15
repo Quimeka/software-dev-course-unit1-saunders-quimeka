@@ -5,6 +5,7 @@ import Home from "./components/common/Home.jsx";
 import LoginUser from "./components/authentication/LoginUser.jsx";
 import CreateUser from "./components/authentication/CreateUser.jsx";
 import UserMood from "./components/user/UserMood.jsx";
+import UserDepth from "./components/user/UserDepth.jsx";
 import ContactUs from "./components/common/ContactUs.jsx";
 import Logout from "./components/common/Logout.jsx";
 
@@ -28,7 +29,7 @@ function App() {
   return (
     <div>
       {currentUser !== null ? (
-        <div sytle={{ display: 'flex', justifyContent: 'flex-end', gap: '20px'}}>
+        <div sytle={{ display: 'flex', justifyContent: 'flex-end', gap: '20px' }}>
           <Link to="/calendar">Calendar</Link>
           <Link to="/contact-us">Contact Us</Link>
           <Link to="/logged-out" onClick={handleLogout}>Log Out</Link>
@@ -59,6 +60,9 @@ function App() {
           <UserMood currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} />
         } />
 
+        <Route path="/depth" element={
+          <UserDepth currentUser={currentUser} depthData={depthData} setDepthData={setDepthData} />
+        } />
 
         <Route path="/contact-us" element={
           <ContactUs currentUser={currentUser} />
