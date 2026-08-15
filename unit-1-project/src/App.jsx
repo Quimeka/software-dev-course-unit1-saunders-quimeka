@@ -4,6 +4,7 @@ import { Routes, Route, Link, useNavigate } from "react-router";
 import Home from "./components/common/Home.jsx";
 import LoginUser from "./components/authentication/LoginUser.jsx";
 import CreateUser from "./components/authentication/CreateUser.jsx";
+import ContactUs from "./components/common/ContactUs.jsx";
 import Logout from "./components/common/Logout.jsx";
 
 
@@ -26,8 +27,9 @@ function App() {
   return (
     <div>
       {currentUser !== null ? (
-        <div>
-          <button onClick={handleLogout}>Log Out</button>
+        <div sytle= {{ display: 'flex', justifyContent: 'flex-end'}}>
+          <Link to="/contact-us">Contact Us</Link>
+          <Link to="/logged-out" onClick={handleLogout}>Log Out</Link>
           <hr />
         </div>
       ) : null}
@@ -38,14 +40,6 @@ function App() {
           <br /><br />
         </div>
       ) : null}
-
-      <nav>
-        <ul>
-          <li><Link to="/Login">Log in</Link></li>
-          <li><Link to="/create-account">Register now</Link></li>
-        </ul>
-      </nav>
-      <hr />
 
       <Routes>
         <Route path="/" element={
@@ -64,6 +58,10 @@ function App() {
           <Home>
             <CreateUser />
           </Home>
+        } />
+
+        <Route path="/contact-us" element={
+            <ContactUs currentUser={currentUser} />
         } />
 
         <Route path="/logged-out" element={<Logout />} />
