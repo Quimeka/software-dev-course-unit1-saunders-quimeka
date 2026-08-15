@@ -6,6 +6,7 @@ import LoginUser from "./components/authentication/LoginUser.jsx";
 import CreateUser from "./components/authentication/CreateUser.jsx";
 import UserMood from "./components/user/UserMood.jsx";
 import UserDepth from "./components/user/UserDepth.jsx";
+import JournalEntryPage from "./components/journal/JournalEntryPage.jsx";
 import ContactUs from "./components/common/ContactUs.jsx";
 import Logout from "./components/common/Logout.jsx";
 
@@ -67,6 +68,11 @@ function App() {
         <Route path="/contact-us" element={
           <ContactUs currentUser={currentUser} />
         } />
+
+        <Route path="/journal-entry" element={
+          <JournalEntryPage currentUser={currentUser} moodData={moodData} depthData={depthData} userJournalEntry={userJournalEntry} setUserJournalEntry={setUserJournalEntry} entryMode={entryMode} setEntryMode={setEntryMode} />
+        } />
+
 
         <Route path="/logged-out" element={<Logout />} />
       </Routes>
