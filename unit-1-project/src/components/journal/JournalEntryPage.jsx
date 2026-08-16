@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { onyxUsers, userDepths, userMoods } from '../common/userGlobals.js';
+import { onyxUsers, userDepths, userMoods, MOOD_PROMPTS } from '../common/userGlobals.js';
 import { getUserFirstName } from '../user/getUserName.js';
 import registerJournalEntry from './registerJournalEntry.js';
-import { MOOD_PROMPTS } from './moodPrompts.js';
 import { useNavigate } from 'react-router';
+import setText from './setTextForEntries.js';
 
 function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, depthData }) {
     const navigate = useNavigate();
@@ -54,12 +54,12 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
                 return;
             }
 
-            finalEntry = `
-              Q1: ${promptAnswers.q1}
-              Q2: ${promptAnswers.q2}
-              Q3: ${promptAnswers.q3}
-              Q4: ${promptAnswers.q4}
-            `.trim();
+        finalEntry = `
+        ${promptsForToday[0]}:\n${promptAnswers.q1}
+        ${promptsForToday[1]}:\n${promptAnswers.q2}
+        ${promptsForToday[2]}:\n${promptAnswers.q3}
+        ${promptsForToday[3]}:\n${promptAnswers.q4}
+        `.trim();
         }
 
         registerJournalEntry(currentUser, finalEntry);
@@ -84,28 +84,10 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
     const todayDepth = todayDepths[todayDepths.length - 1]?.depth;
 
     let todayMoodDisplay = "";
-    if (todayMood === "1") {
-        todayMoodDisplay = "Very Heavy";
-    } else if (todayMood === "2") {
-        todayMoodDisplay = "Down/Low";
-    } else if (todayMood === "3") {
-        todayMoodDisplay = "Neutral/Flat";
-    } else if (todayMood === "4") {
-        todayMoodDisplay = "Good/Steady";
-    } else if (todayMood === "5") {
-        todayMoodDisplay = "Vibrant/Radiant";
-    } else {
-        todayMoodDisplay = "No mood data available for today.";
-    }
+    todayMoodDisplay = setText("mood", todayMood);
 
     let todayDepthDisplay = "";
-    if (todayDepth === "1") {
-        todayDepthDisplay = "Low Capacity/Energy";
-    } else if (todayDepth === "2") {
-        todayDepthDisplay = "High Capacity/Energy";
-    } else {
-        todayDepthDisplay = "No capacity data available for today.";
-    }
+    todayDepthDisplay = setText("depth", todayDepth);
 
     const promptsForToday = MOOD_PROMPTS[todayMood];
     const [entryMode, setEntryMode] = useState(null);

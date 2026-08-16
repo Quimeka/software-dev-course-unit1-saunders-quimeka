@@ -7,6 +7,7 @@ import CreateUser from "./components/authentication/CreateUser.jsx";
 import UserMood from "./components/user/UserMood.jsx";
 import UserDepth from "./components/user/UserDepth.jsx";
 import JournalEntryPage from "./components/journal/JournalEntryPage.jsx";
+import CalendarPage from "./components/calendar/CalendarPage.jsx";
 import ContactUs from "./components/common/ContactUs.jsx";
 import Logout from "./components/common/Logout.jsx";
 
@@ -31,9 +32,10 @@ function App() {
     <div>
       {currentUser !== null ? (
         <div sytle={{ display: 'flex', justifyContent: 'flex-end', gap: '20px' }}>
-          <Link to="/calendar">Calendar</Link>
-          <Link to="/contact-us">Contact Us</Link>
-          <Link to="/logged-out" onClick={handleLogout}>Log Out</Link>
+          <Link to="/mood"> [New Journal Entry]</Link>
+          <Link to="/calendar">[View Calendar]</Link>
+          <Link to="/contact-us">[Contact Us]</Link>
+          <Link to="/logged-out" onClick={handleLogout}>[Log Out]</Link>
           <hr />
         </div>
       ) : null}
@@ -73,8 +75,14 @@ function App() {
           <JournalEntryPage currentUser={currentUser} moodData={moodData} depthData={depthData} userJournalEntry={userJournalEntry} setUserJournalEntry={setUserJournalEntry} entryMode={entryMode} setEntryMode={setEntryMode} />
         } />
 
+        <Route path="/calendar" element={
+          <CalendarPage currentUser={currentUser} />
+        } />
 
-        <Route path="/logged-out" element={<Logout />} />
+        <Route path="/logged-out" element={
+          <Logout />
+        } />
+
       </Routes>
     </div>
   );
