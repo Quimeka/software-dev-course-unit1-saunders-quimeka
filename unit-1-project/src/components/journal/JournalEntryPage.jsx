@@ -4,6 +4,8 @@ import { getUserFirstName } from '../user/getUserName.js';
 import registerJournalEntry from './registerJournalEntry.js';
 import { useNavigate } from 'react-router';
 import setText from './setTextForEntries.js';
+import SubmitGoBack from '../common/SubmitGoBack.jsx';
+
 
 function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, depthData }) {
     const navigate = useNavigate();
@@ -160,12 +162,7 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
                 )}
 
                 <br />
-                <div className="form-nav-buttons">
-                    <button type="submit">Submit</button>
-                    <button onClick={() => navigate(-1)}>
-                        Go Back
-                    </button>
-                </div>
+                <SubmitGoBack />
             </form>
         </div>
     );
