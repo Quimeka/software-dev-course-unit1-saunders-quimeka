@@ -10,6 +10,8 @@ import JournalEntryPage from "./components/journal/JournalEntryPage.jsx";
 import CalendarPage from "./components/calendar/CalendarPage.jsx";
 import ContactUs from "./components/common/ContactUs.jsx";
 import Logout from "./components/common/Logout.jsx";
+import Header from "./components/common/header.jsx";
+import Footer from "./components/common/footer.jsx";
 
 
 function App() {
@@ -30,16 +32,10 @@ function App() {
 
   return (
     <div>
-      {currentUser !== null ? (
-        <div sytle={{ display: 'flex', justifyContent: 'flex-end', gap: '20px' }}>
-          <Link to="/mood"> [New Journal Entry]</Link>
-          <Link to="/calendar">[View Calendar]</Link>
-          <Link to="/contact-us">[Contact Us]</Link>
-          <Link to="/logged-out" onClick={handleLogout}>[Log Out]</Link>
-          <hr />
-        </div>
-      ) : null}
-
+      <Header currentUser={currentUser} handleLogout={handleLogout} />
+      <br />
+      <br />
+      <br />
       <Routes>
         <Route path="/" element={
           <Home>
@@ -84,6 +80,10 @@ function App() {
         } />
 
       </Routes>
+      <br />
+      <br />
+      <br />
+      <Footer />
     </div>
   );
 }
