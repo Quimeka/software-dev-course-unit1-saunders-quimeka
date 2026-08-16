@@ -1,13 +1,13 @@
-import { onyxUsers, idCounter } from '../common/userGlobals.js';
+import { findUser } from './findUser.js';
 
 
 export function getUserFirstName(id) {
 
-    const user = onyxUsers.find(user => user.user_id === id);
+    const user = findUser(id);
     
     if (!user) {
         return null;
     }
     
-    return user.user_first;
+    return user.userFirst;
 }

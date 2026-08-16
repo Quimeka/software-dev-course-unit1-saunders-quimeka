@@ -1,56 +1,66 @@
 import { useState } from 'react';
-import { onyxUsers} from '../common/userGlobals.js';
 import { getUserFirstName } from './getUserName.js';
 import registerUserMood from './registerUserMood.js';
 import { useNavigate } from 'react-router';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
+import ModalWindow from '../common/ModalWindow.jsx';
 
 
-function UserMood({currentUser, moodData, setMoodData}) {
-  const navigate = useNavigate(); 
+function UserMood({ currentUser, moodData, setMoodData }) {
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showModalWindow, setShowModalWindow] = useState(false)
+
 
   const handleChange = (e) => {
-
     const chosenMood = e.target.value;
     setMoodData(chosenMood);
-    console.log("moodData:", chosenMood);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!moodData) {
-      alert(`Please provide a response to the question,${getUserFirstName(currentUser)} .`);
+      setErrorMessage(`Please provide a response to the question,${getUserFirstName(currentUser)} .`);
+      setShowModalWindow(true);
       return;
     }
-    registerUserMood(currentUser, moodData);    
-    alert("Mood registered successfully!");
-
-    navigate('/Depth'); 
-    };
+    registerUserMood(currentUser, moodData);
+    navigate('/Depth');
+  };
 
 
   return (
     <div className="UserMood">
-      <br />
+
       <h1>How are you feeling today, {getUserFirstName(currentUser)}?</h1>
 
+      {showModalWindow && (
+        <ModalWindow
+          message={errorMessage}
+          onClose={() => setShowModalWindow(false)}>
+        </ModalWindow>
+      )}
+
       <form onSubmit={handleSubmit}>
-         <label>
+        <label className="formLabel">
           (1) Very Heavy
           <input
+            className="radioButton"
             type="radio"
-            name="user_mood"
+            name="userMood"
             value="1"
             checked={moodData === "1"}
             onChange={handleChange}
           />
         </label>
-        <label>
+        <label className="formLabel">
+
           (2) Down/Low
           <input
+            className="radioButton"
             type="radio"
-            name="user_mood"
+            name="userMood"
             value="2"
             checked={moodData === "2"}
             onChange={handleChange}
@@ -59,8 +69,9 @@ function UserMood({currentUser, moodData, setMoodData}) {
         <label>
           (3) Neutral/Flat
           <input
+            className="radioButton"
             type="radio"
-            name="user_mood"
+            name="userMood"
             value="3"
             checked={moodData === "3"}
             onChange={handleChange}
@@ -69,8 +80,9 @@ function UserMood({currentUser, moodData, setMoodData}) {
         <label>
           (4) Good/Steady
           <input
+            className="radioButton"
             type="radio"
-            name="user_mood"
+            name="userMood"
             value="4"
             checked={moodData === "4"}
             onChange={handleChange}
@@ -79,16 +91,14 @@ function UserMood({currentUser, moodData, setMoodData}) {
         <label>
           (5) Vibrant/Radiant
           <input
+            className="radioButton"
             type="radio"
-            name="user_mood"
+            name="userMood"
             value="5"
             checked={moodData === "5"}
             onChange={handleChange}
           />
         </label>
-
-        <br />
-        <br />
         <SubmitGoBack />
       </form>
     </div>

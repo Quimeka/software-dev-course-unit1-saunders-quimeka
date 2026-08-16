@@ -1,25 +1,24 @@
 import React from 'react';
 import { useState } from 'react';
 import createUser from './CreateUser.js';
-import validateEmail from './validateEmail.js';
+import isEmailAvailable from './isEmailAvailable.js';
 import { useNavigate, Link } from 'react-router';
-import validateUser from './validateUser.js';
-import { onyxUsers } from '../common/userGlobals.js';
+import ModalWindow from '../common/ModalWindow.jsx';
 
 
-export default function CreateUser() {
+export default function CreateUser({ setCurrentUser }) {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showModalWindow, setShowModalWindow] = useState(false)
   const [formData, setFormData] = useState({
-    user_first: "",
-    user_last: "",
-    user_email: "",
-    user_password: "",
+    userFirst: "",
+    userLast: "",
+    userEmail: "",
+    userPassword: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    console.log(`Updating ${name}:`, value);
 
     setFormData((prevData) => ({
       ...prevData,
@@ -29,89 +28,87 @@ export default function CreateUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.user_first || !formData.user_last || !formData.user_email || !formData.user_password) {
-      alert("Please fill out all fields.");
+    setErrorMessage("");
+
+    if (!formData.userFirst || !formData.userLast || !formData.userEmail || !formData.userPassword) {
+      setErrorMessage("Please fill out all fields.");
+      setShowModalWindow(true);
       return;
     }
 
-    if (validateEmail(formData.user_email)) {
-      createUser(formData.user_first, formData.user_last, formData.user_email, formData.user_password);
-      alert("Account created successfully!");
-      setFormData({ user_first: "", user_last: "", user_email: "", user_password: "" });
-
-      navigate('/Mood');
-
-    } else {
-      alert("Email address already registered. Please try again");
-      console.log(onyxUsers);
-      setFormData({ user_first: formData.user_first, user_last: formData.user_last, user_email: "", user_password: "" });
+    if (!isEmailAvailable(formData.userEmail)) {
+      setErrorMessage("Email address already registered. Please try again.");
+      setShowModalWindow(true);
+      setFormData({ userFirst: formData.userFirst, userLast: formData.userLast, userEmail: "", userPassword: "" });
       return;
     }
 
-  };
+    const newUserCreated = createUser(formData.userFirst, formData.userLast, formData.userEmail, formData.userPassword);
+    setCurrentUser(newUserCreated);
+    setFormData({ userFirst: "", userLast: "", userEmail: "", userPassword: "" });
+    navigate('/Mood');
+  }
 
   return (
-    <div className="CreateUserr">
-      <br />
-      <h2>Welcome to Onyx Reflections!</h2>
+    <div className="CreateUser">
+      <h3>Welcome to Onyx Reflections!</h3>
+
+      {showModalWindow && (
+        <ModalWindow
+          message={errorMessage}
+          onClose={() => setShowModalWindow(false)}>
+        </ModalWindow>
+      )}
 
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className="formLabel">
           First name:
           <input
+            className="formInput"
             type="text"
-            name="user_first"
-            value={formData.user_first}
+            name="userFirst"
+            value={formData.userFirst}
             onChange={handleChange}
           />
         </label>
 
-        <br />
-        <br />
-
-        <label>
+        <label className="formLabel">
           Last name:
           <input
+            className="formInput"
             type="text"
-            name="user_last"
-            value={formData.user_last}
+            name="userLast"
+            value={formData.userLast}
             onChange={handleChange}
           />
         </label>
 
-        <br />
-        <br />
-
-        <label>
+        <label className="formLabel">
           Email:
           <input
+            className="formInput"
             type="email"
-            name="user_email"
-            value={formData.user_email}
+            name="userEmail"
+            value={formData.userEmail}
             onChange={handleChange}
           />
         </label>
 
-        <br />
-        <br />
-
-        <label>
+        <label className="formLabel">
           Password:
           <input
+            className="formInput"
             type="password"
-            name="user_password"
-            value={formData.user_password}
+            name="userPassword"
+            value={formData.userPassword}
             onChange={handleChange}
           />
         </label>
 
-        <br />
-        <br />
-
-        <button type="submit">Submit</button>
+        <button className="submitButton" type="submit">Submit</button>
       </form>
 
-      <br />
+
       <p>Already have an account? <Link to="/Login">Log in </Link></p>
     </div>
   );
