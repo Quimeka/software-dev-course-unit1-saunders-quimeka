@@ -3,6 +3,7 @@ import { onyxUsers} from '../common/userGlobals.js';
 import { getUserFirstName } from './getUserName.js';
 import registerUserMood from './registerUserMood.js';
 import { useNavigate } from 'react-router';
+import SubmitGoBack from '../common/SubmitGoBack.jsx';
 
 
 function UserMood({currentUser, moodData, setMoodData}) {
@@ -88,12 +89,7 @@ function UserMood({currentUser, moodData, setMoodData}) {
 
         <br />
         <br />
-        <div className="form-nav-buttons">
-        <button type="submit">Submit</button>
-        <button onClick={() => navigate(-1)}>
-          Go Back
-        </button>
-        </div>
+        <SubmitGoBack />
       </form>
     </div>
   );

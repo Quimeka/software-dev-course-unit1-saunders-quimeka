@@ -3,6 +3,7 @@ import { onyxUsers} from '../common/userGlobals.js';
 import { getUserFirstName } from './getUserName.js';
 import registerUserDepth from './registerUserDepth.js';
 import { useNavigate } from 'react-router';
+import SubmitGoBack from '../common/SubmitGoBack.jsx';
 
 
 
@@ -62,12 +63,7 @@ function UserDepth({currentUser, depthData, setDepthData}) {
         <p>Give me a few prompts to guide my reflection.</p>
         <br />
         <br />
-        <div className="form-nav-buttons">
-        <button type="submit">Submit</button>
-        <button onClick={() => navigate(-1)}>
-          Go Back
-        </button>
-        </div>
+        <SubmitGoBack />
       </form>
     </div>
   );
