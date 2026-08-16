@@ -5,12 +5,12 @@ function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer>
+        <footer className="Footer">
             <hr />
-            <section>
+            <div className="FooterBar">
                 <strong>Onyx Reflections</strong>
                 <p>© {currentYear} All rights reserved.</p>
-            </section>
+            </div>
         </footer>
     );
 }

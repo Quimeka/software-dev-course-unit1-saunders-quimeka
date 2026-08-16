@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 
 import Home from "./components/common/Home.jsx";
 import LoginUser from "./components/authentication/LoginUser.jsx";
@@ -10,8 +10,8 @@ import JournalEntryPage from "./components/journal/JournalEntryPage.jsx";
 import CalendarPage from "./components/calendar/CalendarPage.jsx";
 import ContactUs from "./components/common/ContactUs.jsx";
 import Logout from "./components/common/Logout.jsx";
-import Header from "./components/common/header.jsx";
-import Footer from "./components/common/footer.jsx";
+import Header from "./components/common/Header.jsx";
+import Footer from "./components/common/Footer.jsx";
 
 
 function App() {
@@ -19,23 +19,19 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [moodData, setMoodData] = useState("");
-  const [moodEntries, setMoodEntries] = useState([]);
   const [depthData, setDepthData] = useState("");
   const [userJournalEntry, setUserJournalEntry] = useState("");
   const [entryMode, setEntryMode] = useState(null);
 
   const handleLogout = () => {
     setCurrentUser(null);
-    alert("You've successfully logged out!");
     navigate("/logged-out");
   }
 
   return (
     <div>
       <Header currentUser={currentUser} handleLogout={handleLogout} />
-      <br />
-      <br />
-      <br />
+      
       <Routes>
         <Route path="/" element={
           <Home>
@@ -51,7 +47,7 @@ function App() {
 
         <Route path="/create-account" element={
           <Home>
-            <CreateUser />
+            <CreateUser setCurrentUser={setCurrentUser} />
           </Home>
         } />
 
@@ -80,9 +76,6 @@ function App() {
         } />
 
       </Routes>
-      <br />
-      <br />
-      <br />
       <Footer />
     </div>
   );

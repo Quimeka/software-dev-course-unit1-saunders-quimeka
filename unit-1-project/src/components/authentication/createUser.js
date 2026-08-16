@@ -4,13 +4,14 @@ export default function createUser(firstName, lastName, email, password) {
     const currentId = String(++idCounter.index);
 
     const newUser = {
-        user_id: currentId,
-        user_first: firstName,
-        user_last: lastName,
-        user_email: email,
-        user_password: password
+        userId: currentId,
+        userFirst: firstName,
+        userLast: lastName,
+        userEmail: email,
+        userPassword: password
     };
 
     onyxUsers.push(newUser);
-    console.log("Current Users:", onyxUsers);
+
+    return currentId;
 }

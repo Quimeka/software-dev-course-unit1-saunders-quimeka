@@ -1,26 +1,22 @@
-import { onyxUsers, userJournalEntries} from '../common/userGlobals.js';
-import { getUserFirstName } from '../user/getUserName.js';
-    
+import { userJournalEntries } from '../common/userGlobals.js';
+import { findUser } from '../user/findUser.js';
 
-export default function registerJournalEntry(id, journalEntry){
+
+export default function registerJournalEntry(id, journalEntry) {
 
     const currentDate = new Date();
-    const user = onyxUsers.find(user => user.user_id === id);
-    
+    const user = findUser(id);
+
     if (!user) {
-        console.log(`There isn't a user`);
         return null;
     }
 
-    const newJournalEntry = { 
-        user_id: id,
+    const newJournalEntry = {
+        userId: id,
         date: currentDate.toISOString().substring(0, 10),
-        journal_entry: journalEntry,
-
+        journalEntry: journalEntry
     };
 
     userJournalEntries.push(newJournalEntry);
-    console.log(`Journal entry for ` + getUserFirstName(user) + ` registered:`, newJournalEntry);
-    console.log(userJournalEntries);
 }
 

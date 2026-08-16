@@ -1,20 +1,19 @@
 import { useState } from 'react';
-import validateUser from './validateUser.js';
+import verifyUserLogin from './verifyUserLogin.js';
 import { useNavigate, Link } from 'react-router';
+import ModalWindow from '../common/ModalWindow.jsx';
 
 function LoginUser({ setCurrentUser }) {
-
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState("");
+    const [showModalWindow, setShowModalWindow] = useState(false)
     const [formData, setFormData] = useState({
-        user_email: "",
-        user_password: "",
+        userEmail: "",
+        userPassword: "",
     });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-
-        console.log(`Updating ${name}:`, value);
-
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -23,67 +22,66 @@ function LoginUser({ setCurrentUser }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!formData.user_email || !formData.user_password) {
-            alert("Please fill out all fields.");
+        if (!formData.userEmail || !formData.userPassword) {
+            setErrorMessage("Please fill out all fields.");
+            setShowModalWindow(true);
             return;
         }
 
-        const userVerified = validateUser(formData.user_email, formData.user_password);
+        const loggedUser = verifyUserLogin(formData.userEmail, formData.userPassword);
 
-        if (userVerified) {
-            alert(`Submitted. Welcome, ${userVerified.user_first}!`);
-            setCurrentUser(userVerified.user_id);
-            setFormData({
-                user_email: "",
-                user_password: "",
-            });
-
-            navigate('/Mood');
-        } else {
-            alert("Invalid email or password.");
-            setFormData({
-                user_email: "",
-                user_password: "",
-            });
+        if (!loggedUser) {
+            setErrorMessage("Invalid email or password.");
+            setShowModalWindow(true);
+            return;
         }
-    };
+
+        setCurrentUser(loggedUser.userId);
+
+        setFormData({
+            userEmail: "",
+            userPassword: "",
+        });
+        navigate('/Mood');
+    }
 
     return (
         <div className="LoginUser">
-            <br />
             <h3>Log In</h3>
 
+            {showModalWindow && (
+                <ModalWindow
+                    message={errorMessage}
+                    onClose={() => setShowModalWindow(false)}>
+                </ModalWindow>
+            )}
+
             <form onSubmit={handleSubmit}>
-                <label>
+                <label className="formLabel">
                     Email:
                     <input
+                        className="formInput"
                         type="email"
-                        name="user_email"
-                        value={formData.user_email}
+                        name="userEmail"
+                        value={formData.userEmail}
                         onChange={handleChange}
                     />
                 </label>
 
-                <br />
-                <br />
-
-                <label>
+                <label className="formLabel">
                     Password:
                     <input
+                        className="formInput"
                         type="password"
-                        name="user_password"
-                        value={formData.user_password}
+                        name="userPassword"
+                        value={formData.userPassword}
                         onChange={handleChange}
                     />
                 </label>
 
-                <br />
-                <br />
-
-                <button type="submit">Submit</button>
+                <button className="submitButton" type="submit">Submit</button>
             </form>
 
-            <br />
             <p>Don't have an account? <Link to="/create-account">Register now!</Link></p>
         </div>
     );

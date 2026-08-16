@@ -1,29 +1,24 @@
 import { useState } from 'react';
-import validateUser from '../authentication/validateUser';
-import { useNavigate, Link } from 'react-router';
 import contactUs from './contactus.js';
 import getUserInfo from '../authentication/getUserInfo';
+import ModalWindow from './ModalWindow.jsx';
 
 function ContactUs({ currentUser }) {
-
-    const navigate = useNavigate();
-
     const userInformation = getUserInfo(currentUser);
+    const [feedbackStatus, setFeedbackStatus] = useState("");
+    const [showModalWindow, setShowModalWindow] = useState(false)
 
 
     const [formData, setFormData] = useState({
-        id: userInformation.user_id,
-        name: userInformation.user_first + ' ' + userInformation.user_last,
-        email: userInformation.user_email,
+        id: userInformation.userId,
+        name: userInformation.userFirst + ' ' + userInformation.userLast,
+        email: userInformation.userEmail,
         message: "",
 
     });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-
-        console.log(`Updating ${name}:`, value);
-
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -32,18 +27,23 @@ function ContactUs({ currentUser }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setFeedbackStatus("");
+
         if (!formData.message) {
-            alert("Please be sure to leave us a message!");
+            setFeedbackStatus("Please be sure to leave us a message!");
+            setShowModalWindow(true);
             return;
         }
 
         contactUs(formData.id, formData.name, formData.email, formData.message);
 
-        alert(`Submitted. Thank you, ${userInformation.user_first}!`);
+        setFeedbackStatus(`Submitted. Thank you!`);
+        setShowModalWindow(true);
+
         setFormData({
-            id: userInformation.user_id,
-            name: userInformation.user_first + ' ' + userInformation.user_last,
-            email: userInformation.user_email,
+            id: userInformation.userId,
+            name: userInformation.userFirst + ' ' + userInformation.userLast,
+            email: userInformation.userEmail,
             message: "",
         });
 
@@ -51,17 +51,25 @@ function ContactUs({ currentUser }) {
 
     return (
         <div className="ContactUs">
-            <br />
+
             <h1>Contact Us</h1>
+
+            {showModalWindow && (
+                <ModalWindow
+                    message={feedbackStatus}
+                    onClose={() => setShowModalWindow(false)}>
+                </ModalWindow>
+            )}
+
             <p><strong> Name: </strong>{formData.name}</p>
             <p><strong> Email: </strong>{formData.email}</p>
 
             <form onSubmit={handleSubmit}>
-                <label>
+                <label className="formLabel">
                     <strong> Message: </strong>
-                    <br />
-                    <br />
-                    <textarea
+
+
+                    <textarea className="textBox"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
@@ -71,10 +79,7 @@ function ContactUs({ currentUser }) {
                     />
                 </label>
 
-                <br />
-                <br />
-
-                <button type="submit">Submit</button>
+                <button className="submitButton" type="submit">Submit</button>
             </form>
         </div>
     );

@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 function Header({ currentUser, handleLogout }) {
     return (
-        <header>
+        <header className="Header">
             <div>
                 <h1>Onyx Reflections</h1>
                 <h2><em>Your personal space for mindful reflection.</em></h2>
@@ -11,7 +11,7 @@ function Header({ currentUser, handleLogout }) {
 
             <nav>
                 {currentUser !== null ? (
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '20px' }}>
+                    <div className="HeaderBar" style={{ display: 'flex', justifyContent: 'flex-end', gap: '20px' }}>
                         <Link to="/mood">[New Journal Entry]</Link>
                         <Link to="/calendar">[View Calendar]</Link>
                         <Link to="/contact-us">[Contact Us]</Link>

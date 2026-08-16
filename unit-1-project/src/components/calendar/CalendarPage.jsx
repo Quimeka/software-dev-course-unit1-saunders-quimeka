@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { onyxUsers, userDepths, userMoods } from '../common/userGlobals.js';
+import { userMoods } from '../common/userGlobals.js';
 import { getUserFirstName } from '../user/getUserName.js';
 import calendarDetailedView from './calendarDetailedView.js';
 //https://www.npmjs.com/package/react-calendar
@@ -26,7 +26,7 @@ export default function CalendarPage({ currentUser }) {
             const tileDate = date.toISOString().substring(0, 10);
 
             const moodsForDate = userMoods.filter(moodEntry =>
-                String(moodEntry.user_id) === String(currentUser) && moodEntry.date === tileDate
+                moodEntry.userId === currentUser && moodEntry.date === tileDate
             );
 
             const lastEntry = moodsForDate[moodsForDate.length - 1];
@@ -41,10 +41,11 @@ export default function CalendarPage({ currentUser }) {
 
 
     return (
-        <div>
+        <div className="CalendarPage">
             <h1>Calendar Page</h1>
             <p>This is the calendar page for {getUserFirstName(currentUser)}.</p>
             <Calendar
+                className="Calendar"
                 tileClassName={getTileClass}
                 name="date"
                 value={date}
@@ -56,27 +57,27 @@ export default function CalendarPage({ currentUser }) {
 
                         <h2>Details for {formattedDate}</h2>
 
-                        <div className="modal-journal-section">
+                        <div className="modalJournalSection">
                             {entryList.length === 0 ? (
                                 <p>No records or journal entries for this day, {getUserFirstName(currentUser)}!</p>
                             ) : (
                                 entryList.map((item, index) => (
-                                    <div key={item.Entry?.entry_id || index} className="journal-entry-card">
+                                    <div key={item.entry?.entry_id || index} className="journalEntryCard">
                                         <h3>Session #{index + 1}</h3>
 
-                                        {item.Mood && (
-                                            <p><strong>Mood:</strong> {setText("mood", item.Mood.mood)}</p>
+                                        {item.mood && (
+                                            <p className="modalEntryData"><strong>Mood:</strong> {setText("mood", item.mood.mood)}</p>
                                         )}
 
-                                        {item.Capacity && (
-                                            <p><strong>Capacity:</strong> {setText("depth", item.Capacity.depth)}</p>
+                                        {item.capacity && (
+                                            <p className="modalEntryData"><strong>Capacity:</strong> {setText("depth", item.capacity.depth)}</p>
                                         )}
 
-                                        {item.Entry && (
-                                            <p style={{ whiteSpace: 'pre-wrap' }}>
+                                        {item.entry && (
+                                            <p className="modalEntryData" style={{ whiteSpace: 'pre-wrap' }}>
                                                 <strong>Journal Entry:</strong>
                                                 <br />
-                                                {item.Entry.journal_entry}
+                                                {item.entry.journalEntry}
                                                 <br />
                                             </p>
                                         )}
@@ -85,7 +86,7 @@ export default function CalendarPage({ currentUser }) {
                             )}
                         </div>
 
-                        <button onClick={() => setShowModalWindow(false)}>Close</button>
+                        <button className="closeButton" onClick={() => setShowModalWindow(false)}>Close</button>
                     </div>
                 </div>
             )}
