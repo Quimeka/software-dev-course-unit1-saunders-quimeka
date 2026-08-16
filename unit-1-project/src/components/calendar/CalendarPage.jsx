@@ -5,7 +5,7 @@ import calendarDetailedView from './calendarDetailedView.js';
 //https://www.npmjs.com/package/react-calendar
 import Calendar from 'react-calendar';
 import setText from '../journal/setTextForEntries.js';
-
+import './mood-custom-calendar.css';
 
 export default function CalendarPage({ currentUser }) {
 
@@ -21,11 +21,31 @@ export default function CalendarPage({ currentUser }) {
 
     const entryList = calendarDetailedView(currentUser, formattedDate);
 
+    const getTileClass = ({ date, view }) => {
+        if (view === 'month') {
+            const tileDate = date.toISOString().substring(0, 10);
+
+            const moodsForDate = userMoods.filter(moodEntry =>
+                String(moodEntry.user_id) === String(currentUser) && moodEntry.date === tileDate
+            );
+
+            const lastEntry = moodsForDate[moodsForDate.length - 1];
+
+            if (lastEntry && lastEntry.mood) {
+                return `mood_${lastEntry.mood}`;
+            }
+        }
+        return null;
+    };
+
+
+
     return (
         <div>
             <h1>Calendar Page</h1>
             <p>This is the calendar page for {getUserFirstName(currentUser)}.</p>
             <Calendar
+                tileClassName={getTileClass}
                 name="date"
                 value={date}
                 onChange={handleDateClick} />
@@ -54,9 +74,9 @@ export default function CalendarPage({ currentUser }) {
 
                                         {item.Entry && (
                                             <p style={{ whiteSpace: 'pre-wrap' }}>
-                                                <strong>Journal Entry:</strong> 
+                                                <strong>Journal Entry:</strong>
                                                 <br />
-                                                 {item.Entry.journal_entry}
+                                                {item.Entry.journal_entry}
                                                 <br />
                                             </p>
                                         )}

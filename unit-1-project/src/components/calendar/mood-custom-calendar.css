@@ -1,0 +1,38 @@
+
+.mood_1 {
+    background-color: #4a4e69 !important;
+    color: #ffffff !important;
+    font-weight: bold;
+
+}
+
+.mood_2 {
+    background-color: #a8dadc !important;
+    color: #000000 !important;
+    font-weight: bold;
+
+}
+
+.mood_3 {
+    background-color: #eae2b7 !important;
+    color: #000000 !important;
+    font-weight: bold;
+
+}
+
+.mood_4 {
+    background-color: #a9dfbf !important;
+    color: #000000 !important;
+    font-weight: bold;
+
+}
+
+.mood_5 {
+    background-color: #f9c74f !important;
+    color: #000000 !important;
+    font-weight: bold;
+}
+
+.react-calendar__tile {
+    padding: 12px 6px !important;
+}
