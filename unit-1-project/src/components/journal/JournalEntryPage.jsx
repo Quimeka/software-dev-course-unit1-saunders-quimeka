@@ -60,7 +60,7 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
                 return;
             }
 
-        finalEntry = `
+            finalEntry = `
         ${promptsForToday[0]}:\n${promptAnswers.q1}
         ${promptsForToday[1]}:\n${promptAnswers.q2}
         ${promptsForToday[2]}:\n${promptAnswers.q3}
@@ -100,10 +100,10 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
     return (
         <div className="JournalEntry">
             <h2>Welcome, {getUserFirstName(currentUser)}!</h2>
-            <p><strong>Today's Mood: </strong>{todayMoodDisplay}</p>
-            <p><strong>Today's Depth: </strong>{todayDepthDisplay}</p>
+            <p><strong>Your Space Today: </strong>{todayMoodDisplay}</p>
+            <p><strong>Your Reflection Style: </strong>{todayDepthDisplay}</p>
 
-            <p><strong>Journal Entry Date:</strong> {today}</p>
+            <p><strong>Date:</strong> {today}</p>
 
             {showModalWindow && (
                 <div className="modal-overlay" onClick={() => setShowModalWindow(false)}>
@@ -116,12 +116,12 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
 
             <form onSubmit={handleSubmit}>
                 <button className="journalButton" type="button" onClick={() => setEntryMode(depthData)}>
-                    Change Journal Entry Type
+                    {todayDepth === "1" ? "Start Free Writing" : "View My Prompts"}
                 </button>
 
                 {entryMode === "1" && (
                     <div>
-                        <textarea 
+                        <textarea
                             className="textBox"
                             name="userJournalEntry"
                             value={userJournalEntry || ""}
@@ -167,7 +167,7 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
 
                         <div>
                             <label className="promptLabel"><strong>4. {promptsForToday[3]}</strong></label>
-                            <textarea 
+                            <textarea
                                 className="textBox"
                                 value={promptAnswers.q4}
                                 onChange={(e) => handlePromptChange("q4", e.target.value)}

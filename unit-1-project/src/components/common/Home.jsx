@@ -2,10 +2,10 @@ import React from "react";
 
 function Home(props) {
   return (
-    <div>
-      <section className="Introduction">
-        <h2>Welcome to your sanctuary.</h2>
-        <p>
+    <div className="main">
+      <section>
+        <h3 id="OneLiner">Welcome to Your Safe Haven.</h3>
+        <p id="introText">
           {/*This content was generated with AI*/}
           Onyx Reflection is a secure, private space designed to help you
           process your thoughts, cultivate gratitude, and find clarity.

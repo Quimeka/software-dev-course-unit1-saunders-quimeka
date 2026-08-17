@@ -34,7 +34,7 @@ function UserDepth({ currentUser, depthData, setDepthData }) {
   return (
     <div className="UserDepth">
 
-      <h1>How are you feeling today, {getUserFirstName(currentUser)}?</h1>
+      <h3 > How would you like to process your thoughts today, {getUserFirstName(currentUser)}?</h3>
 
       {showModalWindow && (
         <ModalWindow
@@ -45,7 +45,6 @@ function UserDepth({ currentUser, depthData, setDepthData }) {
 
       <form onSubmit={handleSubmit}>
         <label className="formLabel">
-          (1) Low Capacity/Energy
           <input
             className="radioButton"
             type="radio"
@@ -54,10 +53,10 @@ function UserDepth({ currentUser, depthData, setDepthData }) {
             checked={depthData === "1"}
             onChange={handleChange}
           />
+          <span> Open-Ended Space</span>
         </label>
-        <p>Give me a completely blank page to vent and express myself.</p>
+        <p className="ButtonDescription"> I just want to write freely without any structure.</p>
         <label className="formLabel">
-          (2) High Capacity/Energy
           <input
             className="radioButton"
             type="radio"
@@ -65,9 +64,9 @@ function UserDepth({ currentUser, depthData, setDepthData }) {
             value="2"
             checked={depthData === "2"}
             onChange={handleChange}
-          />
+          /> <span> Structured Reflection</span>
         </label>
-        <p>Give me a few prompts to guide my reflection.</p>
+        <p className="ButtonDescription">I would prefer some specific questions to answer.</p>
 
         <SubmitGoBack />
       </form>

@@ -8,7 +8,7 @@ function Footer() {
         <footer className="Footer">
             <hr />
             <div className="FooterBar">
-                <strong>Onyx Reflections</strong>
+                <p>Onyx Reflections</p>
                 <p>© {currentYear} All rights reserved.</p>
             </div>
         </footer>

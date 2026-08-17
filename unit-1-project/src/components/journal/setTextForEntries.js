@@ -5,15 +5,15 @@ export default function setText(type, entry) {
     if (type === "mood") {
         switch (userEntry) {
             case "1":
-                return "Very Heavy";
+                return "Very Low / Sad";
             case "2":
-                return "Down/Low";
+                return "Somewhat down";
             case "3":
-                return "Neutral/Flat";
+                return "Neutral";
             case "4":
-                return "Good/Steady";
+                return "Content / Happy";
             case "5":
-                return "Vibrant/Radiant";
+                return "Highly positive / Joyful";
             default:
                 return "No mood data available for today.";
         }
@@ -22,9 +22,9 @@ export default function setText(type, entry) {
     if (type === "depth") {
         switch (userEntry) {
             case "1":
-                return "Low Capacity/Energy";
+                return "Free Writing";
             case "2":
-                return "High Capacity/Energy";
+                return "Structured Writing";
             default:
                 return "No capacity data available for today.";
         }
