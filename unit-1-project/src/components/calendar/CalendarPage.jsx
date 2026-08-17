@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { userMoods } from '../common/userGlobals.js';
 import { getUserFirstName } from '../user/getUserName.js';
 import calendarDetailedView from './calendarDetailedView.js';
@@ -6,11 +6,18 @@ import calendarDetailedView from './calendarDetailedView.js';
 import Calendar from 'react-calendar';
 import setText from '../journal/setTextForEntries.js';
 import './mood-custom-calendar.css';
+import { useNavigate } from 'react-router';
 
 export default function CalendarPage({ currentUser }) {
-
+    const navigate = useNavigate();
     const [date, setDate] = useState(new Date());
     const [showModalWindow, setShowModalWindow] = useState(false)
+
+    useEffect(() => {
+        if (!currentUser) {
+            navigate('/');
+        }
+    }, [currentUser, navigate]);
 
     const handleDateClick = (selectedDate) => {
         setDate(selectedDate);
@@ -20,6 +27,9 @@ export default function CalendarPage({ currentUser }) {
     const formattedDate = date.toISOString().substring(0, 10);
 
     const entryList = calendarDetailedView(currentUser, formattedDate);
+
+    const [year, month, day] = formattedDate.split('-');
+    const formattedDateDisplay = `${month}-${day}-${year}`;
 
     const getTileClass = ({ date, view }) => {
         if (view === 'month') {
@@ -41,55 +51,56 @@ export default function CalendarPage({ currentUser }) {
 
 
     return (
-        <div className="CalendarPage">
-            <h1>Calendar Page</h1>
-            <p>This is the calendar page for {getUserFirstName(currentUser)}.</p>
-            <Calendar
-                className="Calendar"
-                tileClassName={getTileClass}
-                name="date"
-                value={date}
-                onChange={handleDateClick} />
+        <div className="main">
+            <div className="CalendarPage">
+                <h3>Calendar Page</h3>
+                <Calendar
+                    className="Calendar"
+                    tileClassName={getTileClass}
+                    name="date"
+                    value={date}
+                    onChange={handleDateClick} />
 
-            {showModalWindow && (
-                <div className="modal-overlay" onClick={() => setShowModalWindow(false)}>
-                    <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+                {showModalWindow && (
+                    <div className="modal-overlay" onClick={() => setShowModalWindow(false)}>
+                        <div className="modal-box" onClick={(e) => e.stopPropagation()}>
 
-                        <h2>Details for {formattedDate}</h2>
+                            <h2>Details for {formattedDateDisplay}</h2>
 
-                        <div className="modalJournalSection">
-                            {entryList.length === 0 ? (
-                                <p>No records or journal entries for this day, {getUserFirstName(currentUser)}!</p>
-                            ) : (
-                                entryList.map((item, index) => (
-                                    <div key={item.entry?.entry_id || index} className="journalEntryCard">
-                                        <h3>Session #{index + 1}</h3>
+                            <div className="modalJournalSection">
+                                {entryList.length === 0 ? (
+                                    <p>No records or journal entries for this day, {getUserFirstName(currentUser)}!</p>
+                                ) : (
+                                    entryList.map((item, index) => (
+                                        <div key={item.entry?.entry_id || index} className="journalEntryCard">
+                                            <h3>Session #{index + 1}</h3>
 
-                                        {item.mood && (
-                                            <p className="modalEntryData"><strong>Mood:</strong> {setText("mood", item.mood.mood)}</p>
-                                        )}
+                                            {item.mood && (
+                                                <p className="modalEntryData"><strong>Mood:</strong> {setText("mood", item.mood.mood)}</p>
+                                            )}
 
-                                        {item.capacity && (
-                                            <p className="modalEntryData"><strong>Preference:</strong> {setText("depth", item.capacity.depth)}</p>
-                                        )}
+                                            {item.capacity && (
+                                                <p className="modalEntryData"><strong>Preference:</strong> {setText("depth", item.capacity.depth)}</p>
+                                            )}
 
-                                        {item.entry && (
-                                            <p className="modalEntryData" style={{ whiteSpace: 'pre-wrap' }}>
-                                                <strong>Journal Entry:</strong>
-                                                <br />
-                                                {item.entry.journalEntry}
-                                                <br />
-                                            </p>
-                                        )}
-                                    </div>
-                                ))
-                            )}
+                                            {item.entry && (
+                                                <p className="modalEntryData" style={{ whiteSpace: 'pre-wrap' }}>
+                                                    <strong>Journal Entry:</strong>
+                                                    <br />
+                                                    {item.entry.journalEntry}
+                                                    <br />
+                                                </p>
+                                            )}
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+
+                            <button className="closeButton" onClick={() => setShowModalWindow(false)}>Close</button>
                         </div>
-
-                        <button className="closeButton" onClick={() => setShowModalWindow(false)}>Close</button>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };

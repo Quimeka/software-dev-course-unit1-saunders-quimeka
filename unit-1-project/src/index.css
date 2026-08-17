@@ -10,7 +10,6 @@ body {
     min-height: 100vh;
 }
 
-
 #appTitle {
     font-family: "Dancing Script", cursive;
     font-size: 60px;
@@ -49,7 +48,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: #4a5568;
-    margin: 0;
+    margin: 8px 0 0px 0px;
     display: flex;
     justify-content: flex-end;
     gap: 50px;
@@ -71,7 +70,7 @@ body {
 
 .main {
     flex: 1;
-    padding: 40px 60px;
+    padding: 40px 40px;
 }
 
 #OneLiner {
@@ -90,14 +89,39 @@ body {
 }
 
 .LoginUser,
-.CreateUser,
-.UserMood,
-.UserDepth {
+.CreateUser {
     border-radius: 5px;
     background-color: #e8e8e8;
-    border: 10px solid #c6e7e4;
+    border: 2px solid #c6e7e4;
     padding: 20px;
     border-style: outset;
+
+}
+
+.UserMood,
+.UserDepth,
+.JournalEntry { 
+    max-width: 800px;
+    border: 2px solid #c6e7e4;
+    background-color:  #d6fffc43;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+#moodLine,
+#depthLine {
+    font-weight: 10000;
+}
+.JournalEntry h2 {
+    margin-top: 0;
+    color: #2a2a2a;
+    font-size: 1.8rem;
+}
+
+.JournalEntry p {
+    margin: 8px 0;
+    color: #555555;
 }
 
 .LoginUser h3 {
@@ -108,6 +132,15 @@ body {
 
 label {
     display: block;
+}
+
+.form {
+    align-self: center;
+    background-color: #f9fbfa;
+    border: 2px solid #c6e7e4;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .formInput {
@@ -121,15 +154,44 @@ label {
     outline-color: #2a2a2a;
 }
 
+.textBox {
+    width: 100%;
+    padding: 12px;
+    margin-top: 4px;
+    font-family: 'Montserrat', serif;
+    font-size: 14px;
+    border: 1px solid #c6e7e4;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+    resize: vertical;
+}
+
 .submitButton,
 .backButton,
-.journalButton {
+.journalButton,
+.closeButton {
     width: auto;
     font-family: 'Montserrat', serif;
     align-content: center;
     background-color: #565656;
-    ;
     color: white;
+    padding: 8px;
+    margin: 8px 0;
+    border-style: outset;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.submitButton:hover,
+.backButton:hover,
+.journalButton:hover,
+.closeButton:hover {
+    width: auto;
+    font-family: 'Montserrat', serif;
+    align-content: center;
+    background-color: #c6e7e4;
+    color: #2a2a2a;
     padding: 8px;
     margin: 8px 0;
     border-style: outset;
@@ -146,8 +208,10 @@ label {
     margin: 0 0px 8px 8px;
     margin-bottom: 12px;
     white-space: nowrap;
+    accent-color: #2a2a2a;
 }
 
-input[type=submit]:hover {
-    background-color: #45a049;
+.ButtonDescription {
+    font-style: italic;
+    margin: 0 0px 8px 30px;
 }
