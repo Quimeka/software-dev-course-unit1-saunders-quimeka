@@ -70,7 +70,7 @@ export default function CalendarPage({ currentUser }) {
                                         )}
 
                                         {item.capacity && (
-                                            <p className="modalEntryData"><strong>Capacity:</strong> {setText("depth", item.capacity.depth)}</p>
+                                            <p className="modalEntryData"><strong>Preference:</strong> {setText("depth", item.capacity.depth)}</p>
                                         )}
 
                                         {item.entry && (

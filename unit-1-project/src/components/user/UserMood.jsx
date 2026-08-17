@@ -33,7 +33,7 @@ function UserMood({ currentUser, moodData, setMoodData }) {
   return (
     <div className="UserMood">
 
-      <h1>How are you feeling today, {getUserFirstName(currentUser)}?</h1>
+      <h3>How are you feeling today, {getUserFirstName(currentUser)}?</h3>
 
       {showModalWindow && (
         <ModalWindow
@@ -44,7 +44,6 @@ function UserMood({ currentUser, moodData, setMoodData }) {
 
       <form onSubmit={handleSubmit}>
         <label className="formLabel">
-          (1) Very Heavy
           <input
             className="radioButton"
             type="radio"
@@ -53,10 +52,9 @@ function UserMood({ currentUser, moodData, setMoodData }) {
             checked={moodData === "1"}
             onChange={handleChange}
           />
+          <span> Very Low / Sad</span>
         </label>
         <label className="formLabel">
-
-          (2) Down/Low
           <input
             className="radioButton"
             type="radio"
@@ -65,9 +63,9 @@ function UserMood({ currentUser, moodData, setMoodData }) {
             checked={moodData === "2"}
             onChange={handleChange}
           />
+          <span> Somewhat down</span>
         </label>
         <label>
-          (3) Neutral/Flat
           <input
             className="radioButton"
             type="radio"
@@ -76,9 +74,9 @@ function UserMood({ currentUser, moodData, setMoodData }) {
             checked={moodData === "3"}
             onChange={handleChange}
           />
+          <span> Neutral</span>
         </label>
         <label>
-          (4) Good/Steady
           <input
             className="radioButton"
             type="radio"
@@ -87,9 +85,9 @@ function UserMood({ currentUser, moodData, setMoodData }) {
             checked={moodData === "4"}
             onChange={handleChange}
           />
+          <span> Content / Happy</span>
         </label>
         <label>
-          (5) Vibrant/Radiant
           <input
             className="radioButton"
             type="radio"
@@ -98,6 +96,7 @@ function UserMood({ currentUser, moodData, setMoodData }) {
             checked={moodData === "5"}
             onChange={handleChange}
           />
+          <span> Highly positive / Joyful</span>
         </label>
         <SubmitGoBack />
       </form>

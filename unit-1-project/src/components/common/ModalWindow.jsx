@@ -6,7 +6,7 @@ export default function ModalWindow({message, onClose}) {
         <div className="modal-overlay" onClick={onClose}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <h4>{message}</h4>
-            <button className="closeButton" onClick={onClose}>Close</button>
+            <button className="modal-close" onClick={onClose}>Close</button>
           </div>
         </div>
     );

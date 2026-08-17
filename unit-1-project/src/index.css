@@ -1,0 +1,153 @@
+@import url('https://googleapis.com');
+
+body {
+    margin: 0px;
+    padding: 0;
+    background-color: #f9fbfa;
+    color: #1a3332;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+#appTitle {
+    font-family: "Dancing Script", cursive;
+    font-size: 60px;
+    margin: 0 0 8px 0;
+    color: #1a202c;
+}
+
+#appPhrase {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4a5568;
+    margin: 0;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    display: flex;
+    align-content: flex-end
+}
+
+.Header {
+    background-color: #c6e7e4;
+    padding: 40px 60px;
+    box-sizing: border-box;
+
+}
+
+.HeaderBar {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4a5568;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 50px;
+}
+
+.Footer {
+    background-color: #c6e7e4;
+    padding: 20px 60px;
+    box-sizing: border-box;
+}
+
+.FooterBar {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    margin: 4px 0;
+    background-color: #c6e7e4;
+    color: #4a5568;
+}
+
+.main {
+    flex: 1;
+    padding: 40px 60px;
+}
+
+#OneLiner {
+    font-family: "Dancing Script", cursive;
+    color: #2b2c2d;
+    line-height: 0;
+
+}
+
+#introText {
+    font-family: 'Montserrat', serif;
+    font-size: 18px;
+    color: #2d3748;
+    line-height: 1.6;
+
+}
+
+.LoginUser,
+.CreateUser,
+.UserMood,
+.UserDepth {
+    border-radius: 5px;
+    background-color: #e8e8e8;
+    border: 10px solid #c6e7e4;
+    padding: 20px;
+    border-style: outset;
+}
+
+.LoginUser h3 {
+    font-family: 'Montserrat', serif;
+    font-size: 18px;
+
+}
+
+label {
+    display: block;
+}
+
+.formInput {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 3px solid #c6e7e4;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline-color: #2a2a2a;
+}
+
+.submitButton,
+.backButton,
+.journalButton {
+    width: auto;
+    font-family: 'Montserrat', serif;
+    align-content: center;
+    background-color: #565656;
+    ;
+    color: white;
+    padding: 8px;
+    margin: 8px 0;
+    border-style: outset;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.radioButton {
+    font-family: 'Montserrat', serif;
+    display: inline-block;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0px 8px 8px;
+    margin-bottom: 12px;
+    white-space: nowrap;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}

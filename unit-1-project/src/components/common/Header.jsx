@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router';
+import OnyxReflections from '../../assets/OnyxReflections.png';
 
 function Header({ currentUser, handleLogout }) {
     return (
         <header className="Header">
             <div>
-                <h1>Onyx Reflections</h1>
-                <h2><em>Your personal space for mindful reflection.</em></h2>
+                <h1 id="appTitle">Onyx Reflections</h1>
+                {/*<img src={OnyxReflections} alt="Onyx Reflections Logo" className="logo" />*/}
+                <h2 id="appPhrase">Your personal space for mindful reflection.</h2>
             </div>
 
             <nav>
                 {currentUser !== null ? (
-                    <div className="HeaderBar" style={{ display: 'flex', justifyContent: 'flex-end', gap: '20px' }}>
+                    <div className="HeaderBar">
                         <Link to="/mood">[New Journal Entry]</Link>
                         <Link to="/calendar">[View Calendar]</Link>
                         <Link to="/contact-us">[Contact Us]</Link>
