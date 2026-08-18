@@ -71,6 +71,7 @@ body {
 .main {
     flex: 1;
     padding: 40px 40px;
+    background-color: #4a55681e;
 }
 
 #OneLiner {
@@ -100,19 +101,17 @@ body {
 
 .UserMood,
 .UserDepth,
-.JournalEntry { 
-    max-width: 800px;
-    border: 2px solid #c6e7e4;
-    background-color:  #d6fffc43;
-    border-radius: 12px;
-    padding: 32px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+.JournalEntry {
+    border: 1px solid #c6e7e4;
+    background-color: #d6fffc43;
+    padding: 4px;
 }
 
 #moodLine,
 #depthLine {
     font-weight: 10000;
 }
+
 .JournalEntry h2 {
     margin-top: 0;
     color: #2a2a2a;
@@ -154,9 +153,19 @@ label {
     outline-color: #2a2a2a;
 }
 
+.promptLabel {
+    font-family: 'Montserrat', serif;
+    padding: 10px;
+    margin: 8px 0;
+
+}
+
 .textBox {
     width: 100%;
-    padding: 12px;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    padding: 10px;
     margin-top: 4px;
     font-family: 'Montserrat', serif;
     font-size: 14px;
@@ -214,4 +223,54 @@ label {
 .ButtonDescription {
     font-style: italic;
     margin: 0 0px 8px 30px;
+}
+
+.modal-overlay {
+    z-index: 3;
+    padding-top: 100px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(99, 103, 102, 0.4);
+}
+
+.modal-box {
+    font-family: 'Montserrat', serif;
+    font-size: 18px;
+    margin: 50px auto;
+    position: relative;
+    width: 600px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 10px solid #c6e7e4;
+    padding: 20px;
+    border-style: outset;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+    max-height: 50vh;
+}
+
+#modal-message {
+    font-family: "Dancing Script", cursive;
+    font-size: 24px;
+    margin: 0 0 8px 0;
+    color: #1a202c;
+
+}
+
+.modalEntryDataTextResponses {
+    text-align: left;
+    margin-top: 12px;
+    line-height: 1.6;
+}
+
+#JournalHeader {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    color: #1a202c;
+
 }

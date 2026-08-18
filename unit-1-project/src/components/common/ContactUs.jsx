@@ -50,37 +50,39 @@ function ContactUs({ currentUser }) {
     };
 
     return (
-        <div className="ContactUs">
+        <div className="main">
+            <div className="ContactUs">
 
-            <h1>Contact Us</h1>
+                <h1>Contact Us</h1>
 
-            {showModalWindow && (
-                <ModalWindow
-                    message={feedbackStatus}
-                    onClose={() => setShowModalWindow(false)}>
-                </ModalWindow>
-            )}
+                {showModalWindow && (
+                    <ModalWindow
+                        message={feedbackStatus}
+                        onClose={() => setShowModalWindow(false)}>
+                    </ModalWindow>
+                )}
 
-            <p><strong> Name: </strong>{formData.name}</p>
-            <p><strong> Email: </strong>{formData.email}</p>
+                <p><strong> Name: </strong>{formData.name}</p>
+                <p><strong> Email: </strong>{formData.email}</p>
 
-            <form onSubmit={handleSubmit}>
-                <label className="formLabel">
-                    <strong> Message: </strong>
+                <form onSubmit={handleSubmit}>
+                    <label className="formLabel">
+                        <strong> Message: </strong>
 
 
-                    <textarea className="textBox"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows="15"
-                        cols="50"
-                        placeholder="Please leave your feedback here..."
-                    />
-                </label>
+                        <textarea className="textBox"
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            rows="15"
+                            cols="50"
+                            placeholder="Please leave your feedback here..."
+                        />
+                    </label>
 
-                <button className="submitButton" type="submit">Submit</button>
-            </form>
+                    <button className="submitButton" type="submit">Submit</button>
+                </form>
+            </div>
         </div>
     );
 }

@@ -6,10 +6,13 @@ import { useNavigate, Link } from 'react-router';
 import ModalWindow from '../common/ModalWindow.jsx';
 
 
-export default function CreateUser({ setCurrentUser }) {
+export default function CreateUser({ setCurrentUser, setMoodData, setDepthData }) {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [showModalWindow, setShowModalWindow] = useState(false)
+  setDepthData(null);
+  setMoodData(null);
+
   const [formData, setFormData] = useState({
     userFirst: "",
     userLast: "",

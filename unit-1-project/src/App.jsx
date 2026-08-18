@@ -34,13 +34,13 @@ function App() {
       <Routes>
         <Route path="/" element={
           <Home>
-            <LoginUser currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            <LoginUser currentUser={currentUser} setCurrentUser={setCurrentUser} setMoodData={setMoodData} setDepthData={setDepthData}/>
           </Home>
         } />
 
         <Route path="/Login" element={
           <Home>
-            <LoginUser currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            <LoginUser currentUser={currentUser} setCurrentUser={setCurrentUser} setMoodData={setMoodData} setDepthData={setDepthData}/>
           </Home>
         } />
 
