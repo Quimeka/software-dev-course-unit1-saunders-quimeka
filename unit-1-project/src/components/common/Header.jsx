@@ -17,7 +17,7 @@ function Header({ currentUser, handleLogout }) {
                         <Link to="/mood">[New Journal Entry]</Link>
                         <Link to="/calendar">[View Calendar]</Link>
                         <Link to="/contact-us">[Contact Us]</Link>
-                        <Link to="/logged-out" onClick={handleLogout}>[Log Out]</Link>
+                        <Link to="/" onClick={handleLogout}>[Log Out]</Link>
                     </div>
                 ) : null}
             </nav>

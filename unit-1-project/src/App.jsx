@@ -24,23 +24,22 @@ function App() {
 
   const handleLogout = () => {
     setCurrentUser(null);
-    navigate("/logged-out");
   }
 
   return (
     <div>
       <Header currentUser={currentUser} handleLogout={handleLogout} />
-      
+
       <Routes>
         <Route path="/" element={
           <Home>
-            <LoginUser currentUser={currentUser} setCurrentUser={setCurrentUser} setMoodData={setMoodData} setDepthData={setDepthData}/>
+            <LoginUser currentUser={currentUser} setCurrentUser={setCurrentUser} />
           </Home>
         } />
 
         <Route path="/Login" element={
           <Home>
-            <LoginUser currentUser={currentUser} setCurrentUser={setCurrentUser} setMoodData={setMoodData} setDepthData={setDepthData}/>
+            <LoginUser currentUser={currentUser} setCurrentUser={setCurrentUser} />
           </Home>
         } />
 
@@ -55,7 +54,7 @@ function App() {
         } />
 
         <Route path="/depth" element={
-          <UserDepth currentUser={currentUser} depthData={depthData} setDepthData={setDepthData} />
+          <UserDepth currentUser={currentUser} moodData={moodData} depthData={depthData} setDepthData={setDepthData} />
         } />
 
         <Route path="/contact-us" element={

@@ -4,9 +4,10 @@ import createUser from './CreateUser.js';
 import isEmailAvailable from './isEmailAvailable.js';
 import { useNavigate, Link } from 'react-router';
 import ModalWindow from '../common/ModalWindow.jsx';
+import { CREATE_USER_FIELDS } from '../common/userGlobals.js';
 
 
-export default function CreateUser({ setCurrentUser, setMoodData, setDepthData }) {
+export default function CreateUser({ setCurrentUser }) {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [showModalWindow, setShowModalWindow] = useState(false)
@@ -64,49 +65,18 @@ export default function CreateUser({ setCurrentUser, setMoodData, setDepthData }
       )}
 
       <form onSubmit={handleSubmit}>
-        <label className="formLabel">
-          First name:
-          <input
-            className="formInput"
-            type="text"
-            name="userFirst"
-            value={formData.userFirst}
-            onChange={handleChange}
-          />
-        </label>
 
-        <label className="formLabel">
-          Last name:
-          <input
-            className="formInput"
-            type="text"
-            name="userLast"
-            value={formData.userLast}
-            onChange={handleChange}
-          />
-        </label>
-
-        <label className="formLabel">
-          Email:
-          <input
-            className="formInput"
-            type="email"
-            name="userEmail"
-            value={formData.userEmail}
-            onChange={handleChange}
-          />
-        </label>
-
-        <label className="formLabel">
-          Password:
-          <input
-            className="formInput"
-            type="password"
-            name="userPassword"
-            value={formData.userPassword}
-            onChange={handleChange}
-          />
-        </label>
+        {CREATE_USER_FIELDS.map((field) => (
+          <label className="formLabel" key={field.name}>
+            {field.label}
+            <input
+              className="formInput"
+              type={field.type}
+              name={field.name}
+              value={formData[field.name]}
+              onChange={handleChange}
+            />
+          </label>))}
 
         <button className="submitButton" type="submit">Submit</button>
       </form>

@@ -3,7 +3,7 @@ import verifyUserLogin from './verifyUserLogin.js';
 import { useNavigate, Link } from 'react-router';
 import ModalWindow from '../common/ModalWindow.jsx';
 
-function LoginUser({ setCurrentUser, setMoodData, setDepthData }) {
+function LoginUser({ setCurrentUser }) {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
     const [showModalWindow, setShowModalWindow] = useState(false)
@@ -12,9 +12,6 @@ function LoginUser({ setCurrentUser, setMoodData, setDepthData }) {
         userPassword: "",
     });
 
-    setDepthData(null);
-    setMoodData(null);
-    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
