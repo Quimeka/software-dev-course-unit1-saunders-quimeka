@@ -84,8 +84,8 @@ export default function CalendarPage({ currentUser }) {
                                             )}
 
                                             {item.entry && (
-                                                <p className="modalEntryData" style={{ whiteSpace: 'pre-wrap' }}>
-                                                    <strong>Journal Entry:</strong>
+                                                <p className="modalEntryDataTextResponses" style={{ whiteSpace: 'pre-line' }}>
+                                                    <h4 id="JournalHeader"><strong>Journal Entry:</strong></h4>
                                                     <br />
                                                     {item.entry.journalEntry}
                                                     <br />
