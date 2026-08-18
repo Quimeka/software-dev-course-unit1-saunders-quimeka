@@ -23,11 +23,11 @@ export default function calendarDetailedView(id, selectedDate) {
     );
 
     for(let index = 0; index < journalEntriesForDate.length; index++){
-
+        
         journalData[index] = {
             mood: moodsForDate[index] || null,
             capacity: depthsForDate[index] || null,
-            entry:  journalEntriesForDate[index]
+            entry:  journalEntriesForDate[index] || null
         };
     }
 

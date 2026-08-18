@@ -3,6 +3,7 @@ import { getUserFirstName } from './getUserName.js';
 import { useNavigate } from 'react-router';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
+import { MOOD_OPTIONS } from '../common/userGlobals.js';
 
 
 function UserMood({ currentUser, moodData, setMoodData }) {
@@ -26,7 +27,7 @@ function UserMood({ currentUser, moodData, setMoodData }) {
     e.preventDefault();
 
     if (!moodData) {
-      setErrorMessage(`Please provide a response to the question,${getUserFirstName(currentUser)} .`);
+      setErrorMessage(`Try again. I'd like to know how you're doing today, ${getUserFirstName(currentUser)}!`);
       setShowModalWindow(true);
       return;
     }
@@ -49,62 +50,21 @@ function UserMood({ currentUser, moodData, setMoodData }) {
 
           <h3 id="moodLine" >How are you feeling today, {getUserFirstName(currentUser)}?</h3>
 
-          <label className="formLabel">
-            <input
-              className="radioButton"
-              type="radio"
-              name="userMood"
-              value="1"
-              checked={moodData === "1"}
-              onChange={handleChange}
-            />
-            <span> Very Low / Sad</span>
-          </label>
-          <label className="formLabel">
-            <input
-              className="radioButton"
-              type="radio"
-              name="userMood"
-              value="2"
-              checked={moodData === "2"}
-              onChange={handleChange}
-            />
-            <span> Somewhat down</span>
-          </label>
-          <label>
-            <input
-              className="radioButton"
-              type="radio"
-              name="userMood"
-              value="3"
-              checked={moodData === "3"}
-              onChange={handleChange}
-            />
-            <span> Neutral</span>
-          </label>
-          <label>
-            <input
-              className="radioButton"
-              type="radio"
-              name="userMood"
-              value="4"
-              checked={moodData === "4"}
-              onChange={handleChange}
-            />
-            <span> Content / Happy</span>
-          </label>
-          <label>
-            <input
-              className="radioButton"
-              type="radio"
-              name="userMood"
-              value="5"
-              checked={moodData === "5"}
-              onChange={handleChange}
-            />
-            <span> Highly positive / Joyful</span>
-          </label>
-          <SubmitGoBack />
+            {MOOD_OPTIONS.map((mood) => (
+              <label key={mood.value} className="formLabel">
+                <input
+                  className="radioButton"
+                  type="radio"
+                  name="userMood"
+                  value={mood.value}
+                  checked={moodData === mood.value}
+                  onChange={handleChange}
+                />
+                <span> {mood.moodLabel}</span>
+              </label>
+            ))}
+
+          <SubmitGoBack resetInput={() => setMoodData(null)} />
         </form>
       </div>
     </div>

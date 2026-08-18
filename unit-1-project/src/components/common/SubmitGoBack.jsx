@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router'
 
-export default function SubmitGoBack() {
+export default function SubmitGoBack({resetInput}) {
 
     const navigate = useNavigate();
 
     return (
         <div className="NavigationButtons">
             <button className="submitButton" type="submit">Submit</button>
-            <button className="backButton" type="button" onClick={() => navigate(-1)}>
+            <button className="backButton" type="button" onClick={() => {
+                resetInput && resetInput();
+                navigate(-1)}
+                }>
                 Go Back
             </button>
         </div>

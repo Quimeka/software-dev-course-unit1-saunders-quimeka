@@ -71,7 +71,6 @@ body {
 .main {
     flex: 1;
     padding: 40px 40px;
-    background-color: #4a55681e;
 }
 
 #OneLiner {
@@ -101,7 +100,8 @@ body {
 
 .UserMood,
 .UserDepth,
-.JournalEntry {
+.JournalEntry,
+.ContactUs {
     border: 1px solid #c6e7e4;
     background-color: #d6fffc43;
     padding: 4px;
@@ -210,19 +210,23 @@ label {
 
 .radioButton {
     font-family: 'Montserrat', serif;
-    display: inline-block;
+    display: inline-flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
     margin: 0 0px 8px 8px;
     margin-bottom: 12px;
     white-space: nowrap;
-    accent-color: #2a2a2a;
+    accent-color: #c6e7e4;
 }
 
 .ButtonDescription {
     font-style: italic;
-    margin: 0 0px 8px 30px;
+    display: block;
+    font-style: italic;
+    margin-top: 0px;
+    margin-left: 36px;
+    margin-bottom: 20px;
 }
 
 .modal-overlay {
@@ -253,10 +257,14 @@ label {
     max-height: 50vh;
 }
 
+.modal-box h4 {
+    font-weight: 300;
+}
+
 #modal-message {
     font-family: "Dancing Script", cursive;
-    font-size: 24px;
-    margin: 0 0 8px 0;
+    font-size: 28px;
+    margin: 0px 0px 8px 0px;
     color: #1a202c;
 
 }

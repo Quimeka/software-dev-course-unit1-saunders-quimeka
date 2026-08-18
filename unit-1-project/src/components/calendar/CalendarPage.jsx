@@ -84,12 +84,23 @@ export default function CalendarPage({ currentUser }) {
                                             )}
 
                                             {item.entry && (
-                                                <p className="modalEntryDataTextResponses" style={{ whiteSpace: 'pre-line' }}>
-                                                    <h4 id="JournalHeader"><strong>Journal Entry:</strong></h4>
-                                                    <br />
-                                                    {item.entry.journalEntry}
-                                                    <br />
-                                                </p>
+
+                                                item.capacity.depth === "1" ? (
+                                                    <div className="modalEntryDataTextResponses" style={{ whiteSpace: 'pre-line' }}>
+                                                        <h4 id="JournalHeader"><strong>Journal Entry:</strong></h4>
+                                                        <p key={index}>
+                                                        {item.entry.journalEntry}
+                                                        </p>
+                                                    </div>) :
+
+                                                    <div className="modalEntryDataTextResponses" style={{ whiteSpace: 'pre-line' }}>
+                                                        <h4 id="JournalHeader"><strong>Journal Entry:</strong></h4>
+                                                        {item.entry.journalEntry.split('\n').map((line, index) => (
+                                                            <p key={index}>
+                                                                {index % 2 === 0 ? <strong>{line}</strong> : line}
+                                                            </p>
+                                                        ))}
+                                                    </div>
                                             )}
                                         </div>
                                     ))

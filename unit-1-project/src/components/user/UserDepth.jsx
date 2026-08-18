@@ -3,10 +3,12 @@ import { getUserFirstName } from './getUserName.js';
 import { useNavigate } from 'react-router';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
+import registerUserMood from './registerUserMood.js';
+import registerUserDepth from './registerUserDepth.js';
+import registerJournalEntry from '../journal/registerJournalEntry.js';
+import { DEPTH_OPTIONS } from '../common/userGlobals.js';
 
-
-
-function UserDepth({ currentUser, depthData, setDepthData }) {
+function UserDepth({ currentUser, moodData, depthData, setDepthData }) {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [showModalWindow, setShowModalWindow] = useState(false);
@@ -26,14 +28,20 @@ function UserDepth({ currentUser, depthData, setDepthData }) {
     setErrorMessage("");
 
     if (!depthData) {
-      setErrorMessage(`Please provide a response to the question,${getUserFirstName(currentUser)} .`);
+      setErrorMessage(`Try again. I'd like to know how best to support your experience today, ${getUserFirstName(currentUser)}.`);
       setShowModalWindow(true);
       return;
     }
 
-    navigate('/Journal-Entry');
+    if (depthData === "3") {
+      registerUserMood(currentUser, moodData);
+      registerUserDepth(currentUser, depthData);
+      registerJournalEntry(currentUser,`\nNo journal data available.`);
+      navigate('/Calendar');
+    } else {
+      navigate('/Journal-Entry');
+    }
   };
-
 
   return (
     <div className="main">
@@ -47,34 +55,26 @@ function UserDepth({ currentUser, depthData, setDepthData }) {
         )}
 
         <form className="form" onSubmit={handleSubmit}>
-
           <h3 id="depthLine"> How would you like to process your thoughts today, {getUserFirstName(currentUser)}?</h3>
 
-          <label className="formLabel">
-            <input
-              className="radioButton"
-              type="radio"
-              name="userDepth"
-              value="1"
-              checked={depthData === "1"}
-              onChange={handleChange}
-            />
-            <span> Open-Ended Space</span>
-          </label>
-          <p className="ButtonDescription"> I just want to write freely without any structure.</p>
-          <label className="formLabel">
-            <input
-              className="radioButton"
-              type="radio"
-              name="userDepth"
-              value="2"
-              checked={depthData === "2"}
-              onChange={handleChange}
-            /> <span> Structured Reflection</span>
-          </label>
-          <p className="ButtonDescription">I would prefer some specific questions to answer.</p>
+          {DEPTH_OPTIONS.map((preference) => (
+            <label key={preference.value} className="formLabel">
+              <input
+                className="radioButton"
+                type="radio"
+                name="userDepth"
+                value={preference.value}
+                checked={depthData === preference.value}
+                onChange={handleChange}
+              />
+              <span> {preference.choiceText}</span>
+              <p className="ButtonDescription">
+                {preference.depthLabel}
+              </p>
+            </label>
+          ))}
 
-          <SubmitGoBack />
+          <SubmitGoBack resetInput={() => setDepthData(null)} />
         </form>
       </div>
     </div>
