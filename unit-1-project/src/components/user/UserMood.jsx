@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { getUserFirstName } from './getUserName.js';
 import { useNavigate } from 'react-router';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
 import { MOOD_OPTIONS } from '../common/userGlobals.js';
 
 
-function UserMood({ currentUser, moodData, setMoodData }) {
+function UserMood({ currentUser, moodData, setMoodData, firstName }) {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [showModalWindow, setShowModalWindow] = useState(false)
@@ -27,7 +26,7 @@ function UserMood({ currentUser, moodData, setMoodData }) {
     e.preventDefault();
 
     if (!moodData) {
-      setErrorMessage(`Try again. I'd like to know how you're doing today, ${getUserFirstName(currentUser)}!`);
+      setErrorMessage(`Try again. I'd like to know how you're doing today, ${firstName}!`);
       setShowModalWindow(true);
       return;
     }
@@ -48,7 +47,7 @@ function UserMood({ currentUser, moodData, setMoodData }) {
 
         <form className="form" onSubmit={handleSubmit}>
 
-          <h3 id="moodLine" >How are you feeling today, {getUserFirstName(currentUser)}?</h3>
+          <h3 id="moodLine" >How are you feeling today, {firstName}?</h3>
 
             {MOOD_OPTIONS.map((mood) => (
               <label key={mood.value} className="formLabel">

@@ -11,8 +11,6 @@ export default function CreateUser({ setCurrentUser }) {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [showModalWindow, setShowModalWindow] = useState(false)
-  setDepthData(null);
-  setMoodData(null);
 
   const [formData, setFormData] = useState({
     userFirst: "",

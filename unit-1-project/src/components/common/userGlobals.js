@@ -1,4 +1,5 @@
 //Disclaimer: Each set of Mock Data is Auto-generated. :) Working smarter, not harder. 
+//Disclaimer: The code within this Mock Data is Auto-generated. I'd ideally like to use a DB and generate this dynamically. 
 export let onyxUsers = [
   {
     userId: "1",
@@ -22,6 +23,8 @@ export let onyxUsers = [
     userPassword: "password789"
   }
 ];
+
+export const contactUsData = [];
 
 export let idCounter = { index: 3 };
 
@@ -80,122 +83,280 @@ export const MOOD_PROMPTS = {
   ]
 };
 
-export const userMoods = [
-  { userId: "1", mood: "5", date: "2026-08-01" },
-  { userId: "1", mood: "4", date: "2026-08-03" },
-  { userId: "1", mood: "3", date: "2026-08-05" },
-  { userId: "1", mood: "2", date: "2026-08-08" },
-  { userId: "1", mood: "2", date: "2026-08-10" },
-  { userId: "1", mood: "4", date: "2026-08-12" },
-  { userId: "1", mood: "5", date: "2026-08-15" },
-  { userId: "1", mood: "3", date: "2026-08-18" },
-  { userId: "1", mood: "1", date: "2026-08-20" },
-  { userId: "1", mood: "5", date: "2026-08-24" },
-  { userId: "1", mood: "4", date: "2026-08-27" },
-  { userId: "1", mood: "3", date: "2026-08-30" },
-  { userId: "2", mood: "2", date: "2026-08-01" },
-  { userId: "2", mood: "2", date: "2026-08-04" },
-  { userId: "2", mood: "3", date: "2026-08-06" },
-  { userId: "2", mood: "5", date: "2026-08-09" },
-  { userId: "2", mood: "4", date: "2026-08-11" },
-  { userId: "2", mood: "5", date: "2026-08-14" },
-  { userId: "2", mood: "2", date: "2026-08-17" },
-  { userId: "2", mood: "5", date: "2026-08-19" },
-  { userId: "2", mood: "3", date: "2026-08-22" },
-  { userId: "2", mood: "2", date: "2026-08-25" },
-  { userId: "2", mood: "4", date: "2026-08-28" },
-  { userId: "2", mood: "5", date: "2026-08-31" },
-  { userId: "3", mood: "3", date: "2026-08-02" },
-  { userId: "3", mood: "4", date: "2026-08-05" },
-  { userId: "3", mood: "1", date: "2026-08-07" },
-  { userId: "3", mood: "2", date: "2026-08-10" },
-  { userId: "3", mood: "5", date: "2026-08-12" },
-  { userId: "3", mood: "5", date: "2026-08-15" },
-  { userId: "3", mood: "3", date: "2026-08-17" },
-  { userId: "3", mood: "1", date: "2026-08-20" },
-  { userId: "3", mood: "2", date: "2026-08-23" },
-  { userId: "3", mood: "4", date: "2026-08-26" },
-  { userId: "3", mood: "5", date: "2026-08-29" },
-  { userId: "3", mood: "3", date: "2026-08-31" }
-];
 
-export const userDepths = [
-  { userId: "1", depth: "1", date: "2026-08-01" },
-  { userId: "1", depth: "2", date: "2026-08-03" },
-  { userId: "1", depth: "2", date: "2026-08-05" },
-  { userId: "1", depth: "1", date: "2026-08-08" },
-  { userId: "1", depth: "1", date: "2026-08-10" },
-  { userId: "1", depth: "2", date: "2026-08-12" },
-  { userId: "1", depth: "2", date: "2026-08-15" },
-  { userId: "1", depth: "1", date: "2026-08-18" },
-  { userId: "1", depth: "1", date: "2026-08-20" },
-  { userId: "1", depth: "2", date: "2026-08-24" },
-  { userId: "1", depth: "2", date: "2026-08-27" },
-  { userId: "1", depth: "1", date: "2026-08-30" },
-  { userId: "2", depth: "1", date: "2026-08-01" },
-  { userId: "2", depth: "1", date: "2026-08-04" },
-  { userId: "2", depth: "2", date: "2026-08-06" },
-  { userId: "2", depth: "2", date: "2026-08-09" },
-  { userId: "2", depth: "1", date: "2026-08-11" },
-  { userId: "2", depth: "2", date: "2026-08-14" },
-  { userId: "2", depth: "1", date: "2026-08-17" },
-  { userId: "2", depth: "2", date: "2026-08-19" },
-  { userId: "2", depth: "1", date: "2026-08-22" },
-  { userId: "2", depth: "1", date: "2026-08-25" },
-  { userId: "2", depth: "2", date: "2026-08-28" },
-  { userId: "2", depth: "2", date: "2026-08-31" },
-  { userId: "3", depth: "1", date: "2026-08-02" },
-  { userId: "3", depth: "2", date: "2026-08-05" },
-  { userId: "3", depth: "1", date: "2026-08-07" },
-  { userId: "3", depth: "1", date: "2026-08-10" },
-  { userId: "3", depth: "2", date: "2026-08-12" },
-  { userId: "3", depth: "2", date: "2026-08-15" },
-  { userId: "3", depth: "1", date: "2026-08-17" },
-  { userId: "3", depth: "1", date: "2026-08-20" },
-  { userId: "3", depth: "1", date: "2026-08-23" },
-  { userId: "3", depth: "2", date: "2026-08-26" },
-  { userId: "3", depth: "2", date: "2026-08-29" },
-  { userId: "3", depth: "1", date: "2026-08-31" }
-];
+// --------------------------------------------------
+// MOCK ANSWERS FOR STRUCTURED REFLECTIONS
+// --------------------------------------------------
 
-export const userJournalEntries = [
-  { userId: "1", date: "2026-08-01", journalEntry: "\nRough shift on my feet all day at the register. Some guy screamed at me over a expired coupon, but my team lead let me take a extra ten minute break to clear my head." },
-  { userId: "1", date: "2026-08-03", journalEntry: "What went well today that made you feel balanced or peaceful?\nI didn't let myself get sucked into drama in the breakroom. Did my tasks, kept my head down, and had a smooth shift.\nWho is someone you are glad to have in your life right now?\nMarcus, the morning stocker. He saw my checkout line getting slammed and immediately opened another lane without me even asking.\nWhat helped you feel so steady and grounded today?\nSitting in my car completely in silence for twenty minutes during my scheduled lunch break.\nHow can you protect and maintain this good energy moving forward?\nBy leaving work at the store. Once I clock out, I am completely done thinking about retail." },
-  { userId: "1", date: "2026-08-05", journalEntry: "How does it feel to simply rest and exist right now without any pressure?\nIt feels strange. My body is still aching from standing on that hard linoleum floor all week, but it is nice to sit.\nLook around you. What are 3 ordinary things you can see right now?\nMy worn-out work sneakers by the door, a half-empty water bottle, and a grocery receipt roll.\nWhat is a simple task you did today, no matter how small it seems?\nFinally put all my clean laundry away instead of letting it live in the plastic basket.\nWhat is one thing you want to choose to focus on for the rest of the day?\nPutting some ice on my sore heels and staying far away from anything customer-facing." },
-  { userId: "1", date: "2026-08-08", journalEntry: "\nWoke up with zero energy. Dragging my feet through checking out groceries today, but just trying to be polite and get through the schedule." },
-  { userId: "1", date: "2026-08-10", journalEntry: "\nJust feeling incredibly flat and uninspired. Counting down the minutes until my shift ends so I can go home and crawl into bed." },
-  { userId: "1", date: "2026-08-12", journalEntry: "What went well today that made you feel balanced or peaceful?\nGot through the afternoon rush without any major registers jamming or angry managers over our shoulders.\nWho is someone you are glad to have in your life right now?\nOur regular customer, Mrs. Higgins. She always comes through my lane and asks how my week is going with genuine kindness.\nWhat helped you feel so steady and grounded today?\nTaking a long walk around the block outside during my fifteen-minute afternoon break to see actual sunlight.\nHow can you protect and maintain this good energy moving forward?\nKeep a clean station. A messy checkout counter makes the whole day feel twice as chaotic." },
-  { userId: "1", date: "2026-08-15", journalEntry: "What is bringing you so much joy, excitement, or bright energy right now?\nMy manager told me my till was completely perfect all week and approved my weekend schedule request!\nWhat is a fun idea or goal you feel inspired to jump into today?\nPlanning out a small weekend road trip with friends since I finally have two consecutive days off work.\nHow can you use this bright energy to lift up your own day or someone else's?\nBeing extra patient with the new hire who is still struggling to find the produce codes on the touchscreen.\nWhat is a small reminder you can write down to look back on when times get tough?\nIt is just a job. Don't let a stressful customer ruin your internal peace." },
-  { userId: "1", date: "2026-08-18", journalEntry: "\nJust a totally normal, quiet Tuesday at the store. Nothing crazy happened, and the hours actually went by pretty fast." },
-  { userId: "1", date: "2026-08-20", journalEntry: "\nCompletely hit a wall. Brain is fried from holiday weekend prep crowds, and I need to ignore my phone for the rest of the night." },
-  { userId: "1", date: "2026-08-24", journalEntry: "What is bringing you so much joy, excitement, or bright energy right now?\nThe inventory count matched perfectly on the first try, so we got to go home early!\nWhat is a fun idea or goal you feel inspired to jump into today?\nCooking a nice, actual homemade dinner tonight instead of just eating takeout in my uniform.\nHow can you use this bright energy to lift up your own day or someone else's?\nCovering a quick thirty-minute register slot for a coworker so they can run out and catch their bus.\nWhat is a small reminder you can write down to look back on when times get tough?\nBad days always end at closing time. You just have to make it to the final clock-out." },
-  { userId: "1", date: "2026-08-27", journalEntry: "What went well today that made you feel balanced or peaceful?\nGot through sorting all the backstock inventory sheets without losing my place or having to re-count boxes.\nWho is someone you are glad to have in your life right now?\nThe evening closing crew. They work fast and don't complain, which makes getting out of here on time so much easier.\nWhat helped you feel so steady and grounded today?\nDrinking a full bottle of water between customer rushes instead of chugging energy drinks all day.\nHow can you protect and maintain this good energy moving forward?\nBy pacing myself during stocking periods so I don't throw my back out before the week is done." },
-  { userId: "1", date: "2026-08-30", journalEntry: "\nHad a nice, relaxed rhythm on the register today. Conversed with some pleasant locals and the shift flew by." },
-  { userId: "2", date: "2026-08-01", journalEntry: "\nFeeling completely stuck messing with CSS layout tweaks. Moving at a snail's pace but trying to stay patient." },
-  { userId: "2", date: "2026-08-04", journalEntry: "\nCould not focus to save my life today. Gave up on the hard logic and just knocked out some mindless admin work instead." },
-  { userId: "2", date: "2026-08-06", journalEntry: "How does it feel to simply rest and exist right now without any pressure?\nIt feels a bit stressful because I feel like I'm falling behind, but my body is literally forcing me to stop.\nLook around you. What are 3 ordinary things you can see right now?\nMy giant Hydro Flask, a desk lamp with a dying bulb, and a messy pile of notebooks.\nWhat is a simple task you did today, no matter how small it seems?\nCleaned up my messy project sidebar and deleted all those old, unused component files.\nWhat is one thing you want to choose to focus on for the rest of the day?\nShutting down the computer before it gets pitch black outside." },
-  { userId: "2", date: "2026-08-09", journalEntry: "What is bringing you so much joy, excitement, or bright energy right now?\nThe client actually loved the dashboard design mockups! No major revisions requested!\nWhat is a fun idea or goal you feel inspired to jump into today?\nPlaying around with some cool charting libraries to make the data visualization pop.\nHow can you use this bright energy to lift up your own day or someone else's?\nSending a huge thank-you note to the UI designer who helped me brainstorm the layouts.\nWhat is a small reminder you can write down to look back on when times get tough?\nYou don't have to build Rome in a day. Small progress is still progress." },
-  { userId: "2", date: "2026-08-11", journalEntry: "\nHad a great coding session this morning. Cleaned up a ton of messy CSS modules and everything looks so much better." },
-  { userId: "2", date: "2026-08-14", journalEntry: "What is bringing you so much joy, excitement, or bright energy right now?\nFinally got the responsive mobile layout to play nice. No more overlapping text!\nWhat is a fun idea or goal you feel inspired to jump into today?\nWriting some thorough integration tests so I don't accidentally break this layout later.\nHow can you use this bright energy to lift up your own day or someone else's?\nLeave clean comments in the code so the incoming junior devs don't get totally confused.\nWhat is a small reminder you can write down to look back on when times get tough?\nWhen you hit a brick wall, just walk away for 10 minutes. The solution usually hits you then." },
-  { userId: "2", date: "2026-08-17", journalEntry: "\nBrain is running on 10% battery. Kept my head down and only touched simple code maintenance so I didn't break anything." },
-  { userId: "2", date: "2026-08-19", journalEntry: "What is bringing you so much joy, excitement, or bright energy right now?\nGot the data mapping pipeline working seamlessly without a single error message throw!\nWhat is a fun idea or goal you feel inspired to jump into today?\nBuilding out a toggle for dark mode because it's fun and my eyes hurt.\nHow can you use this bright energy to lift up your own day or someone else's?\nRun a fast, casual team sync to show them the shortcuts I found for the backend setup.\nWhat is a small reminder you can write down to look back on when times get tough?\nTake a deep breath. Every error message is just a hint, not a personal failure." },
-  { userId: "2", date: "2026-08-22", journalEntry: "\nNice, quiet head space today. Really grateful for a peaceful day without urgent emergencies or broken builds." },
-  { userId: "2", date: "2026-08-25", journalEntry: "\nFeeling pretty uninspired. Used the day to do boring but necessary chores like fixing file names and cleaning up git branches." },
-  { userId: "2", date: "2026-08-28", journalEntry: "What went well today that made you feel balanced or peaceful?\nFinally tracked down a weird CSS inheritance issue that was driving me crazy.\nWho is someone you are glad to have in your life right now?\nOur PM, Dan. He stepped in and protected our scope when the client tried to add five random features at the last second.\nWhat helped you feel so steady and grounded today?\nDrinking a full bottle of water instead of coffee for once, and getting fresh air.\nHow can you protect and maintain this good energy moving forward?\nLearn to say 'no' when people try to dump extra tasks onto my plate out of nowhere." },
-  { userId: "2", date: "2026-08-31", journalEntry: "What is bringing you so much joy, excitement, or bright energy right now?\nWe actually smashed our sprint goals and wrapped up the August milestone early!\nWhat is a fun idea or goal you feel inspired to jump into today?\nDoodling and brainstorming some fresh layout themes for our next big update.\nHow can you use this bright energy to lift up your own day or someone else's?\nHype up our QA tester in the public channel; they caught so many bugs before launch.\nWhat is a small reminder you can write down to look back on when times get tough?\nRemember to look back at how much better you are coding now compared to six months ago." },
-  { userId: "3", date: "2026-08-02", journalEntry: "\nProductive Sunday afternoon. Got the weekly meal prep done and organized the kids' activity schedules for the week." },
-  { userId: "3", date: "2026-08-05", journalEntry: "What went well today that made you feel balanced or peaceful?\nI sketched out the global component tree on my whiteboard before coding, and it saved me so much confusion later.\nWho is someone you are glad to have in your life right now?\nMy neighbor, Clara. She saw me struggling with all the grocery bags and held the front gate open for us.\nWhat helped you feel so steady and grounded today?\nGetting up thirty minutes before anyone else to make coffee and sit in the living room while it was completely quiet.\nHow can you protect and maintain this good energy moving forward?\nStop rushing the bedtime routine. Enjoying the quiet reading moments makes the night end on a peaceful note." },
-  { userId: "3", date: "2026-08-07", journalEntry: "\nFeeling super isolated staying home with a toddler all day. Just want some adult conversation and a break from cleaning." },
-  { userId: "3", date: "2026-08-10", journalEntry: "\nExhausted and losing my mind over a temper tantrum in the middle of Target. Giving myself permission to just order pizza tonight." },
-  { userId: "3", date: "2026-08-12", journalEntry: "What is bringing you so much joy, excitement, or bright energy right now?\nMy oldest child put away all their toys without me having to repeat myself fifty times!\nWhat is a fun idea or goal you feel inspired to jump into today?\nSetting up an elaborate blanket fort in the living room for a family movie night snack party.\nHow can you use this bright energy to lift up your own day or someone else's?\nSending a funny picture of the kids to their grandparents to brighten up their afternoon work break.\nWhat is a small reminder you can write down to look back on when times get tough?\nThe fields can wait. They are only this little for a short time. The messy house can wait until tomorrow." },
-  { userId: "3", date: "2026-08-15", journalEntry: "What is bringing you so much joy, excitement, or bright energy right now?\nFinally got the baby to take a long afternoon nap at the exact same time as my toddler's quiet hour!\nWhat is a fun idea or goal you feel inspired to jump into today?\nSitting down with my sketchpad to draw out some simple patterns for a knitting project I want to start.\nHow can you use this bright energy to lift up your own day or someone else's?\nLeaving a sweet voice message for my partner to tell them how much I appreciate their help around the house.\nWhat is a small reminder you can write down to look back on when times get tough?\nYou are a wonderful parent, even on days when the dinner gets burned and everyone is crying." },
-  { userId: "3", date: "2026-08-17", journalEntry: "\nA totally stable, balanced day. Cleared through three loads of laundry and got the kitchen clean without any major fuss." },
-  { userId: "3", date: "2026-08-20", journalEntry: "\nFeeling super anxious about our family budget changes this month. My chest feels tight, so I'm trying to strip down our grocery list." },
-  { userId: "3", date: "2026-08-23", journalEntry: "\nEnergy levels are sitting at a zero. Just doing some basic toy sorting today where I can sit on the carpet and not think." },
-  { userId: "3", date: "2026-08-26", journalEntry: "What went well today that made you feel balanced or peaceful?\nI reorganized the pantry containers, and now we don't have twenty boxes of half-eaten cereal spilling everywhere.\nWho is someone you are glad to have in your life right now?\nMy sister. She listens to me vent about household stresses without giving unsolicited advice or making me feel guilty.\nWhat helped you feel so steady and grounded today?\nPutting my phone on the kitchen counter during playtime so I was fully present with the kids instead of scrolling.\nHow can you protect and maintain this good energy moving forward?\nKeep limiting screen time during family hours. It keeps my mood much calmer." },
-  { userId: "3", date: "2026-08-29", journalEntry: "What is bringing you so much joy, excitement, or bright energy right now?\nWe went to the neighborhood park today and the kids played nicely together for two straight hours!\nWhat is a fun idea or goal you feel inspired to jump into today?\nBaking some homemade blueberry muffins from scratch with the kids helping me stir the batter bowl.\nHow can you use this bright energy to lift up your own day or someone else's?\nDropping off a couple of fresh muffins to the sweet elderly lady who lives across the hallway from us.\nWhat is a small reminder you can write down to look back on when times get tough?\nYou are building a safe, happy childhood for them. That is the most important project." },
-  { userId: "3", date: "2026-08-31", journalEntry: "\nWrapping up the month feeling stable and proud. The kids are healthy, the house is reasonably clean, and we are ready for September." }
-];
+const mockAnswers = {
+  "1": [
+    "I can feel the heaviness mostly in my shoulders and chest. I think I've been carrying a lot of tension without realizing it.",
+    "I can give myself permission to stop worrying about things I cannot control tonight.",
+    "I need to hear that I am doing the best I can and that I do not have to have everything figured out right now.",
+    "I can control what I do with the next few minutes. I can take a breath, slow down, and decide what needs my attention."
+  ],
+
+  "2": [
+    "I think the low energy is telling me that I need to slow down and stop expecting so much from myself.",
+    "Being at home with a good movie, listening to music, or talking with someone I trust usually makes me feel safe.",
+    "Yes. I do not have to solve everything today, and it is okay to have a difficult day.",
+    "I am going to make some tea, put my phone away for a little while, and give myself some quiet time."
+  ],
+
+  "3": [
+    "It feels nice to have a moment where I do not have to accomplish anything. I can just sit here and breathe.",
+    "I can see my coffee mug, my laptop, and a plant sitting near the window.",
+    "I cleaned the kitchen and answered a few emails. They were small things, but they needed to get done.",
+    "I want to focus on finishing one thing at a time instead of worrying about everything that still needs to be done."
+  ],
+
+  "4": [
+    "I had a productive morning and still had enough time to relax afterward. I did not feel like I was rushing through everything.",
+    "I am especially grateful for my family and the people who check in on me when they know I have had a busy week.",
+    "Taking some time away from my phone helped me feel grounded. I was able to focus on what was happening around me.",
+    "I want to keep giving myself time to slow down, enjoy the good moments, and avoid filling every free moment with something else to do."
+  ],
+
+  "5": [
+    "Finishing a project I have been working on has me feeling really excited. It feels good to see all the effort finally pay off.",
+    "I would love to start working on a creative side project while I have this energy and motivation.",
+    "I can share some of this positive energy with my friends and family by being encouraging and present with them.",
+    "I want to remember that difficult periods eventually pass and that there are always good moments worth holding onto."
+  ]
+};
 
 
-export const contactUsData = [];
+// --------------------------------------------------
+// DEPTH 1 - OPEN ENDED JOURNAL ENTRIES
+// Each entry is ONE paragraph.
+// --------------------------------------------------
+
+const mockOpenEndedEntries = {
+  "1": [
+    "Today was difficult. I felt overwhelmed for most of the day, and there were several things on my mind that made it hard to focus. I am hoping tomorrow feels a little easier.",
+    "I had a rough morning and felt like everything was happening at once. I tried to slow down and remind myself that I do not have to solve every problem immediately. By tonight I feel a little more settled.",
+    "Today was emotionally tiring. I spent a lot of time thinking about things that I cannot control, and I know that probably made everything feel heavier. I am going to try to be a little more patient with myself tomorrow."
+  ],
+
+  "2": [
+    "I felt a little off today. Nothing particularly bad happened, but I did not have much energy. I think I need to give myself more time to rest, and hopefully tomorrow I can reset.",
+    "Today was somewhat slow. I got through the things I needed to do, but I did not feel especially motivated. I am trying to remind myself that not every day needs to be productive.",
+    "I felt a little down today, but there were still a few good moments. I talked with someone I care about and that helped more than I expected. Sometimes a small conversation can change the whole mood of an evening."
+  ],
+
+  "3": [
+    "Today was pretty ordinary. Nothing particularly exciting happened, but I got through the things I needed to do. I am feeling pretty neutral tonight.",
+    "It was a quiet day. I spent some time taking care of small things around the house and had a little time to relax. There was nothing major to report, but it was nice to have a normal day.",
+    "I felt fairly balanced today. Some things went well and some things were frustrating, but overall nothing felt overwhelming. I think I am ending the day in a pretty good place."
+  ],
+
+  "4": [
+    "Today felt really balanced. I got some work done and still had time to relax. I spent some time outside this evening, and it was a good reminder that I do not need every day to be exciting.",
+    "I had a really nice day. I was productive without feeling rushed, and I made time to do something that I enjoy. I am grateful that I was able to find a good balance today.",
+    "Things went pretty well today. I had a few moments that made me smile, and I felt comfortable with where I was throughout most of the day. I hope I can carry some of this calm energy into tomorrow."
+  ],
+
+  "5": [
+    "Today was fantastic! I had a lot of energy and got several things accomplished. I spent time with people I care about and had a lot of fun. I want to remember how good today felt.",
+    "I woke up feeling really motivated today and that energy stayed with me throughout the day. I accomplished something I had been putting off and it felt great to finally get it done.",
+    "Today was one of those days where several little things went right. I laughed a lot, got some important things finished, and ended the evening feeling genuinely grateful. I want to remember this feeling."
+  ]
+};
+
+
+// --------------------------------------------------
+// HELPER FUNCTIONS
+// --------------------------------------------------
+
+const formatMockDate = (date) => {
+  return date.toISOString().substring(0, 10);
+};
+
+
+// Create a depth 2 entry using the ACTUAL
+// questions from MOOD_PROMPTS.
+//
+// Result:
+// [question, answer, question, answer, ...]
+const createStructuredEntry = (mood) => {
+
+  const prompts = MOOD_PROMPTS[mood];
+  const answers = mockAnswers[mood];
+
+  const entry = [];
+
+  prompts.forEach((prompt, index) => {
+    entry.push(prompt);
+    entry.push(answers[index]);
+  });
+
+  return entry;
+};
+
+
+// Create a depth 1 entry.
+// One complete paragraph inside the array.
+const createOpenEndedEntry = (mood, entryNumber = 0) => {
+
+  const entries = mockOpenEndedEntries[mood];
+
+  return [
+    entries[entryNumber % entries.length]
+  ];
+};
+
+
+// Create a depth 3 entry.
+// Depth 3 is mood tracking only.
+const createMoodOnlyEntry = () => {
+  return [];
+};
+
+
+// --------------------------------------------------
+// LOGGED JOURNAL ENTRIES
+// --------------------------------------------------
+
+export const loggedJournalEntries = [];
+
+
+// July 1, 2026
+const startDate = new Date("2026-07-01T12:00:00");
+
+// August 19, 2026
+const endDate = new Date("2026-08-19T12:00:00");
+
+
+// Keep track of journal entry numbers for each user.
+const journalEntryNumbers = {
+  "1": 0,
+  "2": 0,
+  "3": 0
+};
+
+
+let currentDate = new Date(startDate);
+
+
+while (currentDate <= endDate) {
+
+  const dateString = formatMockDate(currentDate);
+
+
+  // Create an entry for each user.
+  onyxUsers.forEach((user, userIndex) => {
+
+    const userId = user.userId;
+
+    journalEntryNumbers[userId]++;
+
+
+    // Create different moods throughout the date range.
+    const mood = String(
+      ((currentDate.getDate() + userIndex * 2) % 5) + 1
+    );
+
+
+    // Rotate through the three depth options.
+    const depth = String(
+      ((currentDate.getDate() + userIndex) % 3) + 1
+    );
+
+
+    let entry;
+
+
+    // ----------------------------------------------
+    // DEPTH 1
+    // Open-ended paragraph
+    // ----------------------------------------------
+
+    if (depth === "1") {
+
+      entry = createOpenEndedEntry(
+        mood,
+        currentDate.getDate() + userIndex
+      );
+
+    }
+
+
+    // ----------------------------------------------
+    // DEPTH 2
+    // Structured questions + answers
+    // ----------------------------------------------
+
+    else if (depth === "2") {
+
+      entry = createStructuredEntry(mood);
+
+    }
+
+
+    // ----------------------------------------------
+    // DEPTH 3
+    // Mood tracking only
+    // ----------------------------------------------
+
+    else {
+
+      entry = createMoodOnlyEntry();
+
+    }
+
+
+    loggedJournalEntries.push({
+      userId: userId,
+      journalEntryNumber: journalEntryNumbers[userId],
+      date: dateString,
+      mood: mood,
+      depth: depth,
+      entry: entry
+    });
+
+
+    // ------------------------------------------------
+    // OCCASIONAL SECOND ENTRY
+    //
+    // This intentionally creates multiple entries
+    // for Alex on the same date.
+    //
+    // Useful for testing findLast().
+    // ------------------------------------------------
+
+    if (
+      currentDate.getDate() % 7 === 0 &&
+      userIndex === 0
+    ) {
+
+      journalEntryNumbers[userId]++;
+
+
+      const secondMood = String(
+        (parseInt(mood) % 5) + 1
+      );
+
+
+      loggedJournalEntries.push({
+        userId: userId,
+        journalEntryNumber: journalEntryNumbers[userId],
+        date: dateString,
+        mood: secondMood,
+        depth: "1",
+        entry: createOpenEndedEntry(
+          secondMood,
+          currentDate.getDate() + 1
+        )
+      });
+
+    }
+
+  });
+
+
+  // Move to the next day.
+  currentDate.setDate(
+    currentDate.getDate() + 1
+  );
+
+}

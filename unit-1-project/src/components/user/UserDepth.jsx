@@ -1,18 +1,14 @@
 import { useState, useEffect } from 'react';
-import { getUserFirstName } from './getUserName.js';
 import { useNavigate } from 'react-router';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
-import registerUserMood from './registerUserMood.js';
-import registerUserDepth from './registerUserDepth.js';
-import registerJournalEntry from '../journal/registerJournalEntry.js';
 import { DEPTH_OPTIONS } from '../common/userGlobals.js';
+import registerFullJournalEntry from '../journal/registerFullJournalEntry.js';
 
-function UserDepth({ currentUser, moodData, depthData, setDepthData }) {
+function UserDepth({ currentUser, moodData, depthData, setDepthData, firstName }) {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [showModalWindow, setShowModalWindow] = useState(false);
-
   useEffect(() => {
     if (!currentUser) {
       navigate('/');
@@ -28,15 +24,13 @@ function UserDepth({ currentUser, moodData, depthData, setDepthData }) {
     setErrorMessage("");
 
     if (!depthData) {
-      setErrorMessage(`Try again. I'd like to know how best to support your experience today, ${getUserFirstName(currentUser)}.`);
+      setErrorMessage(`Try again. I'd like to know how best to support your experience today, ${firstName}.`);
       setShowModalWindow(true);
       return;
     }
 
     if (depthData === "3") {
-      registerUserMood(currentUser, moodData);
-      registerUserDepth(currentUser, depthData);
-      registerJournalEntry(currentUser,`\nNo journal data available.`);
+      registerFullJournalEntry(currentUser, moodData, depthData, `\nNo journal data available.`);
       navigate('/Calendar');
     } else {
       navigate('/Journal-Entry');
@@ -55,7 +49,7 @@ function UserDepth({ currentUser, moodData, depthData, setDepthData }) {
         )}
 
         <form className="form" onSubmit={handleSubmit}>
-          <h3 id="depthLine"> How would you like to process your thoughts today, {getUserFirstName(currentUser)}?</h3>
+          <h3 id="depthLine"> How would you like to process your thoughts today, {firstName}?</h3>
 
           {DEPTH_OPTIONS.map((preference) => (
             <label key={preference.value} className="formLabel">

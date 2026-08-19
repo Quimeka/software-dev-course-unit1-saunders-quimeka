@@ -15,7 +15,7 @@ export default function setText(type, entry) {
             case "5":
                 return "Highly positive / Joyful";
             default:
-                return "No mood data available for today.";
+                return "No Mood Data Available.";
         }
     }
 
@@ -26,7 +26,7 @@ export default function setText(type, entry) {
             case "2":
                 return "Structured Writing";
             default:
-                return "No capacity data available for today.";
+                return "No Interest in Writing.";
         }
     }
 }

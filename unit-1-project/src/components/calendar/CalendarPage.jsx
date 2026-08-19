@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react';
-import { userMoods } from '../common/userGlobals.js';
-import { getUserFirstName } from '../user/getUserName.js';
-import calendarDetailedView from './calendarDetailedView.js';
+import { loggedJournalEntries } from '../common/userGlobals.js';
 //https://www.npmjs.com/package/react-calendar
 import Calendar from 'react-calendar';
 import setText from '../journal/setTextForEntries.js';
 import './mood-custom-calendar.css';
 import { useNavigate } from 'react-router';
+import JournalReview from '../journal/JournalReview.jsx';
 
-export default function CalendarPage({ currentUser }) {
+export default function CalendarPage({ currentUser, date, setDate }) {
     const navigate = useNavigate();
-    const [date, setDate] = useState(new Date());
     const [showModalWindow, setShowModalWindow] = useState(false)
 
     useEffect(() => {
@@ -24,25 +22,14 @@ export default function CalendarPage({ currentUser }) {
         setShowModalWindow(true);
     }
 
-    const formattedDate = date.toISOString().substring(0, 10);
-
-    const entryList = calendarDetailedView(currentUser, formattedDate);
-
-    const [year, month, day] = formattedDate.split('-');
-    const formattedDateDisplay = `${month}-${day}-${year}`;
-
     const getTileClass = ({ date, view }) => {
         if (view === 'month') {
             const tileDate = date.toISOString().substring(0, 10);
 
-            const moodsForDate = userMoods.filter(moodEntry =>
-                moodEntry.userId === currentUser && moodEntry.date === tileDate
-            );
+            const latestMood = loggedJournalEntries.findLast(entry => entry.userId === currentUser && entry.date === tileDate)?.mood;
 
-            const lastEntry = moodsForDate[moodsForDate.length - 1];
-
-            if (lastEntry && lastEntry.mood) {
-                return `mood_${lastEntry.mood}`;
+            if(latestMood){
+                return `mood_${latestMood}`;
             }
         }
         return null;
@@ -64,49 +51,7 @@ export default function CalendarPage({ currentUser }) {
                 {showModalWindow && (
                     <div className="modal-overlay" onClick={() => setShowModalWindow(false)}>
                         <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-
-                            <h2>Details for {formattedDateDisplay}</h2>
-
-                            <div className="modalJournalSection">
-                                {entryList.length === 0 ? (
-                                    <p>No records or journal entries for this day, {getUserFirstName(currentUser)}!</p>
-                                ) : (
-                                    entryList.map((item, index) => (
-                                        <div key={item.entry?.entry_id || index} className="journalEntryCard">
-                                            <h3>Session #{index + 1}</h3>
-
-                                            {item.mood && (
-                                                <p className="modalEntryData"><strong>Mood:</strong> {setText("mood", item.mood.mood)}</p>
-                                            )}
-
-                                            {item.capacity && (
-                                                <p className="modalEntryData"><strong>Preference:</strong> {setText("depth", item.capacity.depth)}</p>
-                                            )}
-
-                                            {item.entry && (
-
-                                                item.capacity.depth === "1" ? (
-                                                    <div className="modalEntryDataTextResponses" style={{ whiteSpace: 'pre-line' }}>
-                                                        <h4 id="JournalHeader"><strong>Journal Entry:</strong></h4>
-                                                        <p key={index}>
-                                                        {item.entry.journalEntry}
-                                                        </p>
-                                                    </div>) :
-
-                                                    <div className="modalEntryDataTextResponses" style={{ whiteSpace: 'pre-line' }}>
-                                                        <h4 id="JournalHeader"><strong>Journal Entry:</strong></h4>
-                                                        {item.entry.journalEntry.split('\n').map((line, index) => (
-                                                            <p key={index}>
-                                                                {index % 2 === 0 ? <strong>{line}</strong> : line}
-                                                            </p>
-                                                        ))}
-                                                    </div>
-                                            )}
-                                        </div>
-                                    ))
-                                )}
-                            </div>
-
+                            <JournalReview currentUser={currentUser} date={date}/>
                             <button className="closeButton" onClick={() => setShowModalWindow(false)}>Close</button>
                         </div>
                     </div>

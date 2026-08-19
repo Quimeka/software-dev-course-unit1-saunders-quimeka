@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import contactUs from './contactus.js';
-import getUserInfo from '../authentication/getUserInfo';
-import ModalWindow from './ModalWindow.jsx';
+import contactUs from './ContactUs.jsx';
+import getUserInfo from '../authentication/getUserInfo.js';
+import ModalWindow from '../common/ModalWindow.jsx';
 
 function ContactUs({ currentUser }) {
     const userInformation = getUserInfo(currentUser);
