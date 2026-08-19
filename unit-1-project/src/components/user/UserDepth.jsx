@@ -5,10 +5,10 @@ import ModalWindow from '../common/ModalWindow.jsx';
 import { DEPTH_OPTIONS } from '../common/userGlobals.js';
 import registerFullJournalEntry from '../journal/registerFullJournalEntry.js';
 
-function UserDepth({ currentUser, moodData, depthData, setDepthData, firstName }) {
+function UserDepth({ currentUser, moodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow }) {
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showModalWindow, setShowModalWindow] = useState(false);
+
+
   useEffect(() => {
     if (!currentUser) {
       navigate('/');
@@ -21,10 +21,10 @@ function UserDepth({ currentUser, moodData, depthData, setDepthData, firstName }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrorMessage("");
+    setMessage("");
 
     if (!depthData) {
-      setErrorMessage(`Try again. I'd like to know how best to support your experience today, ${firstName}.`);
+      setMessage(`Try again. I'd like to know how best to support your experience today, ${firstName}.`);
       setShowModalWindow(true);
       return;
     }
@@ -43,7 +43,7 @@ function UserDepth({ currentUser, moodData, depthData, setDepthData, firstName }
 
         {showModalWindow && (
           <ModalWindow
-            message={errorMessage}
+            message={message}
             onClose={() => setShowModalWindow(false)}>
           </ModalWindow>
         )}

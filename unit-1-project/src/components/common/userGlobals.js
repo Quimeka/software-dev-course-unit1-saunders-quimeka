@@ -36,12 +36,13 @@ export const CREATE_USER_FIELDS = [
 ];
 
 export const MOOD_OPTIONS = [
-  { value: "1", moodLabel: "Very Low / Sad" },
-  { value: "2", moodLabel: "Somewhat down" },
-  { value: "3", moodLabel: "Neutral" },
-  { value: "4", moodLabel: "Content / Happy" },
-  { value: "5", moodLabel: "Highly positive / Joyful" }
+  { value: "5", moodLabel: "Very Flourishing", description: "I feel vibrant, motivated, or deeply joyful."},
+  { value: "4", moodLabel: "Mildly Pleasant", description:"I feel safe, comfortable, or relatively light."},
+  { value: "3", moodLabel: "Neutral / Grounded", description:"I feel steady, indifferent, or flat." },
+  { value: "2", moodLabel: "Mildly Distressed", description: "I feel anxious, stressed, or emotionally heavy."},
+  { value: "1", moodLabel: "Severely Distressed", description: "I feel completely overwhelmed, exhausted, or stuck."}
 ];
+
 
 export const DEPTH_OPTIONS = [
   { value: "1", choiceText: "Open-Ended Space", depthLabel: "I just want to write freely without any structure." },

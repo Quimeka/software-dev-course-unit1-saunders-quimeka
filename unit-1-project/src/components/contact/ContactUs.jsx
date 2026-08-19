@@ -1,51 +1,46 @@
 import { useState } from 'react';
-import contactUs from './ContactUs.jsx';
+import registerContactUs from './registerContactUs.js';
 import getUserInfo from '../authentication/getUserInfo.js';
 import ModalWindow from '../common/ModalWindow.jsx';
 
-function ContactUs({ currentUser }) {
+function ContactUs({ currentUser, message, setMessage, showModalWindow, setShowModalWindow }) {
     const userInformation = getUserInfo(currentUser);
-    const [feedbackStatus, setFeedbackStatus] = useState("");
-    const [showModalWindow, setShowModalWindow] = useState(false)
 
-
-    const [formData, setFormData] = useState({
+    let [formData, setFormData] = useState({
         id: userInformation.userId,
         name: userInformation.userFirst + ' ' + userInformation.userLast,
         email: userInformation.userEmail,
-        message: "",
+        contactMessage: "",
 
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const value = e.target.value;
         setFormData((prevData) => ({
             ...prevData,
-            [name]: value,
+            contactMessage: value,
         }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setFeedbackStatus("");
+        setMessage("");
 
-        if (!formData.message) {
-            setFeedbackStatus("Please be sure to leave us a message!");
+        if (!formData.contactMessage) {
+            setMessage("Please be sure to leave us a message!");
             setShowModalWindow(true);
             return;
         }
 
-        contactUs(formData.id, formData.name, formData.email, formData.message);
+        registerContactUs(userInformation.userId, formData.contactMessage);
 
-        setFeedbackStatus(`Submitted. Thank you!`);
+        setMessage(`Submitted. Thank you!`);
         setShowModalWindow(true);
 
-        setFormData({
-            id: userInformation.userId,
-            name: userInformation.userFirst + ' ' + userInformation.userLast,
-            email: userInformation.userEmail,
-            message: "",
-        });
+        setFormData((prevData) => ({
+            ...prevData,
+            contactMessage:"",
+        }));
 
     };
 
@@ -57,7 +52,7 @@ function ContactUs({ currentUser }) {
 
                 {showModalWindow && (
                     <ModalWindow
-                        message={feedbackStatus}
+                        message={message}
                         onClose={() => setShowModalWindow(false)}>
                     </ModalWindow>
                 )}
@@ -71,8 +66,8 @@ function ContactUs({ currentUser }) {
 
 
                         <textarea className="textBox"
-                            name="message"
-                            value={formData.message}
+                            name="contactMessage"
+                            value={formData.contactMessage}
                             onChange={handleChange}
                             rows="15"
                             cols="50"

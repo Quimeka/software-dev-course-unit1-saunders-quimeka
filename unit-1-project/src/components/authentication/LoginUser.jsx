@@ -3,10 +3,10 @@ import verifyUserLogin from './verifyUserLogin.js';
 import { useNavigate, Link } from 'react-router';
 import ModalWindow from '../common/ModalWindow.jsx';
 
-function LoginUser({ setCurrentUser }) {
+function LoginUser({ setCurrentUser , firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow}) {
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState("");
-    const [showModalWindow, setShowModalWindow] = useState(false)
+  
+    const [goNext, setGoNext] = useState(false);
     const [formData, setFormData] = useState({
         userEmail: "",
         userPassword: "",
@@ -23,7 +23,7 @@ function LoginUser({ setCurrentUser }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!formData.userEmail || !formData.userPassword) {
-            setErrorMessage("Please fill out all fields.");
+            setMessage("Please fill out all fields.");
             setShowModalWindow(true);
             return;
         }
@@ -31,28 +31,39 @@ function LoginUser({ setCurrentUser }) {
         const loggedUser = verifyUserLogin(formData.userEmail, formData.userPassword);
 
         if (!loggedUser) {
-            setErrorMessage("Invalid email or password.");
+            setMessage("Invalid email or password.");
             setShowModalWindow(true);
             return;
         }
 
         setCurrentUser(loggedUser.userId);
+        const userFirstName = loggedUser.userFirst;
+        setFirstName(userFirstName);
+        setMessage(`Welcome back, ${userFirstName}!`);
+        setGoNext(true);
+        setShowModalWindow(true);
 
         setFormData({
             userEmail: "",
             userPassword: "",
         });
-        navigate('/Mood');
     }
 
     return (
         <div className="LoginUser">
             <h3>Log In</h3>
 
-            {showModalWindow && (
+            {showModalWindow && !goNext && (
                 <ModalWindow
-                    message={errorMessage}
+                    message={message}
                     onClose={() => setShowModalWindow(false)}>
+                </ModalWindow>
+            )}
+
+            {showModalWindow && goNext && (
+                <ModalWindow
+                    message={message}
+                    onClose={() => (setShowModalWindow(false), navigate('/Mood'))}>
                 </ModalWindow>
             )}
 

@@ -5,10 +5,9 @@ import ModalWindow from '../common/ModalWindow.jsx';
 import { MOOD_OPTIONS } from '../common/userGlobals.js';
 
 
-function UserMood({ currentUser, moodData, setMoodData, firstName }) {
+function UserMood({ currentUser, moodData, setMoodData, firstName, message, setMessage, showModalWindow, setShowModalWindow }) {
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showModalWindow, setShowModalWindow] = useState(false)
+
 
   useEffect(() => {
     if (!currentUser) {
@@ -26,7 +25,7 @@ function UserMood({ currentUser, moodData, setMoodData, firstName }) {
     e.preventDefault();
 
     if (!moodData) {
-      setErrorMessage(`Try again. I'd like to know how you're doing today, ${firstName}!`);
+      setMessage(`Try again. I'd like to know how you're doing today, ${firstName}!`);
       setShowModalWindow(true);
       return;
     }
@@ -40,28 +39,31 @@ function UserMood({ currentUser, moodData, setMoodData, firstName }) {
 
         {showModalWindow && (
           <ModalWindow
-            message={errorMessage}
+            message={message}
             onClose={() => setShowModalWindow(false)}>
           </ModalWindow>
         )}
 
         <form className="form" onSubmit={handleSubmit}>
 
-          <h3 id="moodLine" >How are you feeling today, {firstName}?</h3>
+          <h3 id="moodLine" >How would you rate your overall emotional state right now, {firstName}?</h3>
 
-            {MOOD_OPTIONS.map((mood) => (
-              <label key={mood.value} className="formLabel">
-                <input
-                  className="radioButton"
-                  type="radio"
-                  name="userMood"
-                  value={mood.value}
-                  checked={moodData === mood.value}
-                  onChange={handleChange}
-                />
-                <span> {mood.moodLabel}</span>
-              </label>
-            ))}
+          {MOOD_OPTIONS.map((mood) => (
+            <label key={mood.value} className="formLabel">
+              <input
+                className="radioButton"
+                type="radio"
+                name="userMood"
+                value={mood.value}
+                checked={moodData === mood.value}
+                onChange={handleChange}
+              />
+              <span> {mood.moodLabel}</span>
+              <p className="ButtonDescription">
+                {mood.description}
+              </p>
+            </label>
+          ))}
 
           <SubmitGoBack resetInput={() => setMoodData(null)} />
         </form>
