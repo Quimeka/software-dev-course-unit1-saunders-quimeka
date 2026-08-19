@@ -8,6 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    cursor: default;
 }
 
 #appTitle {
@@ -301,4 +302,23 @@ label {
     padding: 8px;
     border: 2px dashed #c6e7e4;
 
+}
+
+.moodKey {
+    font-family: 'Montserrat', serif;
+    font-size: 14px;
+    margin: 8px 0 8px 0px;
+    color: #1a202c;
+    padding: 4px 4px 4px 4px;
+    width: fit-content;
+    text-align: center;
+    border: 2px dashed #c6e7e4;
+    font-weight: 100 !important;
+}
+
+.moodKey h4 {
+    margin: 0 0 2px 0;
+    font-family: 'Montserrat', serif;
+    font-size: 14px;
+    color: #1a202c;
 }
