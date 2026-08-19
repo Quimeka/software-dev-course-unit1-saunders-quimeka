@@ -18,12 +18,14 @@ function App() {
   const navigate = useNavigate();
 
   const [currentUser, setCurrentUser] = useState(null);
-  const [firstName, setFirstName] = useState(currentUser ? currentUser.userFirst : "");
+  const [firstName, setFirstName] = useState("");
   const [moodData, setMoodData] = useState(null);
   const [depthData, setDepthData] = useState(null);
   const [userJournalEntry, setUserJournalEntry] = useState("");
   const [entryMode, setEntryMode] = useState(null);
   const [date, setDate] = useState(new Date());
+  const [showModalWindow, setShowModalWindow] = useState(false);
+  const [message, setMessage] = useState("");
 
 
   const handleLogout = () => {
@@ -37,44 +39,44 @@ function App() {
       <Routes>
         <Route path="/" element={
           <Home>
-            <LoginUser currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            <LoginUser setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
           </Home>
         } />
 
         <Route path="/Login" element={
           <Home>
-            <LoginUser currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            <LoginUser setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
           </Home>
         } />
 
         <Route path="/create-account" element={
           <Home>
-            <CreateUser setCurrentUser={setCurrentUser} />
+            <CreateUser setCurrentUser={setCurrentUser} firstName={firstName} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
           </Home>
         } />
 
         <Route path="/mood" element={
-          <UserMood currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} firstName={firstName} />
+          <UserMood currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
         } />
 
         <Route path="/depth" element={
-          <UserDepth currentUser={currentUser} moodData={moodData} depthData={depthData} setDepthData={setDepthData} firstName={firstName} />
+          <UserDepth currentUser={currentUser} moodData={moodData} depthData={depthData} setDepthData={setDepthData} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
         } />
 
         <Route path="/contact-us" element={
-          <ContactUs currentUser={currentUser} />
+          <ContactUs currentUser={currentUser} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
         } />
 
         <Route path="/journal-entry" element={
-          <JournalEntryPage currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} depthData={depthData} setDepthData={setDepthData} userJournalEntry={userJournalEntry} setUserJournalEntry={setUserJournalEntry} entryMode={entryMode} setEntryMode={setEntryMode} firstName={firstName} />
+          <JournalEntryPage currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} depthData={depthData} setDepthData={setDepthData} userJournalEntry={userJournalEntry} setUserJournalEntry={setUserJournalEntry} entryMode={entryMode} setEntryMode={setEntryMode} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
         } />
 
         <Route path="/calendar" element={
-          <CalendarPage currentUser={currentUser} date={date} setDate={setDate} />
+          <CalendarPage currentUser={currentUser} date={date} setDate={setDate} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
         } />
 
         <Route path="/journal-review" element={
-          <JournalReview currentUser={currentUser} date={date} firstName={firstName} />
+          <JournalReview currentUser={currentUser} date={date} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
         } />
 
       </Routes>

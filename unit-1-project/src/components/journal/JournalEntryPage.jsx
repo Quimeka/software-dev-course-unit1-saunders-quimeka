@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
 import { MOOD_PROMPTS } from '../common/userGlobals.js';
 import { useNavigate } from 'react-router';
-import setText from './setTextForEntries.js';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
 import registerFullJournalEntry from './registerFullJournalEntry.js';
+import setText from './setTextForEntries.js';
 
 
-function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData , firstName}) {
+function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState("");
-    const [showModalWindow, setShowModalWindow] = useState(false);
-
+    const [entryMode, setEntryMode] = useState(null);
     const [promptAnswers, setPromptAnswers] = useState(
         {
             q1: "",
@@ -39,12 +37,12 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setErrorMessage("");
+        setMessage("");
         let finalEntry = "";
 
         if (depthData === "1") {
             if (!userJournalEntry.trim()) {
-                setErrorMessage(`Try again. It's best you capture your thoughts, ${firstName}.`);
+                setMessage(`Try again. It's best you capture your thoughts, ${firstName}.`);
                 setShowModalWindow(true);
                 return;
             }
@@ -58,7 +56,7 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
             const prompt4Clean = (promptAnswers.q4 || "").trim();
 
             if (!prompt1Clean && !prompt2Clean && !prompt3Clean && !prompt4Clean) {
-                setErrorMessage(`Please answer at least one prompt before saving, ${firstName}.`);
+                setMessage(`Please answer at least one prompt before saving, ${firstName}.`);
                 setShowModalWindow(true);
                 return;
             }
@@ -79,18 +77,22 @@ ${prompt4Clean || "No answer provided."}`;
         setUserJournalEntry("");
         setDepthData(null);
         setMoodData(null);
-        setPromptAnswers({});
+        setPromptAnswers({
+            q1: "",
+            q2: "",
+            q3: "",
+            q4: ""
+        });
 
         navigate('/Calendar');
     };
 
     const today = new Date().toISOString().substring(0, 10);
+
     const todayMoodDisplay = setText("mood", moodData);
     const todayDepthDisplay = setText("depth", depthData);
 
     const promptsForToday = MOOD_PROMPTS[moodData];
-
-    const [entryMode, setEntryMode] = useState(null);
 
     return (
         <div className="main">
@@ -103,7 +105,7 @@ ${prompt4Clean || "No answer provided."}`;
 
                 {showModalWindow && (
                     <ModalWindow
-                        message={errorMessage}
+                        message={message}
                         onClose={() => setShowModalWindow(false)}>
                     </ModalWindow>
                 )}

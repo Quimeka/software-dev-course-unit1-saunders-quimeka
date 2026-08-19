@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react';
 import { loggedJournalEntries } from '../common/userGlobals.js';
-//https://www.npmjs.com/package/react-calendar
 import Calendar from 'react-calendar';
-import setText from '../journal/setTextForEntries.js';
 import './mood-custom-calendar.css';
 import { useNavigate } from 'react-router';
 import JournalReview from '../journal/JournalReview.jsx';
 import { MOOD_OPTIONS } from '../common/userGlobals.js';
 
-export default function CalendarPage({ currentUser, date, setDate }) {
+export default function CalendarPage({ currentUser, date, setDate, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
-    const [showModalWindow, setShowModalWindow] = useState(false)
 
     useEffect(() => {
         if (!currentUser) {

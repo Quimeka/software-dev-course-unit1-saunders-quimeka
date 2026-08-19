@@ -7,10 +7,10 @@ import ModalWindow from '../common/ModalWindow.jsx';
 import { CREATE_USER_FIELDS } from '../common/userGlobals.js';
 
 
-export default function CreateUser({ setCurrentUser }) {
+export default function CreateUser({ setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showModalWindow, setShowModalWindow] = useState(false)
+
+  const [goNext, setGoNext] = useState(false);
 
   const [formData, setFormData] = useState({
     userFirst: "",
@@ -30,35 +30,46 @@ export default function CreateUser({ setCurrentUser }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrorMessage("");
+    setMessage("");
 
     if (!formData.userFirst || !formData.userLast || !formData.userEmail || !formData.userPassword) {
-      setErrorMessage("Please fill out all fields.");
+      setMessage("Please fill out all fields.");
       setShowModalWindow(true);
       return;
     }
 
     if (!isEmailAvailable(formData.userEmail)) {
-      setErrorMessage("Email address already registered. Please try again.");
+      setMessage("Email address already registered. Please try again.");
       setShowModalWindow(true);
       setFormData({ userFirst: formData.userFirst, userLast: formData.userLast, userEmail: "", userPassword: "" });
       return;
     }
 
-    const newUserCreated = createUser(formData.userFirst, formData.userLast, formData.userEmail, formData.userPassword);
+    const newUserCreated = createUser(formData.userFirst.trim(), formData.userLast.trim(), formData.userEmail.trim(), formData.userPassword.trim());
     setCurrentUser(newUserCreated);
+    const userFirstName = formData.userFirst.trim();
+    setFirstName(userFirstName);
+    setMessage(`Welcome to the Onxy Reflections community, ${userFirstName}!`);
+    setGoNext(true);
+    setShowModalWindow(true);
     setFormData({ userFirst: "", userLast: "", userEmail: "", userPassword: "" });
-    navigate('/Mood');
   }
 
   return (
     <div className="CreateUser">
       <h3>Welcome to Onyx Reflections!</h3>
 
-      {showModalWindow && (
+      {showModalWindow && !goNext && (
         <ModalWindow
-          message={errorMessage}
+          message={message}
           onClose={() => setShowModalWindow(false)}>
+        </ModalWindow>
+      )}
+
+      {showModalWindow && goNext && (
+        <ModalWindow
+          message={message}
+          onClose={() => (setShowModalWindow(false), navigate('/Mood'))}>
         </ModalWindow>
       )}
 
