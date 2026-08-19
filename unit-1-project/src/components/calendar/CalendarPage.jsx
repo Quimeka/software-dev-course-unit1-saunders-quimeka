@@ -6,6 +6,7 @@ import setText from '../journal/setTextForEntries.js';
 import './mood-custom-calendar.css';
 import { useNavigate } from 'react-router';
 import JournalReview from '../journal/JournalReview.jsx';
+import { MOOD_OPTIONS } from '../common/userGlobals.js';
 
 export default function CalendarPage({ currentUser, date, setDate }) {
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ export default function CalendarPage({ currentUser, date, setDate }) {
 
             const latestMood = loggedJournalEntries.findLast(entry => entry.userId === currentUser && entry.date === tileDate)?.mood;
 
-            if(latestMood){
+            if (latestMood) {
                 return `mood_${latestMood}`;
             }
         }
@@ -48,10 +49,24 @@ export default function CalendarPage({ currentUser, date, setDate }) {
                     value={date}
                     onChange={handleDateClick} />
 
+                <div className="moodKey">
+                    <h4> Mood Key:</h4>
+                    {MOOD_OPTIONS.map((option, index) => {
+                        const key = `mood_${index + 1}`;
+                        return (
+                            <div key={key} id={key}>
+                                <p className={key}>{option.moodLabel}</p>
+
+                            </div>
+                        );
+                    })}
+
+                </div>
+
                 {showModalWindow && (
                     <div className="modal-overlay" onClick={() => setShowModalWindow(false)}>
                         <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-                            <JournalReview currentUser={currentUser} date={date}/>
+                            <JournalReview currentUser={currentUser} date={date} />
                             <button className="closeButton" onClick={() => setShowModalWindow(false)}>Close</button>
                         </div>
                     </div>
