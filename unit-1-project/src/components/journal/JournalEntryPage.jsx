@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react';
-import { userDepths, userMoods, MOOD_PROMPTS } from '../common/userGlobals.js';
-import { getUserFirstName } from '../user/getUserName.js';
-import registerUserMood from '../user/registerUserMood.js';
-import registerUserDepth from '../user/registerUserDepth.js';
-import registerJournalEntry from './registerJournalEntry.js';
+import { MOOD_PROMPTS } from '../common/userGlobals.js';
 import { useNavigate } from 'react-router';
 import setText from './setTextForEntries.js';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
+import registerFullJournalEntry from './registerFullJournalEntry.js';
 
 
-function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData }) {
+function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData , firstName}) {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
     const [showModalWindow, setShowModalWindow] = useState(false);
@@ -47,7 +44,7 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
 
         if (depthData === "1") {
             if (!userJournalEntry.trim()) {
-                setErrorMessage(`Try again. It's best you capture your thoughts, ${getUserFirstName(currentUser)}.`);
+                setErrorMessage(`Try again. It's best you capture your thoughts, ${firstName}.`);
                 setShowModalWindow(true);
                 return;
             }
@@ -61,25 +58,23 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
             const prompt4Clean = (promptAnswers.q4 || "").trim();
 
             if (!prompt1Clean && !prompt2Clean && !prompt3Clean && !prompt4Clean) {
-                setErrorMessage(`Please answer at least one prompt before saving, ${getUserFirstName(currentUser)}.`);
+                setErrorMessage(`Please answer at least one prompt before saving, ${firstName}.`);
                 setShowModalWindow(true);
                 return;
             }
 
             finalEntry =
                 `${promptsForToday[0]}
-${prompt1Clean || "No answer provided for today."}
+${prompt1Clean || "No answer provided."}
 ${promptsForToday[1]}
-${prompt2Clean || "No answer provided for today."}
+${prompt2Clean || "No answer provided."}
 ${promptsForToday[2]}
-${prompt3Clean || "No answer provided for today."}
+${prompt3Clean || "No answer provided."}
 ${promptsForToday[3]}
-${prompt4Clean || "No answer provided for today."}`;
+${prompt4Clean || "No answer provided."}`;
         }
 
-        registerUserMood(currentUser, moodData);
-        registerUserDepth(currentUser, depthData);
-        registerJournalEntry(currentUser, finalEntry);
+        registerFullJournalEntry(currentUser, moodData, depthData, finalEntry);
 
         setUserJournalEntry("");
         setDepthData(null);
@@ -100,7 +95,7 @@ ${prompt4Clean || "No answer provided for today."}`;
     return (
         <div className="main">
             <div className="JournalEntry">
-                <h2>Welcome, {getUserFirstName(currentUser)}!</h2>
+                <h2>Welcome, {firstName}!</h2>
                 <p><strong>Your Space Today: </strong>{todayMoodDisplay}</p>
                 <p><strong>Your Reflection Style: </strong>{todayDepthDisplay}</p>
 

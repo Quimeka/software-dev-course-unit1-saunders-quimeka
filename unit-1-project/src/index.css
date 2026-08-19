@@ -73,6 +73,12 @@ body {
     padding: 40px 40px;
 }
 
+.mainJournal {
+    flex: 1;
+    margin: auto;
+    padding: 40px 40px;
+}
+
 #OneLiner {
     font-family: "Dancing Script", cursive;
     color: #2b2c2d;
@@ -179,7 +185,9 @@ label {
 .submitButton,
 .backButton,
 .journalButton,
-.closeButton {
+.closeButton,
+.deleteButton,
+.editButton {
     width: auto;
     font-family: 'Montserrat', serif;
     align-content: center;
@@ -195,7 +203,9 @@ label {
 .submitButton:hover,
 .backButton:hover,
 .journalButton:hover,
-.closeButton:hover {
+.closeButton:hover,
+.deleteButton:hover,
+.editButton:hover {
     width: auto;
     font-family: 'Montserrat', serif;
     align-content: center;
@@ -280,5 +290,15 @@ label {
     font-weight: bold;
     margin: 0;
     color: #1a202c;
+
+}
+
+.journalEntryCard {
+    font-family: 'Montserrat', serif;
+    font-size: 14px;
+    margin: 0;
+    color: #1a202c;
+    padding: 8px;
+    border: 2px dashed #c6e7e4;
 
 }
