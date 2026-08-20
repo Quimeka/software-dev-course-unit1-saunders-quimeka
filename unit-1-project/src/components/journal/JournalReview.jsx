@@ -3,6 +3,7 @@ import setText from '../journal/setTextForEntries.js';
 import { useNavigate } from 'react-router';
 import JournalEntryEdit from './JournalEntryEdit.jsx';
 import { loggedJournalEntries } from '../common/userGlobals.js';
+import './journal-custom.css';
 
 export default function JournalReview({ currentUser, date, firstName }) {
     const navigate = useNavigate();

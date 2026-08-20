@@ -36,11 +36,11 @@ export const CREATE_USER_FIELDS = [
 ];
 
 export const MOOD_OPTIONS = [
-  { value: "5", moodLabel: "Very Flourishing", description: "I feel vibrant, motivated, or deeply joyful."},
-  { value: "4", moodLabel: "Mildly Pleasant", description:"I feel safe, comfortable, or relatively light."},
-  { value: "3", moodLabel: "Neutral / Grounded", description:"I feel steady, indifferent, or flat." },
-  { value: "2", moodLabel: "Mildly Distressed", description: "I feel anxious, stressed, or emotionally heavy."},
-  { value: "1", moodLabel: "Severely Distressed", description: "I feel completely overwhelmed, exhausted, or stuck."}
+  { value: "1", moodLabel: "Severely Distressed", description: "I feel completely overwhelmed, exhausted, or stuck." },
+  { value: "2", moodLabel: "Mildly Distressed", description: "I feel anxious, stressed, or emotionally heavy." },
+  { value: "3", moodLabel: "Neutral / Grounded", description: "I feel steady, indifferent, or flat." },
+  { value: "4", moodLabel: "Mildly Pleasant", description: "I feel safe, comfortable, or relatively light." },
+  { value: "5", moodLabel: "Very Flourishing", description: "I feel vibrant, motivated, or deeply joyful." }
 ];
 
 

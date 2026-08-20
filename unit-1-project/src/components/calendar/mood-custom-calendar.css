@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 
 .mood_1 {
     background-color: #4a4e69 !important;
@@ -35,4 +38,45 @@
 
 .react-calendar__tile {
     padding: 12px 6px !important;
+}
+
+.moodKey {
+    font-family: 'Montserrat', serif;
+    font-size: 16px;
+    margin: 8px 0;
+    color: #1a202c;
+    font-weight: 200;
+    width: 50%;
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+    align-content: center;
+    border: 2px dashed #c6e7e4;
+    gap: 5px;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.moodHeader {
+    margin: 0 0 2px 0;
+    padding-top: 16px;
+    font-family: 'Montserrat', serif;
+    font-size: 16px;
+    color: #1a202c;
+    display: block;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.keyBox {
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    max-width: 100%;
 }

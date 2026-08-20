@@ -1,0 +1,40 @@
+@import url('https://googleapis.com');
+
+* {
+    box-sizing: border-box;
+}
+
+#JournalHeader {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    color: #1a202c;
+}
+
+.journalEntryCard {
+    font-family: 'Montserrat', serif;
+    font-size: 14px;
+    margin: 0;
+    color: #1a202c;
+    padding: 8px;
+    border: 2px dashed #c6e7e4;
+}
+
+.JournalEntry h2 {
+    margin-top: 0;
+    color: #2a2a2a;
+    font-size: 1.8rem;
+}
+
+.JournalEntry p {
+    margin: 8px 0;
+    color: #555555;
+}
+
+.mainJournal {
+    flex: 1;
+    margin: auto;
+    padding: 40px 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
