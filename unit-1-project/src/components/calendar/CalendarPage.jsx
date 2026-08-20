@@ -45,19 +45,21 @@ export default function CalendarPage({ currentUser, date, setDate, showModalWind
                     name="date"
                     value={date}
                     onChange={handleDateClick} />
+                <div className="keyBox" >
+                    <h4 className="moodHeader"> Mood Key</h4>
 
-                <div className="moodKey">
-                    <h4> Mood Key:</h4>
-                    {MOOD_OPTIONS.map((option, index) => {
-                        const key = `mood_${index + 1}`;
-                        return (
-                            <div key={key} id={key}>
-                                <p className={key}>{option.moodLabel}</p>
+                    <div className="moodKey">
+                        {MOOD_OPTIONS.map((option, index) => {
+                            const key = `mood_${index + 1}`;
+                            return (
+                                <div key={key} id={key}>
+                                    <p className={key}>{option.moodLabel}</p>
 
-                            </div>
-                        );
-                    })}
+                                </div>
+                            );
+                        })}
 
+                    </div>
                 </div>
 
                 {showModalWindow && (

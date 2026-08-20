@@ -88,6 +88,8 @@ ${prompt4Clean || "No answer provided."}`;
     };
 
     const today = new Date().toISOString().substring(0, 10);
+    const [year, month, day] = today.split('-');
+    const formattedDateDisplay = `${month}-${day}-${year}`;
 
     const todayMoodDisplay = setText("mood", moodData);
     const todayDepthDisplay = setText("depth", depthData);
@@ -101,7 +103,7 @@ ${prompt4Clean || "No answer provided."}`;
                 <p><strong>Your Space Today: </strong>{todayMoodDisplay}</p>
                 <p><strong>Your Reflection Style: </strong>{todayDepthDisplay}</p>
 
-                <p><strong>Date:</strong> {today}</p>
+                <p><strong>Date:</strong> {formattedDateDisplay}</p>
 
                 {showModalWindow && (
                     <ModalWindow

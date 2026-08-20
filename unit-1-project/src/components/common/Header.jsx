@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router';
-import OnyxReflections from '../../assets/OnyxReflections.png';
+import onyxreflections from './../../assets/onyxreflections.png'
+
 
 function Header({ currentUser, handleLogout }) {
     return (
         <header className="Header">
             <div>
-                <h1 id="appTitle">Onyx Reflections</h1>
-                {/*<img src={OnyxReflections} alt="Onyx Reflections Logo" className="logo" />*/}
+                <section className="titlelogo">
+                    <h1 id="appTitle">Onyx Reflections</h1>
+                    <img className="logo" src={onyxreflections} alt="Onyx Reflections Logo" />
+                </section>
                 <h2 id="appPhrase">Your personal space for mindful reflection.</h2>
             </div>
 
