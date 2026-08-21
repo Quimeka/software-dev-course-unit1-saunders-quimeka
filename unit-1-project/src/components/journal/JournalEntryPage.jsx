@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MOOD_PROMPTS } from '../common/userGlobals.js';
+import { loggedJournalEntries, MOOD_PROMPTS } from '../common/userGlobals.js';
 import { useNavigate } from 'react-router';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
@@ -7,7 +7,7 @@ import registerFullJournalEntry from './registerFullJournalEntry.js';
 import setText from './setTextForEntries.js';
 
 
-function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindo, setJournalUpdate }) {
     const navigate = useNavigate();
     const [entryMode, setEntryMode] = useState(null);
     const [promptAnswers, setPromptAnswers] = useState(
@@ -73,6 +73,7 @@ ${prompt4Clean || "No answer provided."}`;
         }
 
         registerFullJournalEntry(currentUser, moodData, depthData, finalEntry);
+        setJournalUpdate(loggedJournalEntries);
 
         setUserJournalEntry("");
         setDepthData(null);

@@ -12,7 +12,7 @@ import ContactUs from "./components/contact/ContactUs.jsx";
 import Header from "./components/common/Header.jsx";
 import Footer from "./components/common/Footer.jsx";
 import JournalReview from "./components/journal/JournalReview.jsx";
-
+import { loggedJournalEntries } from "./components/common/userGlobals.js";
 
 function App() {
   const navigate = useNavigate();
@@ -26,6 +26,7 @@ function App() {
   const [date, setDate] = useState(new Date());
   const [showModalWindow, setShowModalWindow] = useState(false);
   const [message, setMessage] = useState("");
+  const [journalUpdate, setJournalUpdate] = useState(loggedJournalEntries);
 
 
   const handleLogout = () => {
@@ -60,7 +61,7 @@ function App() {
         } />
 
         <Route path="/depth" element={
-          <UserDepth currentUser={currentUser} moodData={moodData} depthData={depthData} setDepthData={setDepthData} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+          <UserDepth currentUser={currentUser} moodData={moodData} depthData={depthData} setDepthData={setDepthData} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
         } />
 
         <Route path="/contact-us" element={
@@ -68,15 +69,15 @@ function App() {
         } />
 
         <Route path="/journal-entry" element={
-          <JournalEntryPage currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} depthData={depthData} setDepthData={setDepthData} userJournalEntry={userJournalEntry} setUserJournalEntry={setUserJournalEntry} entryMode={entryMode} setEntryMode={setEntryMode} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+          <JournalEntryPage currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} depthData={depthData} setDepthData={setDepthData} userJournalEntry={userJournalEntry} setUserJournalEntry={setUserJournalEntry} entryMode={entryMode} setEntryMode={setEntryMode} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate}/>
         } />
 
         <Route path="/calendar" element={
-          <CalendarPage currentUser={currentUser} date={date} setDate={setDate} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+          <CalendarPage currentUser={currentUser} date={date} setDate={setDate} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate}/>
         } />
 
         <Route path="/journal-review" element={
-          <JournalReview currentUser={currentUser} date={date} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+          <JournalReview currentUser={currentUser} date={date} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} />
         } />
 
       </Routes>

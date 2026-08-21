@@ -5,7 +5,7 @@ import JournalEntryEdit from './JournalEntryEdit.jsx';
 import { loggedJournalEntries } from '../common/userGlobals.js';
 import './journal-custom.css';
 
-export default function JournalReview({ currentUser, date, firstName }) {
+export default function JournalReview({ currentUser, date, firstName, journalUpdate, setJournalUpdate }) {
     const navigate = useNavigate();
 
     const formattedDate = date.toISOString().substring(0, 10);
@@ -18,6 +18,24 @@ export default function JournalReview({ currentUser, date, firstName }) {
     const currentDate = new Date().toISOString().substring(0, 10);
 
     const showEditButton = formattedDate === currentDate;
+
+    const handleDelete = (journalItem) => {
+        console.log("inside delete with", journalItem.entry);
+        console.log("journal item number inside big loggedjournal", journalItem.journalEntryNumber);
+        console.log(loggedJournalEntries.length);
+
+        const deleteItemIndex = loggedJournalEntries.findIndex(item =>
+            item.journalEntryNumber === journalItem.journalEntryNumber
+        )
+
+        console.log(deleteItemIndex);
+
+        loggedJournalEntries.splice(deleteItemIndex, 1);
+        console.log(loggedJournalEntries.length);
+
+
+
+    };
 
     return (
         <div className="mainJournal">
@@ -55,7 +73,7 @@ export default function JournalReview({ currentUser, date, firstName }) {
                                     ))}
                                 </div>
                             )}
-                            <button className="deleteButton" type="button">Delete Session #{index + 1}</button>
+                            <button className="deleteButton" type="button" onClick={() => handleDelete(item)}>Delete Session #{index + 1}</button>
                         </div>
                     )))}
             </div>

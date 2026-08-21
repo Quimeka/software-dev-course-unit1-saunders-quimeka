@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { loggedJournalEntries } from '../common/userGlobals.js';
+//import { loggedJournalEntries } from '../common/userGlobals.js';
 import Calendar from 'react-calendar';
 import './mood-custom-calendar.css';
 import { useNavigate } from 'react-router';
 import JournalReview from '../journal/JournalReview.jsx';
 import { MOOD_OPTIONS } from '../common/userGlobals.js';
 
-export default function CalendarPage({ currentUser, date, setDate, showModalWindow, setShowModalWindow }) {
+export default function CalendarPage({ currentUser, date, setDate, showModalWindow, setShowModalWindow, journalUpdate, setJournalUpdate }) {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -24,7 +24,7 @@ export default function CalendarPage({ currentUser, date, setDate, showModalWind
         if (view === 'month') {
             const tileDate = date.toISOString().substring(0, 10);
 
-            const latestMood = loggedJournalEntries.findLast(entry => entry.userId === currentUser && entry.date === tileDate)?.mood;
+            const latestMood = journalUpdate.findLast(entry => entry.userId === currentUser && entry.date === tileDate)?.mood;
 
             if (latestMood) {
                 return `mood_${latestMood}`;
@@ -33,7 +33,7 @@ export default function CalendarPage({ currentUser, date, setDate, showModalWind
         return null;
     };
 
-
+    
 
     return (
         <div className="main">
@@ -65,7 +65,7 @@ export default function CalendarPage({ currentUser, date, setDate, showModalWind
                 {showModalWindow && (
                     <div className="modal-overlay" onClick={() => setShowModalWindow(false)}>
                         <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-                            <JournalReview currentUser={currentUser} date={date} />
+                            <JournalReview currentUser={currentUser} date={date} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} />
                             <button className="closeButton" onClick={() => setShowModalWindow(false)}>Close</button>
                         </div>
                     </div>
