@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
-import { DEPTH_OPTIONS } from '../common/userGlobals.js';
+import { DEPTH_OPTIONS, loggedJournalEntries } from '../common/userGlobals.js';
 import registerFullJournalEntry from '../journal/registerFullJournalEntry.js';
 
-function UserDepth({ currentUser, moodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+function UserDepth({ currentUser, moodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
   const navigate = useNavigate();
 
 
@@ -31,6 +31,7 @@ function UserDepth({ currentUser, moodData, depthData, setDepthData, firstName, 
 
     if (depthData === "3") {
       registerFullJournalEntry(currentUser, moodData, depthData, `\nNo journal data available.`);
+      setJournalUpdate(loggedJournalEntries);
       navigate('/Calendar');
     } else {
       navigate('/Journal-Entry');
