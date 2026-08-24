@@ -1,4 +1,3 @@
-//Disclaimer: Each set of Mock Data is Auto-generated. :) Working smarter, not harder. 
 //Disclaimer: The code within this Mock Data is Auto-generated. I'd ideally like to use a DB and generate this dynamically. 
 export let onyxUsers = [
   {

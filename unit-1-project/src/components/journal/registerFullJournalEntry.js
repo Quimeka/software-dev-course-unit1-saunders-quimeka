@@ -32,9 +32,6 @@ export default function registerFullJournalEntry(id, mood, depth, journalEntry) 
         depth: depth,
         entry: formattedEntry
     };
-    console.log('Journal entry was set to:', journalEntry);
     loggedJournalEntries.push(newJournalEntry);
-    console.log('Journal entry registered:', newJournalEntry);
-    console.log(loggedJournalEntries);
 }
 
