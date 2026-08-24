@@ -11,17 +11,28 @@ export default function registerFullJournalEntry(id, mood, depth, journalEntry) 
         return null;
     }
 
-    const foundUserEntry = loggedJournalEntries.findLast(entry => entry.userId === id && entry.date === currentDate.toISOString().substring(0, 10));
+    const lastEntry = loggedJournalEntries.findLast(entry => entry.userId === id);
+    const lastNumber = lastEntry ? lastEntry.journalEntryNumber : 0;
+
+    let formattedEntry;
+
+    if (depth === "1" || depth === "3") {
+        formattedEntry = journalEntry;
+
+    }
+    else if (depth === "2") {
+        formattedEntry = journalEntry.split('\n').filter(paragraph => paragraph.trim() !== '')
+    }
 
     const newJournalEntry = {
         userId: id,
-        journalEntryNumber: foundUserEntry ? foundUserEntry.journalEntryNumber + 1 : 1,
+        journalEntryNumber: lastNumber + 1,
         date: currentDate.toISOString().substring(0, 10),
         mood: mood,
         depth: depth,
-        entry: journalEntry.split('\n').filter(paragraph => paragraph.trim() !== '')
+        entry: formattedEntry
     };
-
+    console.log('Journal entry was set to:', journalEntry);
     loggedJournalEntries.push(newJournalEntry);
     console.log('Journal entry registered:', newJournalEntry);
     console.log(loggedJournalEntries);

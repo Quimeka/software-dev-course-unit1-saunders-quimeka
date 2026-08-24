@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-//import { loggedJournalEntries } from '../common/userGlobals.js';
 import Calendar from 'react-calendar';
 import './mood-custom-calendar.css';
 import { useNavigate } from 'react-router';
 import JournalReview from '../journal/JournalReview.jsx';
 import { MOOD_OPTIONS } from '../common/userGlobals.js';
 
-export default function CalendarPage({ currentUser, date, setDate, showModalWindow, setShowModalWindow, journalUpdate, setJournalUpdate }) {
+export default function CalendarPage({ currentUser, date, setDate, message, setMessage, showModalWindow, setShowModalWindow, journalUpdate, setJournalUpdate, entryData, setEntryData }) {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,7 +32,7 @@ export default function CalendarPage({ currentUser, date, setDate, showModalWind
         return null;
     };
 
-    
+
 
     return (
         <div className="main">
@@ -65,7 +64,7 @@ export default function CalendarPage({ currentUser, date, setDate, showModalWind
                 {showModalWindow && (
                     <div className="modal-overlay" onClick={() => setShowModalWindow(false)}>
                         <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-                            <JournalReview currentUser={currentUser} date={date} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} />
+                            <JournalReview currentUser={currentUser} date={date} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} message={message} setMessage={setMessage} entryData={entryData} setEntryData={setEntryData} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow}/>
                             <button className="closeButton" onClick={() => setShowModalWindow(false)}>Close</button>
                         </div>
                     </div>
