@@ -30,7 +30,7 @@ function UserDepth({ currentUser, moodData, depthData, setDepthData, firstName, 
     }
 
     if (depthData === "3") {
-      registerFullJournalEntry(currentUser, moodData, depthData, `\nNo journal data available.`);
+      registerFullJournalEntry(currentUser, moodData, depthData, `No journal data available.`);
       setJournalUpdate(loggedJournalEntries);
       navigate('/Calendar');
     } else {

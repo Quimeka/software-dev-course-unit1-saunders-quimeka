@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import setText from '../journal/setTextForEntries.js';
 import { useNavigate } from 'react-router';
-import JournalEntryEdit from './JournalEntryEdit.jsx';
+import updateJournalEntryPage from './updateJournalEntry.jsx';
 import { loggedJournalEntries } from '../common/userGlobals.js';
 import './journal-custom.css';
 
-export default function JournalReview({ currentUser, date, firstName, journalUpdate, setJournalUpdate }) {
+export default function JournalReview({ currentUser, date, firstName, journalUpdate, setJournalUpdate, entryData, setEntryData, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
 
     const formattedDate = date.toISOString().substring(0, 10);
@@ -19,23 +19,34 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
 
     const showEditButton = formattedDate === currentDate;
 
+    const [deletingEntry, setDeletingEntry] = useState(false);
+
     const handleDelete = (journalItem) => {
-        console.log("inside delete with", journalItem.entry);
-        console.log("journal item number inside big loggedjournal", journalItem.journalEntryNumber);
-        console.log(loggedJournalEntries.length);
+        console.log(`printing journal entry data from delete block`, journalItem);
+        setDeletingEntry(true);
 
         const deleteItemIndex = loggedJournalEntries.findIndex(item =>
             item.journalEntryNumber === journalItem.journalEntryNumber
-        )
-
-        console.log(deleteItemIndex);
-
-        loggedJournalEntries.splice(deleteItemIndex, 1);
-        console.log(loggedJournalEntries.length);
-
-
-
+        );
+        if (deleteItemIndex !== -1) {
+            console.log("DELETING ENTRY NOW");
+            loggedJournalEntries.splice(deleteItemIndex, 1);
+            setJournalUpdate([...loggedJournalEntries]);
+        }
+        setDeletingEntry(false);
     };
+
+    const handleEdit = (journalItem) => {
+        setEntryData(journalItem);
+        console.log('printing length before deletion', loggedJournalEntries.length);
+        console.log(`inside edit block for`, journalItem);
+        handleDelete(journalItem);
+        setJournalUpdate([...loggedJournalEntries]);
+        console.log('printing length after deletion', loggedJournalEntries.length);
+        setShowModalWindow(false);
+        setMessage("");
+        navigate('/edit-entry');
+    }
 
     return (
         <div className="mainJournal">
@@ -44,38 +55,35 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
                 {entryList.length === 0 ? (
                     <p>No records or journal entries for this day, {firstName}!</p>
                 ) : (
-                    entryList.map((item, index) => (
-                        <div key={item.entry?.entry_id || index} className="journalEntryCard">
-                            <h3>Session #{index + 1}</h3>
-                            <p className="modalEntryData"><strong>Mood:</strong> {setText("mood", item.mood)}</p>
-                            <p className="modalEntryData"><strong>Preference:</strong> {setText("depth", item.depth)}</p>
+                    entryList.map((item, index) => {
+                        const lines = Array.isArray(item.entry) ? item.entry : [item.entry];
 
-                            {/*Disclaimer: This was such a nightmare...and I still can't get it right. HELPNEEDEDAREA*/}
-                            {item.entry.map && showEditButton && (
+                        return (
+                            <div key={item.journalEntryNumber || index} className="journalEntryCard">
+                                <h3>Session #{index + 1}</h3>
+                                <p className="modalEntryData"><strong>Mood:</strong> {setText("mood", item.mood)}</p>
+                                <p className="modalEntryData"><strong>Preference:</strong> {setText("depth", item.depth)}</p>
+
                                 <div className="modalEntryDataTextResponses" style={{ whiteSpace: 'pre-line' }}>
                                     <p className="JournalHeader"><strong>Journal Entry:</strong></p>
-                                    {item.entry.map((line, index) => (
-                                        <p key={index}>
-                                            {item.depth === "1" ? (<> {line} {<button className="editButton" type="button">Edit</button>} </>) :
-                                                (index % 2 === 0 && item.depth !== "1" ? (<strong> <>{line}</></strong>) : (<> {line} {<button className="editButton" type="button">Edit</button>} </>))}
+                                    {lines.map((line, lineIndex) => (
+                                        <p key={lineIndex}>
+                                            {(lineIndex % 2 === 0 && item.depth === "2") ? (
+                                                <strong>{line}</strong>
+                                            ) : (<>{line}</>
+                                            )}
                                         </p>
                                     ))}
                                 </div>
-                            )}
-                            {item.entry.map && !showEditButton && (
-                                <div className="modalEntryDataTextResponses" style={{ whiteSpace: 'pre-line' }}>
-                                    <p className="JournalHeader"><strong>Journal Entry:</strong></p>
-                                    {item.entry.map((line, index) => (
-                                        <p key={index}>
-                                            {item.depth === "1" ? (<>{line}</>) :
-                                                (index % 2 === 0 && item.depth !== "1" ? (<strong>{line}</strong>) : <>{line}</>)}
-                                        </p>
-                                    ))}
-                                </div>
-                            )}
-                            <button className="deleteButton" type="button" onClick={() => handleDelete(item)}>Delete Session #{index + 1}</button>
-                        </div>
-                    )))}
+
+                                {showEditButton &&
+                                    (<button className="editButton" type="button" disabled={deletingEntry} onClick={() => handleEdit(item)}>Edit</button
+                                    >)}
+                                <button className="deleteButton" type="button" disabled={deletingEntry} onClick={() => handleDelete(item)}>Delete Session #{index + 1}</button>
+                            </div>
+                        );
+                    })
+                )}
             </div>
         </div>
     )

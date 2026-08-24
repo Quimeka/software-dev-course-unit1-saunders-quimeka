@@ -7,15 +7,16 @@ import registerFullJournalEntry from './registerFullJournalEntry.js';
 import setText from './setTextForEntries.js';
 
 
-function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
+function UpdateJournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, firstName, message, setMessage, showModalWindow, entryData, setShowModalWindow, setJournalUpdate }) {
     const navigate = useNavigate();
-    const [entryMode, setEntryMode] = useState(null);
+    const [entryMode, setEntryMode] = useState(entryData.depth);
+    const [initialEntry, setInitialEntry] = useState(entryData.entry || " ");
     const [promptAnswers, setPromptAnswers] = useState(
         {
-            q1: "",
-            q2: "",
-            q3: "",
-            q4: ""
+            q1: entryData.entry[1],
+            q2: entryData.entry[3],
+            q3: entryData.entry[5],
+            q4: entryData.entry[7],
         });
 
     useEffect(() => {
@@ -25,7 +26,7 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
     }, [currentUser, navigate]);
 
     const handleJournalTypeChange = (e) => {
-        setUserJournalEntry(e.target.value);
+        setInitialEntry(e.target.value);
     };
 
     const handlePromptChange = (key, value) => {
@@ -40,15 +41,16 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
         setMessage("");
         let finalEntry = "";
 
-        if (depthData === "1") {
-            if (!userJournalEntry.trim()) {
-                setMessage(`Try again. It's best you capture your thoughts, ${firstName}.`);
+        if (entryData.depth !== "2") {
+            if (!initialEntry.trim()) {
+                setMessage(`Try again. It's best you update your thoughts, ${firstName}.`);
                 setShowModalWindow(true);
                 return;
             }
-            finalEntry = userJournalEntry;
 
-        } else if (depthData === "2") {
+            finalEntry = initialEntry;
+
+        } else if (entryData.depth === "2") {
 
             const prompt1Clean = (promptAnswers.q1 || "").trim();
             const prompt2Clean = (promptAnswers.q2 || "").trim();
@@ -71,13 +73,12 @@ ${prompt3Clean || "No answer provided."}
 ${promptsForToday[3]}
 ${prompt4Clean || "No answer provided."}`;
         }
+        
+        registerFullJournalEntry(currentUser, entryData.mood, entryData.depth, finalEntry);
 
-        registerFullJournalEntry(currentUser, moodData, depthData, finalEntry);
-        setJournalUpdate([...loggedJournalEntries]);
+        setJournalUpdate(loggedJournalEntries);
 
         setUserJournalEntry("");
-        setDepthData(null);
-        setMoodData(null);
         setPromptAnswers({
             q1: "",
             q2: "",
@@ -92,10 +93,10 @@ ${prompt4Clean || "No answer provided."}`;
     const [year, month, day] = today.split('-');
     const formattedDateDisplay = `${month}-${day}-${year}`;
 
-    const todayMoodDisplay = setText("mood", moodData);
-    const todayDepthDisplay = setText("depth", depthData);
+    const todayMoodDisplay = setText("mood", entryData.mood);
+    const todayDepthDisplay = setText("depth", entryData.depth);
 
-    const promptsForToday = MOOD_PROMPTS[moodData];
+    const promptsForToday = MOOD_PROMPTS[entryData.mood];
 
     return (
         <div className="main">
@@ -114,20 +115,16 @@ ${prompt4Clean || "No answer provided."}`;
                 )}
 
                 <form onSubmit={handleSubmit}>
-                    <button className="journalButton" type="button" onClick={() => setEntryMode(entryMode === depthData ? null : depthData)}>
-                        {depthData === "1" ? "Start Free Writing" : "View My Prompts"}
-                    </button>
 
-                    {entryMode === "1" && (
+                    {entryMode !== "2" && (
                         <div className="PromptGroup">
                             <textarea
                                 className="textBox"
                                 name="userJournalEntry"
-                                value={userJournalEntry}
+                                value={initialEntry}
                                 onChange={handleJournalTypeChange}
                                 rows="50"
                                 cols="100"
-                                placeholder="Write whatever comes to mind..."
                             />
                         </div>
                     )}
@@ -158,4 +155,4 @@ ${prompt4Clean || "No answer provided."}`;
     );
 }
 
-export default JournalEntryPage;
+export default UpdateJournalEntryPage;
