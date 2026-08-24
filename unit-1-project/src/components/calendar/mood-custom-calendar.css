@@ -37,12 +37,13 @@
 }
 
 .react-calendar__tile {
-    padding: 12px 6px !important;
+    padding: clamp(6px, 1.5vw, 14px) clamp(3px, 1vw, 8px) !important;
+    font-size: clamp(12px, 1.2vw, 16px) !important;
 }
 
 .moodKey {
     font-family: 'Montserrat', serif;
-    font-size: 16px;
+    font-size: clamp(15px, 1.3vw, 18px);
     margin: 8px 0;
     color: #1a202c;
     font-weight: 200;
@@ -63,7 +64,7 @@
     margin: 0 0 2px 0;
     padding-top: 16px;
     font-family: 'Montserrat', serif;
-    font-size: 16px;
+    font-size: clamp(14px, 1.3vw, 18px);
     color: #1a202c;
     display: block;
     width: 100%;
@@ -79,4 +80,12 @@
     box-sizing: border-box;
     flex-wrap: wrap;
     max-width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+    .keyBox {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }

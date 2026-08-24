@@ -7,7 +7,7 @@ import registerFullJournalEntry from './registerFullJournalEntry.js';
 import setText from './setTextForEntries.js';
 
 
-function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindo, setJournalUpdate }) {
+function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
     const navigate = useNavigate();
     const [entryMode, setEntryMode] = useState(null);
     const [promptAnswers, setPromptAnswers] = useState(
