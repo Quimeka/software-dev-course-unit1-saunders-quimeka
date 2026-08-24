@@ -73,7 +73,7 @@ ${prompt3Clean || "No answer provided."}
 ${promptsForToday[3]}
 ${prompt4Clean || "No answer provided."}`;
         }
-        
+
         registerFullJournalEntry(currentUser, entryData.mood, entryData.depth, finalEntry);
 
         setJournalUpdate(loggedJournalEntries);
@@ -101,7 +101,7 @@ ${prompt4Clean || "No answer provided."}`;
     return (
         <div className="main">
             <div className="JournalEntry">
-                <h2>Welcome, {firstName}!</h2>
+                <h2> Welcome back, {firstName}!</h2>
                 <p><strong>Your Space Today: </strong>{todayMoodDisplay}</p>
                 <p><strong>Your Reflection Style: </strong>{todayDepthDisplay}</p>
 

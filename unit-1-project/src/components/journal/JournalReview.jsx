@@ -22,14 +22,12 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
     const [deletingEntry, setDeletingEntry] = useState(false);
 
     const handleDelete = (journalItem) => {
-        console.log(`printing journal entry data from delete block`, journalItem);
         setDeletingEntry(true);
 
         const deleteItemIndex = loggedJournalEntries.findIndex(item =>
             item.journalEntryNumber === journalItem.journalEntryNumber
         );
         if (deleteItemIndex !== -1) {
-            console.log("DELETING ENTRY NOW");
             loggedJournalEntries.splice(deleteItemIndex, 1);
             setJournalUpdate([...loggedJournalEntries]);
         }
@@ -38,13 +36,9 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
 
     const handleEdit = (journalItem) => {
         setEntryData(journalItem);
-        console.log('printing length before deletion', loggedJournalEntries.length);
-        console.log(`inside edit block for`, journalItem);
         handleDelete(journalItem);
         setJournalUpdate([...loggedJournalEntries]);
-        console.log('printing length after deletion', loggedJournalEntries.length);
         setShowModalWindow(false);
-        setMessage("");
         navigate('/edit-entry');
     }
 
