@@ -23,21 +23,23 @@ function UserDepth({ currentUser, moodData, depthData, setDepthData, firstName, 
     e.preventDefault();
     setMessage("");
 
+    //check user input and provide an error message to the user. 
     if (!depthData) {
       setMessage(`Try again. I'd like to know how best to support your experience today, ${firstName}.`);
       setShowModalWindow(true);
       return;
     }
 
+    //manually add user journal log for tracking purposes post-submission
     if (depthData === "3") {
       registerFullJournalEntry(currentUser, moodData, depthData, `No journal data available.`);
-      setJournalUpdate(loggedJournalEntries);
+      setJournalUpdate([...loggedJournalEntries]);
       navigate('/Calendar');
     } else {
       navigate('/Journal-Entry');
     }
   };
-
+  //display depth options to user and process input via submittal.
   return (
     <div className="main">
       <div className="UserDepth">

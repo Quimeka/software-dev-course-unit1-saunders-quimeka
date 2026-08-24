@@ -31,13 +31,13 @@ export default function CreateUser({ setCurrentUser, firstName, setFirstName, me
   const handleSubmit = (e) => {
     e.preventDefault();
     setMessage("");
-
+    //check for any empty required fields and provide an error message to the user. 
     if (!formData.userFirst || !formData.userLast || !formData.userEmail || !formData.userPassword) {
       setMessage("Please fill out all fields.");
       setShowModalWindow(true);
       return;
     }
-
+    //check for exsiting user account. and provide an error message to the user. 
     if (!isEmailAvailable(formData.userEmail)) {
       setMessage("Email address already registered. Please try again.");
       setShowModalWindow(true);
@@ -45,6 +45,7 @@ export default function CreateUser({ setCurrentUser, firstName, setFirstName, me
       return;
     }
 
+    //create new user account, set prop values for application use. 
     const newUserCreated = createUser(formData.userFirst.trim(), formData.userLast.trim(), formData.userEmail.trim(), formData.userPassword.trim());
     setCurrentUser(newUserCreated);
     const userFirstName = formData.userFirst.trim();

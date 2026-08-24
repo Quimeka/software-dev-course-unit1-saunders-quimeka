@@ -10,6 +10,7 @@ import setText from './setTextForEntries.js';
 function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
     const navigate = useNavigate();
     const [entryMode, setEntryMode] = useState(null);
+    //establish prop for prompts
     const [promptAnswers, setPromptAnswers] = useState(
         {
             q1: "",
@@ -49,7 +50,7 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
             finalEntry = userJournalEntry;
 
         } else if (depthData === "2") {
-
+            //clean up responses and combine into string for logged journals push.
             const prompt1Clean = (promptAnswers.q1 || "").trim();
             const prompt2Clean = (promptAnswers.q2 || "").trim();
             const prompt3Clean = (promptAnswers.q3 || "").trim();
@@ -73,8 +74,10 @@ ${prompt4Clean || "No answer provided."}`;
         }
 
         registerFullJournalEntry(currentUser, moodData, depthData, finalEntry);
+        //update global props to ensure logged journals remains accurate for application
         setJournalUpdate([...loggedJournalEntries]);
 
+        //clear global props
         setUserJournalEntry("");
         setDepthData(null);
         setMoodData(null);
@@ -88,6 +91,7 @@ ${prompt4Clean || "No answer provided."}`;
         navigate('/Calendar');
     };
 
+    //structure date for user readability purposes 
     const today = new Date().toISOString().substring(0, 10);
     const [year, month, day] = today.split('-');
     const formattedDateDisplay = `${month}-${day}-${year}`;
@@ -95,8 +99,10 @@ ${prompt4Clean || "No answer provided."}`;
     const todayMoodDisplay = setText("mood", moodData);
     const todayDepthDisplay = setText("depth", depthData);
 
+    //pull prompts based on user input
     const promptsForToday = MOOD_PROMPTS[moodData];
 
+    //populate journal form with user input; provide form based on depth.
     return (
         <div className="main">
             <div className="JournalEntry">

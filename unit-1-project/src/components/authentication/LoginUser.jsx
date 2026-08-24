@@ -3,9 +3,9 @@ import verifyUserLogin from './verifyUserLogin.js';
 import { useNavigate, Link } from 'react-router';
 import ModalWindow from '../common/ModalWindow.jsx';
 
-function LoginUser({ setCurrentUser , firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow}) {
+function LoginUser({ setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
-  
+
     const [goNext, setGoNext] = useState(false);
     const [formData, setFormData] = useState({
         userEmail: "",
@@ -22,20 +22,23 @@ function LoginUser({ setCurrentUser , firstName, setFirstName, message, setMessa
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        //check user input and provide an error message to the user. 
         if (!formData.userEmail || !formData.userPassword) {
             setMessage("Please fill out all fields.");
             setShowModalWindow(true);
             return;
         }
 
+        //check for login credentials and provide an error message to the user. 
         const loggedUser = verifyUserLogin(formData.userEmail, formData.userPassword);
-
+        
         if (!loggedUser) {
             setMessage("Invalid email or password.");
             setShowModalWindow(true);
             return;
         }
 
+        //log in the user, set prop values for application use. 
         setCurrentUser(loggedUser.userId);
         const userFirstName = loggedUser.userFirst;
         setFirstName(userFirstName);
