@@ -24,6 +24,7 @@ function UserMood({ currentUser, moodData, setMoodData, firstName, message, setM
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    //check user input and provide an error message to the user. 
     if (!moodData) {
       setMessage(`Try again. I'd like to know how you're doing today, ${firstName}!`);
       setShowModalWindow(true);
@@ -32,7 +33,7 @@ function UserMood({ currentUser, moodData, setMoodData, firstName, message, setM
     navigate('/Depth');
   };
 
-
+  //display mood options to user and process input via submittal.
   return (
     <div className="main">
       <div className="UserMood">

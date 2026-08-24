@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function ModalWindow({message, onClose}) {
-
+  //display modal window and message passed from current page
     return (
         <div className="modal-overlay" onClick={onClose}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>

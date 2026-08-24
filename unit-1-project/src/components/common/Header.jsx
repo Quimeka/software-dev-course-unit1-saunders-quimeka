@@ -4,6 +4,7 @@ import onyxreflections from './../../assets/onyxreflections.png'
 
 
 function Header({ currentUser, handleLogout }) {
+    //if user logged in, display navigation/header bar. Otherwise, do nothing.
     return (
         <header className="Header">
             <div>

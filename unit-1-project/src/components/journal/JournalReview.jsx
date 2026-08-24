@@ -8,25 +8,23 @@ import './journal-custom.css';
 export default function JournalReview({ currentUser, date, firstName, journalUpdate, setJournalUpdate, entryData, setEntryData, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
 
+    //structure date for user readability purposes 
     const formattedDate = date.toISOString().substring(0, 10);
-
     const [year, month, day] = formattedDate.split('-');
     const formattedDateDisplay = `${month}-${day}-${year}`;
 
+    //pull logged journals and filter based on user and date 
     const entryList = loggedJournalEntries.filter(entry => entry.userId === currentUser && entry.date === formattedDate);
-
     const currentDate = new Date().toISOString().substring(0, 10);
 
+    //make current date entries editable for user 
     const showEditButton = formattedDate === currentDate;
-
     const [deletingEntry, setDeletingEntry] = useState(false);
 
+    //delete entries based on user feedback; update logged journal 
     const handleDelete = (journalItem) => {
         setDeletingEntry(true);
-
-        const deleteItemIndex = loggedJournalEntries.findIndex(item =>
-            item.journalEntryNumber === journalItem.journalEntryNumber
-        );
+        const deleteItemIndex = loggedJournalEntries.findIndex(item => item.journalEntryNumber === journalItem.journalEntryNumber);
         if (deleteItemIndex !== -1) {
             loggedJournalEntries.splice(deleteItemIndex, 1);
             setJournalUpdate([...loggedJournalEntries]);
@@ -34,6 +32,7 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
         setDeletingEntry(false);
     };
 
+    //edit entry based on user feedback; update logged journal 
     const handleEdit = (journalItem) => {
         setEntryData(journalItem);
         handleDelete(journalItem);
@@ -41,7 +40,7 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
         setShowModalWindow(false);
         navigate('/edit-entry');
     }
-
+    //check entry type; change depth 1,2 to an array; bold questions for depth 3; make current day entries editable 
     return (
         <div className="mainJournal">
             <h2>Details for {formattedDateDisplay}</h2>
@@ -51,13 +50,11 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
                 ) : (
                     entryList.map((item, index) => {
                         const lines = Array.isArray(item.entry) ? item.entry : [item.entry];
-
                         return (
                             <div key={item.journalEntryNumber || index} className="journalEntryCard">
                                 <h3>Session #{index + 1}</h3>
                                 <p className="modalEntryData"><strong>Mood:</strong> {setText("mood", item.mood)}</p>
                                 <p className="modalEntryData"><strong>Preference:</strong> {setText("depth", item.depth)}</p>
-
                                 <div className="modalEntryDataTextResponses" style={{ whiteSpace: 'pre-line' }}>
                                     <p className="JournalHeader"><strong>Journal Entry:</strong></p>
                                     {lines.map((line, lineIndex) => (
@@ -69,10 +66,8 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
                                         </p>
                                     ))}
                                 </div>
-
                                 {showEditButton &&
-                                    (<button className="editButton" type="button" disabled={deletingEntry} onClick={() => handleEdit(item)}>Edit</button
-                                    >)}
+                                    <button className="editButton" type="button" disabled={deletingEntry} onClick={() => handleEdit(item)}>Edit</button >}
                                 <button className="deleteButton" type="button" disabled={deletingEntry} onClick={() => handleDelete(item)}>Delete Session #{index + 1}</button>
                             </div>
                         );
@@ -80,5 +75,5 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
                 )}
             </div>
         </div>
-    )
+    );
 }

@@ -33,7 +33,7 @@ export default function CalendarPage({ currentUser, date, setDate, message, setM
     };
 
 
-
+    //display calendar w/ custom calendar coding; Allow entry viewing by clicking on dates.
     return (
         <div className="main">
             <div className="CalendarPage">
@@ -46,7 +46,7 @@ export default function CalendarPage({ currentUser, date, setDate, message, setM
                     onChange={handleDateClick} />
                 <div className="keyBox" >
                     <h4 className="moodHeader"> Mood Key</h4>
-
+                    {/*Create color coding for calendar view */}
                     <div className="moodKey">
                         {MOOD_OPTIONS.map((option, index) => {
                             const key = `mood_${index + 1}`;
@@ -60,11 +60,11 @@ export default function CalendarPage({ currentUser, date, setDate, message, setM
 
                     </div>
                 </div>
-
+                {/*Display ModalWindow with Journal Entries for date user selected; display Journal Review Page*/}
                 {showModalWindow && (
                     <div className="modal-overlay" onClick={() => setShowModalWindow(false)}>
                         <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-                            <JournalReview currentUser={currentUser} date={date} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} message={message} setMessage={setMessage} entryData={entryData} setEntryData={setEntryData} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow}/>
+                            <JournalReview currentUser={currentUser} date={date} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} message={message} setMessage={setMessage} entryData={entryData} setEntryData={setEntryData} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
                             <button className="closeButton" onClick={() => setShowModalWindow(false)}>Close</button>
                         </div>
                     </div>

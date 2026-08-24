@@ -11,6 +11,7 @@ function UpdateJournalEntryPage({ currentUser, userJournalEntry, setUserJournalE
     const navigate = useNavigate();
     const [entryMode, setEntryMode] = useState(entryData.depth);
     const [initialEntry, setInitialEntry] = useState(entryData.entry || " ");
+    //establish prop for prompts
     const [promptAnswers, setPromptAnswers] = useState(
         {
             q1: entryData.entry[1],
@@ -75,9 +76,10 @@ ${prompt4Clean || "No answer provided."}`;
         }
 
         registerFullJournalEntry(currentUser, entryData.mood, entryData.depth, finalEntry);
-
+        //update global props to ensure logged journals remains accurate for application
         setJournalUpdate(loggedJournalEntries);
 
+        //clear global props
         setUserJournalEntry("");
         setPromptAnswers({
             q1: "",
@@ -89,6 +91,7 @@ ${prompt4Clean || "No answer provided."}`;
         navigate('/Calendar');
     };
 
+    //structure date for user readability purposes 
     const today = new Date().toISOString().substring(0, 10);
     const [year, month, day] = today.split('-');
     const formattedDateDisplay = `${month}-${day}-${year}`;
@@ -98,6 +101,7 @@ ${prompt4Clean || "No answer provided."}`;
 
     const promptsForToday = MOOD_PROMPTS[entryData.mood];
 
+    //populate journal form with user input; provide form based on depth.
     return (
         <div className="main">
             <div className="JournalEntry">
