@@ -6,7 +6,7 @@ import './index.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/software-dev-course-unit1-saunders-quimeka">
       <App />
     </BrowserRouter>
   </StrictMode>
