@@ -15,6 +15,10 @@ function UserMood({ currentUser, moodData, setMoodData, firstName, message, setM
     }
   }, [currentUser, navigate]);
 
+  useEffect(() => {
+    setMoodData(null);
+  }, [setMoodData]);
+
 
   const handleChange = (e) => {
     const chosenMood = e.target.value;

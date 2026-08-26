@@ -15,6 +15,10 @@ function UserDepth({ currentUser, moodData, depthData, setDepthData, firstName, 
     }
   }, [currentUser, navigate]);
 
+  useEffect(() => {
+    setDepthData(null);
+  }, [setDepthData]);
+
   const handleChange = (e) => {
     setDepthData(e.target.value);
   };
