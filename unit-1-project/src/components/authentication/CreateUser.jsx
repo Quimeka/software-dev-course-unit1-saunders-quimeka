@@ -32,7 +32,7 @@ export default function CreateUser({ setCurrentUser, firstName, setFirstName, me
     e.preventDefault();
     setMessage("");
     //check for any empty required fields and provide an error message to the user. 
-    if (!formData.userFirst || !formData.userLast || !formData.userEmail || !formData.userPassword) {
+    if (!formData.userFirst.trim() || !formData.userLast.trim() || !formData.userEmail.trim() || !formData.userPassword.trim()) {
       setMessage("Please fill out all fields.");
       setShowModalWindow(true);
       return;
@@ -42,6 +42,15 @@ export default function CreateUser({ setCurrentUser, firstName, setFirstName, me
       setMessage("Email address already registered. Please try again.");
       setShowModalWindow(true);
       setFormData({ userFirst: formData.userFirst, userLast: formData.userLast, userEmail: "", userPassword: "" });
+      return;
+    }
+    //check for valid password for security purposes.
+    const isValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(formData.userPassword.trim());
+
+    if (!isValid) {
+      setMessage("Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, and a number.");
+      setShowModalWindow(true);
+      setFormData({ userFirst: formData.userFirst, userLast: formData.userLast, userEmail: formData.userEmail, userPassword: "" });
       return;
     }
 

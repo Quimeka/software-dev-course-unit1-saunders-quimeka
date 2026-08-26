@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router";
+import { Routes, Route, useNavigate, Outlet } from "react-router";
 
 import Home from "./components/common/Home.jsx";
 import LoginUser from "./components/authentication/LoginUser.jsx";
@@ -14,6 +14,16 @@ import Footer from "./components/common/Footer.jsx";
 import JournalReview from "./components/journal/JournalReview.jsx";
 import { loggedJournalEntries } from "./components/common/userGlobals.js";
 import UpdateJournalEntryPage from "./components/journal/updateJournalEntry.jsx";
+import Settings from "./components/settings/settings.jsx";
+import AccountPrivacy from "./components/settings/AccountPrivacy.jsx";
+import AppearanceDisplay from "./components/settings/AppearanceDisplay.jsx";
+import Notifications from "./components/settings/Notifications.jsx";
+import SupportLegal from "./components/settings/SupportLegal.jsx";
+import SystemLocal from "./components/settings/SystemLocal.jsx";
+import SecurityPrivacy from "./components/settings/SecurityPrivacy.jsx";
+import Subscription from "./components/settings/Subscription.jsx";
+import AccountDeletion from "./components/settings/AccountDeletion.jsx";
+
 
 function App() {
   const navigate = useNavigate();
@@ -28,7 +38,9 @@ function App() {
   const [showModalWindow, setShowModalWindow] = useState(false);
   const [message, setMessage] = useState("");
   const [journalUpdate, setJournalUpdate] = useState(loggedJournalEntries);
-  const [entryData, setEntryData] = useState ("");
+  const [entryData, setEntryData] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
 
 
   const handleLogout = () => {
@@ -79,16 +91,52 @@ function App() {
         } />
 
         <Route path="/journal-review" element={
-          <JournalReview currentUser={currentUser} date={date} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} entryData={entryData} setEntryData={setEntryData} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow}/>
+          <JournalReview currentUser={currentUser} date={date} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} entryData={entryData} setEntryData={setEntryData} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
         } />
 
         <Route path="/edit-entry" element={
           <UpdateJournalEntryPage currentUser={currentUser} userJournalEntry={userJournalEntry} setUserJournalEntry={setUserJournalEntry} entryMode={entryMode} setEntryMode={setEntryMode} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} entryData={entryData} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
         } />
 
+        <Route path="/Settings" element={
+          <Settings isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate}/>
+        } >
+
+          <Route path="account-privacy" element={
+            <AccountPrivacy isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
+          } />
+
+          <Route path="subscription" element={
+            <Subscription isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+          } />
+
+          <Route path="account-deletion" element={
+            <AccountDeletion isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate}/>
+          } />
+
+          <Route path="appearance" element={
+            <AppearanceDisplay currentUser={currentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+          } />
+
+          <Route path="notifications" element={
+            <Notifications currentUser={currentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+          } />
+
+          <Route path="system" element={
+            <SystemLocal currentUser={currentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+          } />
+
+          <Route path="support" element={
+            <SupportLegal currentUser={currentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+          } />
+
+          <Route path="security" element={
+            <SecurityPrivacy currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+          } />
+        </Route>
       </Routes>
       <Footer />
-    </div>
+    </div >
   );
 }
 

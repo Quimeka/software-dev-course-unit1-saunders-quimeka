@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+}
+
+.settingsLayout {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0 !important;
+}
+
+.settingsBar {
+    width: 200px;
+    min-width: 200px;
+    background-color: #4a556821;
+    text-align: left;
+    padding: 20px 0px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.02);
+}
+
+.settingsContent {
+    flex: 1;
+    padding: clamp(20px, 4vw, 40px);
+}
+
+
+.settingsBarItem {
+    width: 100%;
+    display: block;
+    padding: 8px 16px;
+    text-align: left;
+    border: none;
+    white-space: normal;
+    float: none;
+    outline: 0
+}
+
+.settingsBarItem:hover {
+    color: #000 !important;
+    background-color: #c6e7e4 !important
+}
+
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #c6e7e4;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.SupportLegalLinks {
+    display: flex;
+    gap: 15px;
+    align-content: center;
+    width: max-content;
+}
+
+html {
+    scroll-behavior: smooth;
+}
