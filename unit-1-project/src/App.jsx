@@ -35,7 +35,7 @@ function App() {
   const [depthData, setDepthData] = useState(null);
   const [userJournalEntry, setUserJournalEntry] = useState("");
   const [entryMode, setEntryMode] = useState(null);
-  const [date, setDate] = useState(getDate());
+  const [date, setDate] = useState(new Date());
   const [showModalWindow, setShowModalWindow] = useState(false);
   const [message, setMessage] = useState("");
   const [journalUpdate, setJournalUpdate] = useState(loggedJournalEntries);
