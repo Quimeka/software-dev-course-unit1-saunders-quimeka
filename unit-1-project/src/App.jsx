@@ -15,14 +15,15 @@ import JournalReview from "./components/journal/JournalReview.jsx";
 import { loggedJournalEntries } from "./components/common/userGlobals.js";
 import UpdateJournalEntryPage from "./components/journal/updateJournalEntry.jsx";
 import Settings from "./components/settings/settings.jsx";
-import AccountPrivacy from "./components/settings/AccountPrivacy.jsx";
+import AccountInformation from "./components/settings/AccountManagement/AccountInformation.jsx";
 import AppearanceDisplay from "./components/settings/AppearanceDisplay.jsx";
 import Notifications from "./components/settings/Notifications.jsx";
 import SupportLegal from "./components/settings/SupportLegal.jsx";
 import SystemLocal from "./components/settings/SystemLocal.jsx";
 import SecurityPrivacy from "./components/settings/SecurityPrivacy.jsx";
-import Subscription from "./components/settings/Subscription.jsx";
-import AccountDeletion from "./components/settings/AccountDeletion.jsx";
+import Subscription from "./components/settings/AccountManagement/Subscription.jsx";
+import AccountDeletion from "./components/settings/AccountManagement/AccountDeletion.jsx";
+import { getDate } from "./components/common/getTodaysDate.js";
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
   const [depthData, setDepthData] = useState(null);
   const [userJournalEntry, setUserJournalEntry] = useState("");
   const [entryMode, setEntryMode] = useState(null);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(getDate());
   const [showModalWindow, setShowModalWindow] = useState(false);
   const [message, setMessage] = useState("");
   const [journalUpdate, setJournalUpdate] = useState(loggedJournalEntries);
@@ -105,7 +106,7 @@ function App() {
           <Route index element={<Navigate to="account-privacy" replace />} />
 
           <Route path="account-privacy" element={
-            <AccountPrivacy isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
+            <AccountInformation isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
           } />
 
           <Route path="subscription" element={

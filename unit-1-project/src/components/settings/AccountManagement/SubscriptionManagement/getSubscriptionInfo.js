@@ -1,4 +1,4 @@
-import { subscriptionData } from '../common/userGlobals.js';
+import { subscriptionData } from '../../../common/userGlobals.js';
 
 export default function getSubscriptionInfo(id) {
 

@@ -180,7 +180,12 @@ const mockOpenEndedEntries = {
 // --------------------------------------------------
 
 const formatMockDate = (date) => {
-  return date.toISOString().substring(0, 10);
+  // Forces local time with guaranteed 2-digit padding: MM-DD-YYYY
+  return new Intl.DateTimeFormat('en-US', { 
+    month: '2-digit', 
+    day: '2-digit', 
+    year: 'numeric' 
+  }).format(date).replace(/\//g, '-');
 };
 
 
@@ -190,10 +195,8 @@ const formatMockDate = (date) => {
 // Result:
 // [question, answer, question, answer, ...]
 const createStructuredEntry = (mood) => {
-
   const prompts = MOOD_PROMPTS[mood];
   const answers = mockAnswers[mood];
-
   const entry = [];
 
   prompts.forEach((prompt, index) => {
@@ -208,17 +211,12 @@ const createStructuredEntry = (mood) => {
 // Create a depth 1 entry.
 // One complete paragraph inside the array.
 const createOpenEndedEntry = (mood, entryNumber = 0) => {
-
   const entries = mockOpenEndedEntries[mood];
-
-  return [
-    entries[entryNumber % entries.length]
-  ];
+  return [entries[entryNumber % entries.length]];
 };
 
 
 // Create a depth 3 entry.
-// Depth 3 is mood tracking only.
 const createMoodOnlyEntry = () => {
   return [];
 };
@@ -230,49 +228,32 @@ const createMoodOnlyEntry = () => {
 
 export const loggedJournalEntries = [];
 
-
-// July 1, 2026
-const startDate = new Date("2026-07-01T12:00:00");
-
-// August 19, 2026
-const endDate = new Date("2026-08-19T12:00:00");
-
-
+// Clear timestamps to prevent time-of-day math bugs
+const startDate = new Date(2026, 6, 1, 0, 0, 0);  // July 1, 2026
+const endDate = new Date(2026, 7, 19, 0, 0, 0);  // August 19, 2026
 // Keep track of journal entry numbers for each user.
 const journalEntryNumbers = {
   "1": 0,
   "2": 0,
   "3": 0
 };
-
-
 let currentDate = new Date(startDate);
 
-
-while (currentDate <= endDate) {
+// Compare using timestamps (.getTime()) to guarantee loop terminates safely
+while (currentDate.getTime() <= endDate.getTime()) {
 
   const dateString = formatMockDate(currentDate);
 
-
   // Create an entry for each user.
   onyxUsers.forEach((user, userIndex) => {
-
     const userId = user.userId;
-
     journalEntryNumbers[userId]++;
 
-
     // Create different moods throughout the date range.
-    const mood = String(
-      ((currentDate.getDate() + userIndex * 2) % 5) + 1
-    );
-
+    const mood = String(((currentDate.getDate() + userIndex * 2) % 5) + 1);
 
     // Rotate through the three depth options.
-    const depth = String(
-      ((currentDate.getDate() + userIndex) % 3) + 1
-    );
-
+    const depth = String(((currentDate.getDate() + userIndex) % 3) + 1);
 
     let entry;
 
@@ -312,14 +293,12 @@ while (currentDate <= endDate) {
     else {
 
       entry = createMoodOnlyEntry();
-
     }
-
 
     loggedJournalEntries.push({
       userId: userId,
       journalEntryNumber: journalEntryNumbers[userId],
-      date: dateString,
+      date: dateString, 
       mood: mood,
       depth: depth,
       entry: entry
@@ -341,12 +320,7 @@ while (currentDate <= endDate) {
     ) {
 
       journalEntryNumbers[userId]++;
-
-
-      const secondMood = String(
-        (parseInt(mood) % 5) + 1
-      );
-
+      const secondMood = String((parseInt(mood) % 5) + 1);
 
       loggedJournalEntries.push({
         userId: userId,
@@ -354,20 +328,11 @@ while (currentDate <= endDate) {
         date: dateString,
         mood: secondMood,
         depth: "1",
-        entry: createOpenEndedEntry(
-          secondMood,
-          currentDate.getDate() + 1
-        )
+        entry: createOpenEndedEntry(secondMood, currentDate.getDate() + 1)
       });
-
     }
-
   });
 
-
-  // Move to the next day.
-  currentDate.setDate(
-    currentDate.getDate() + 1
-  );
-
+  // Move to the next day safely in local time.
+  currentDate.setDate(currentDate.getDate() + 1);
 }

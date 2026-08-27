@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link, Outlet } from 'react-router';
-import ModalWindow from '../common/ModalWindow.jsx';
-import isEmailAvailable from '../authentication/isEmailAvailable.js';
-import getUserInfo from '../authentication/getUserInfo.js';
-import updateUser from '../authentication/updateUser.js';
+import ModalWindow from '../../common/ModalWindow.jsx';
+import isEmailAvailable from '../../authentication/isEmailAvailable.js';
+import getUserInfo from '../../authentication/getUserInfo.js';
+import updateUser from '../../authentication/updateUser.js';
 import Subscription from './Subscription.jsx';
 import AccountDeletion from './AccountDeletion.jsx';
-import { CREATE_USER_FIELDS, onyxUsers } from '../common/userGlobals.js';
-import './settings.css';
+import { CREATE_USER_FIELDS, onyxUsers } from '../../common/userGlobals.js';
+import '../settings.css';
 
-function AccountPrivacy({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
+function AccountInformation({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
     const navigate = useNavigate();
 
     const userInformation = getUserInfo(currentUser);
@@ -98,4 +98,4 @@ function AccountPrivacy({ isSubscribed, setIsSubscribed, currentUser, setCurrent
     );
 }
 
-export default AccountPrivacy;
+export default AccountInformation;

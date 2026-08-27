@@ -5,6 +5,7 @@ import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
 import registerFullJournalEntry from './registerFullJournalEntry.js';
 import setText from './setTextForEntries.js';
+import { getDate } from '../common/getTodaysDate.js';
 
 
 function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
@@ -91,10 +92,7 @@ ${prompt4Clean || "No answer provided."}`;
         navigate('/Calendar');
     };
 
-    //structure date for user readability purposes 
-    const today = new Date().toISOString().substring(0, 10);
-    const [year, month, day] = today.split('-');
-    const formattedDateDisplay = `${month}-${day}-${year}`;
+    const formattedDateDisplay = getDate();
 
     const todayMoodDisplay = setText("mood", moodData);
     const todayDepthDisplay = setText("depth", depthData);
