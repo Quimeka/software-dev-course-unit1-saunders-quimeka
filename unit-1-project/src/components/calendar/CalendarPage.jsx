@@ -4,6 +4,7 @@ import './mood-custom-calendar.css';
 import { useNavigate } from 'react-router';
 import JournalReview from '../journal/JournalReview.jsx';
 import { MOOD_OPTIONS } from '../common/userGlobals.js';
+import { getDate } from '../common/getTodaysDate.js';
 
 export default function CalendarPage({ currentUser, date, setDate, message, setMessage, showModalWindow, setShowModalWindow, journalUpdate, setJournalUpdate, entryData, setEntryData }) {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function CalendarPage({ currentUser, date, setDate, message, setM
             const year = date.getFullYear();
             const tileDate = `${month}-${day}-${year}`;
 
-            const latestMood = journalUpdate.findLast(entry => entry.userId === currentUser && entry.date === tileDate)?.mood;
+            const latestMood = journalUpdate && journalUpdate.findLast(entry => entry.userId === currentUser && entry.date === tileDate)?.mood;
 
             if (latestMood) {
                 return `mood_${latestMood}`;
@@ -45,7 +46,7 @@ export default function CalendarPage({ currentUser, date, setDate, message, setM
                     className="Calendar"
                     tileClassName={getTileClass}
                     name="date"
-                    value={date}
+                    value={date || getDate()}
                     onChange={handleDateClick} />
                 <div className="keyBox" >
                     <h4 className="moodHeader"> Mood Key</h4>
@@ -67,7 +68,7 @@ export default function CalendarPage({ currentUser, date, setDate, message, setM
                 {showModalWindow && (
                     <div className="modal-overlay" onClick={() => setShowModalWindow(false)}>
                         <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-                            <JournalReview currentUser={currentUser} date={date} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} message={message} setMessage={setMessage} entryData={entryData} setEntryData={setEntryData} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+                            <JournalReview currentUser={currentUser} date={date} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} entryData={entryData} setEntryData={setEntryData} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
                             <button className="closeButton" onClick={() => setShowModalWindow(false)}>Close</button>
                         </div>
                     </div>
