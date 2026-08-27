@@ -5,27 +5,38 @@ export let onyxUsers = [
     userFirst: "Alex",
     userLast: "Smith",
     userEmail: "test@demo.com",
-    userPassword: "password123"
+    userPassword: "password123",
+    userSubscribed: true
   },
   {
     userId: "2",
     userFirst: "Taylor",
     userLast: "Jones",
     userEmail: "taylor@demo.com",
-    userPassword: "password456"
+    userPassword: "password456",
+    userSubscribed: true
   },
   {
     userId: "3",
     userFirst: "Jordan",
     userLast: "Lee",
     userEmail: "jordan@demo.com",
-    userPassword: "password789"
+    userPassword: "password789",
+    userSubscribed: false
   }
 ];
 
 export const contactUsData = [];
 
 export let idCounter = { index: 3 };
+
+export let subscriptionData = [
+  { userId: "1", startdate: "02-10-2026", enddate: "", status: "premium", fee: "9.99" },
+  { userId: "2", startdate: "05-14-2026", enddate: "", status: "premium", fee: "9.99" },
+  { userId: "3", startdate: "01-14-2026", enddate: "05-16-2026", status: "free", fee: "0.00" }
+
+];
+
 
 export const CREATE_USER_FIELDS = [
   { label: "First name:", name: "userFirst", type: "text" },

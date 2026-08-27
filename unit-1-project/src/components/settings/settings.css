@@ -5,18 +5,37 @@
 .settingsLayout {
     display: flex !important;
     flex-direction: row !important;
-    align-items: stretch;
+    align-items: flex-start;
     justify-content: flex-start;
     padding: 0 !important;
 }
 
 .settingsBar {
     width: 200px;
-    min-width: 200px;
+    max-width: 200px;
     background-color: #4a556821;
     text-align: left;
     padding: 20px 0px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.02);
+
+    position:sticky;
+    top:0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .settingsBar {
+        width: 60px;
+        max-width: 60px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .settingsBar {
+        width: 80px;
+        max-width: 80px;
+    }
 }
 
 .settingsContent {
@@ -28,10 +47,12 @@
 .settingsBarItem {
     width: 100%;
     display: block;
-    padding: 8px 16px;
+    padding: 12px 0px;
     text-align: left;
     border: none;
-    white-space: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     float: none;
     outline: 0
 }

@@ -9,7 +9,8 @@ export default function getUserInfo(id) {
             userFirst: userFound.userFirst,
             userLast: userFound.userLast,
             userEmail: userFound.userEmail,
-            userPassword: userFound.userPassword
+            userPassword: userFound.userPassword,
+            userSubscribed: userFound.userSubscribed
         };
     }
     return null;

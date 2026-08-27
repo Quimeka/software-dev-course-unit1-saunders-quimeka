@@ -59,7 +59,7 @@ function AccountPrivacy({ isSubscribed, setIsSubscribed, currentUser, setCurrent
         const userFirstName = formData.userFirst.trim();
         setFirstName(userFirstName);
 
-        setMessage(`Update Successful, ${firstName}!`);
+        setMessage(`Update Successful, ${formData.userFirst.trim()}!`);
         setShowModalWindow(true);
     }
     //allow user to update account information, subscribe, and/or delete account

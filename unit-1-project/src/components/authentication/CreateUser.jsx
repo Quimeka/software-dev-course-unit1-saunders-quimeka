@@ -7,7 +7,7 @@ import ModalWindow from '../common/ModalWindow.jsx';
 import { CREATE_USER_FIELDS } from '../common/userGlobals.js';
 
 
-export default function CreateUser({ setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+export default function CreateUser({ isSubscribed, setIsSubscribed, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
   const navigate = useNavigate();
 
   const [goNext, setGoNext] = useState(false);
@@ -57,6 +57,7 @@ export default function CreateUser({ setCurrentUser, firstName, setFirstName, me
     //create new user account, set prop values for application use. 
     const newUserCreated = createUser(formData.userFirst.trim(), formData.userLast.trim(), formData.userEmail.trim(), formData.userPassword.trim());
     setCurrentUser(newUserCreated);
+    setIsSubscribed(newUserCreated.userSubscribed);
     const userFirstName = formData.userFirst.trim();
     setFirstName(userFirstName);
     setMessage(`Welcome to the Onxy Reflections community, ${userFirstName}!`);

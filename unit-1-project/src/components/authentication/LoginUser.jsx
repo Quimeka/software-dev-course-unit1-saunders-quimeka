@@ -3,7 +3,7 @@ import verifyUserLogin from './verifyUserLogin.js';
 import { useNavigate, Link } from 'react-router';
 import ModalWindow from '../common/ModalWindow.jsx';
 
-function LoginUser({ setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+function LoginUser({ isSubscribed, setIsSubscribed, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
 
     const [goNext, setGoNext] = useState(false);
@@ -31,7 +31,7 @@ function LoginUser({ setCurrentUser, firstName, setFirstName, message, setMessag
 
         //check for login credentials and provide an error message to the user. 
         const loggedUser = verifyUserLogin(formData.userEmail, formData.userPassword);
-        
+
         if (!loggedUser) {
             setMessage("Invalid email or password.");
             setShowModalWindow(true);
@@ -40,6 +40,7 @@ function LoginUser({ setCurrentUser, firstName, setFirstName, message, setMessag
 
         //log in the user, set prop values for application use. 
         setCurrentUser(loggedUser.userId);
+        setIsSubscribed(loggedUser.userSubscribed);
         const userFirstName = loggedUser.userFirst;
         setFirstName(userFirstName);
         setMessage(`Welcome back, ${userFirstName}!`);
