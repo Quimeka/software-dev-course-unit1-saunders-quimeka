@@ -97,7 +97,7 @@ function LoginUser({ isSubscribed, setIsSubscribed, setCurrentUser, firstName, s
                 <button className="submitButton" type="submit">Submit</button>
             </form>
 
-            <p>Don't have an account? <Link to="/create-account">Register now!</Link></p>
+            <p>Don't have an account? <Link className="link" to="/create-account">Register now!</Link></p>
         </div>
     );
 }

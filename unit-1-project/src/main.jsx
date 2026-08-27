@@ -7,7 +7,7 @@ import './index.css';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter basename="/software-dev-course-unit1-saunders-quimeka">
-      <App />
+    <App />
     </BrowserRouter>
   </StrictMode>
 );

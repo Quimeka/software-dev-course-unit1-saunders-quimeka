@@ -1,5 +1,70 @@
 @import url('https://googleapis.com');
 
+
+:root {
+    --font-selected: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: var(--font-selected);
+}
+
+:root,
+[data-theme="default"] {
+
+    --bg-body: #f9fbfa;
+    --bg-body-trans: #c6e7e43b;
+    --bg-modal: #ffffff;
+    --bg-accent: #c6e7e4;
+    --bg-intropage: #ffffff;
+    --bg-button: #565656;
+    --bg-radioButton: #c6e7e4;
+    --bg-barAccent: #c6e7e4;
+
+    --text-primary: #1a202c;
+    --text-phrase: #9d9fa3;
+    --text-button: #ffffff;
+    --text-other: #4a5568;
+}
+
+[data-theme="light"] {
+
+    --bg-body: #f9fbfa;
+    --bg-body-trans: #ffffff;
+    --bg-modal: #ffffff;
+    --bg-accent: #e1e1e1;
+    --bg-intropage: #ffffff;
+    --bg-button: #f9fbfa;
+    --bg-radioButton: #1a202c;
+    --bg-barAccent: #1a202c;
+
+
+    --text-primary: #1a202c;
+    --text-phrase: #ffffff;
+    --text-button: #000000;
+    --text-other: #000000;
+
+}
+
+[data-theme="dark"] {
+
+    --bg-body: #393a39;
+    --bg-body-trans: #000000;
+    --bg-modal: #000000;
+    --bg-accent: #000000;
+    --bg-intropage: #000000;
+    --bg-button: #252827;
+    --bg-radioButton: #000000;
+    --bg-barAccent: #000000;
+
+
+    --text-primary: #ffffff;
+    --text-phrase: #ffffff;
+    --text-button: #ffffff;
+    --text-other: #ffffff;
+
+}
+
 .grid-container {
     display: grid;
     grid-template-areas:
@@ -9,6 +74,8 @@
         'Footer'
         'FooterBar';
     gap: 10px;
+    min-height: 100vh;
+    width: 100%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -40,8 +107,8 @@
 body {
     margin: 0px;
     padding: 0;
-    background-color: #f9fbfa;
-    color: #1a3332;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -52,23 +119,31 @@ body {
     font-family: "Dancing Script", cursive;
     font-size: clamp(40px, 6vw, 80px);
     margin: 0 0 8px 0;
-    color: #1a202c;
+    color: var(--text-primary);
 }
 
 .ContactUs h1 {
-    font-family: 'Montserrat', serif;
+    font-family: var(--font-selected);
     font-size: clamp(24px, 3.5vw, 36px);
     margin: 0 0 8px 0;
-    color: #4a5568;
+    color: var(--text-other);
+}
+
+#link {
+    color: var(--text-primary);
+}
+
+#link:hover {
+    color: var(--text-primary);
 }
 
 #appPhrase {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-selected);
     font-size: clamp(18px, 2.5vw, 36px);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: #9d9fa3;
+    color: var(--text-phrase);
     margin: 0;
 }
 
@@ -89,19 +164,20 @@ body {
 
 .Header {
     grid-area: Header;
-    background-color: #c6e7e4;
+    background-color: var(--bg-accent);
+    border-bottom: 1px dashed var(--bg-barAccent);
     padding: clamp(20px, 4vw, 40px) clamp(20px, 5vw, 60px);
     box-sizing: border-box;
 }
 
 .HeaderBar {
     grid-area: HeaderBar;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-selected);
     font-size: clamp(15px, 1.3vw, 18px) !important;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: #4a5568;
+    color: var(--text-other);
     margin: 8px 0 0px 0px;
     display: flex;
     flex-wrap: wrap;
@@ -111,28 +187,29 @@ body {
 
 .HeaderBar a {
     text-decoration: none;
-    color: #4a5568;
+    color: var(--text-other);
 }
 
 .Footer {
     grid-area: Footer;
-    background-color: #c6e7e4;
+    background-color: var(--bg-accent);
+    border-top: 1px dashed var(--bg-barAccent);
     padding: clamp(15px, 2vw, 20px) clamp(20px, 5vw, 60px);
     box-sizing: border-box;
 }
 
 .FooterBar {
     grid-area: FooterBar;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-selected);
     font-size: clamp(12px, 1vw, 14px);
     margin: 4px 0;
-    background-color: #c6e7e4;
-    color: #4a5568;
+    background-color: var(--bg-accent);
+    color: var(--text-other);
 }
 
 .main {
     grid-area: Main;
-    flex: 1;
+    display: flex;
     flex-direction: column;
     gap: 10px;
     padding: clamp(20px, 4vw, 40px);
@@ -143,23 +220,23 @@ body {
 
 #OneLiner {
     font-family: "Dancing Script", cursive;
-    font-size: clamp(15px, 1.3vw, 18px) !important;
-    color: #2b2c2d;
+    font-size: clamp(20px, 1.3vw, 24px) !important;
+    color: var(--text-primary);
     line-height: 1.2;
 }
 
 #introText {
-    font-family: 'Montserrat', serif;
+    font-family: var(--font-selected);
     font-size: clamp(15px, 1.3vw, 18px) !important;
-    color: #2d3748;
+    color: var(--text-primary);
     line-height: 1.6;
 }
 
 .LoginUser,
 .CreateUser {
     border-radius: 5px;
-    background-color: #e8e8e8;
-    border: 2px solid #c6e7e4;
+    background-color: var(--bg-intropage);
+    border: 2px solid var(--bg-accent);
     padding: clamp(15px, 2vw, 20px);
     border-style: outset;
     height: 100%;
@@ -169,7 +246,7 @@ body {
 .UserDepth,
 .JournalEntry,
 .ContactUs {
-    background-color: #c6e7e43b;
+    background-color: var(--bg-body-trans);
     padding: 4px;
     box-sizing: border-box;
     display: flex;
@@ -184,19 +261,14 @@ body {
     font-weight: bold;
 }
 
-.LoginUser h3 {
-    font-family: 'Montserrat', serif;
-    font-size: clamp(15px, 1.3vw, 18px) !important;
-}
-
 label {
     display: block;
 }
 
 .form {
     align-self: center;
-    background-color: #f9fbfa;
-    border: 2px solid #c6e7e4;
+    background-color: var(--bg-body);
+    border: 2px solid var(--bg-accent);
     border-radius: 12px;
     padding: clamp(16px, 2vw, 24px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -211,14 +283,14 @@ label {
     padding: 10px;
     margin: 8px 0;
     display: inline-block;
-    border: 3px solid #c6e7e4;
+    border: 3px solid var(--bg-accent);
     border-radius: 4px;
     box-sizing: border-box;
-    outline-color: #2a2a2a;
+    outline-color: var(--text-other);
 }
 
 .promptLabel {
-    font-family: 'Montserrat', serif;
+    font-family: var(--font-selected);
     padding: 10px;
     margin: 8px 0;
 }
@@ -230,9 +302,9 @@ label {
     overflow-wrap: break-word;
     padding: 10px;
     margin-top: 4px;
-    font-family: 'Montserrat', serif;
+    font-family: var(--font-selected);
     font-size: clamp(15px, 1.3vw, 18px) !important;
-    border: 1px solid #c6e7e4;
+    border: 1px solid var(--bg-accent);
     border-radius: 8px;
     resize: vertical;
 }
@@ -244,10 +316,10 @@ label {
 .deleteButton,
 .editButton {
     width: auto;
-    font-family: 'Montserrat', serif;
+    font-family: var(--font-selected);
     align-content: center;
-    background-color: #565656;
-    color: white;
+    background-color: var(--bg-button);
+    color: var(--text-button);
     padding: 8px;
     margin: 8px 0;
     border-style: outset;
@@ -263,10 +335,10 @@ label {
 .deleteButton:hover,
 .editButton:hover {
     width: auto;
-    font-family: 'Montserrat', serif;
+    font-family: var(--font-selected);
     align-content: center;
-    background-color: #c6e7e4;
-    color: #2a2a2a;
+    background-color: var(--bg-accent);
+    color: var(--text-other);
     padding: 8px;
     margin: 8px 0;
     border-style: outset;
@@ -275,7 +347,7 @@ label {
 }
 
 .radioButton {
-    font-family: 'Montserrat', serif;
+    font-family: var(--font-selected);
     display: inline-flex;
     flex-direction: row;
     align-items: center;
@@ -283,7 +355,7 @@ label {
     margin: 0 0px 8px 8px;
     margin-bottom: 12px;
     white-space: nowrap;
-    accent-color: #c6e7e4;
+    accent-color: var(--bg-radioButton);
 }
 
 .ButtonDescription {
@@ -311,15 +383,15 @@ label {
 }
 
 .modal-box {
-    font-family: 'Montserrat', serif;
+    font-family: var(--font-selected);
     font-size: clamp(15px, 1.3vw, 18px);
     margin: clamp(15px, 5vw, 50px);
     position: relative;
     width: auto;
     max-width: 600px;
     border-radius: 5px;
-    background-color: #ffffff;
-    border: 10px solid #c6e7e4;
+    background-color: var(--bg-modal);
+    border: 10px solid var(--bg-accent);
     padding: 20px;
     border-style: outset;
     overflow-wrap: break-word;
@@ -336,7 +408,7 @@ label {
     font-family: "Dancing Script", cursive;
     font-size: clamp(22px, 2.2vw, 28px);
     margin: 0px 0px 8px 0px;
-    color: #1a202c;
+    color: var(--text-primary);
 }
 
 .modalEntryDataTextResponses {
@@ -344,4 +416,14 @@ label {
     margin-top: 12px;
     line-height: 1.6;
     font-size: clamp(14px, 1.1vw, 16px);
+}
+
+.link {
+    color: var(--text-link);
+    text-decoration: none;
+}
+
+.link:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
 }

@@ -39,13 +39,15 @@
 .react-calendar__tile {
     padding: clamp(6px, 1.5vw, 14px) clamp(3px, 1vw, 8px) !important;
     font-size: clamp(12px, 1.2vw, 16px) !important;
+    background-color:var(--bg-body);
+    color: var(--text-primary);
 }
 
 .moodKey {
-    font-family: 'Montserrat', serif;
+    font-family: var(--font-selected);
     font-size: clamp(15px, 1.3vw, 18px);
     margin: 8px 0;
-    color: #1a202c;
+    color: var(--text-primary);
     font-weight: 200;
     width: max-content;
     max-width: 100%;
@@ -53,7 +55,7 @@
     padding: clamp(6px, 1vw, 12px) clamp(8px, 1.5vw, 16px);
     align-items: center;
     align-content: center;
-    border: clamp(1px, 0.25vw, 2px) dashed #c6e7e4;
+    border: clamp(1px, 0.25vw, 2px) dashed var(--bg-accent);
     gap: 5px;
     justify-content: center;
     text-align: center;
@@ -64,9 +66,9 @@
 .moodHeader {
     margin: 0 0 2px 0;
     padding-top: 16px;
-    font-family: 'Montserrat', serif;
+    font-family: var(--font-selected);
     font-size: clamp(14px, 1.3vw, 18px);
-    color: #1a202c;
+    color: var(--text-primary);
     display: block;
     width: 100%;
     text-align: center;

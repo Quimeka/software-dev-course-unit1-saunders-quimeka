@@ -10,9 +10,9 @@ function SupportLegal({ currentUser, firstName, setFirstName, message, setMessag
         <div className="main" id="top">
 
             <div className="SupportLegalLinks">
-                <a href="#terms">Terms</a>
-                <a href="#privacy">Privacy</a>
-                <a href="#disclaimer">Disclaimer</a>
+                <a className="link" href="#terms">Terms</a>
+                <a className="link" href="#privacy">Privacy</a>
+                <a className="link" href="#disclaimer">Disclaimer</a>
             </div>
 
             <div className="legal-container">
@@ -69,7 +69,7 @@ function SupportLegal({ currentUser, firstName, setFirstName, message, setMessag
                         <li>Onyx Reflections is provided "as is" without warranties of any kind.</li>
                         <li>We are not liable for any data loss, service interruptions, or emotional distress resulting from your use of the app.</li>
                     </ul>
-                    <a href="#top">Back to top</a>
+                    <a className="link" href="#top">Back to top</a>
                 </section>
 
                 <hr />
@@ -113,7 +113,7 @@ function SupportLegal({ currentUser, firstName, setFirstName, message, setMessag
                         <li>We comply with standard privacy laws regarding personal data protection.</li>
                         <li>If you are under 13, please do not use this app or send us any personal data.</li>
                     </ul>
-                    <a href="#top">Back to top</a>
+                    <a className="link" href="#top">Back to top</a>
                 </section>
 
                 <hr />
@@ -137,7 +137,7 @@ function SupportLegal({ currentUser, firstName, setFirstName, message, setMessag
                         <li><strong>In the UK:</strong> Call <strong>111</strong> to reach the NHS mental health services, or call Samaritans at <strong>116 123</strong>.</li>
                         <li><strong>In Canada:</strong> Call or text <strong>988</strong> for the Suicide Crisis Helpline.</li>
                     </ul>
-                    <a href="#top">Back to top</a>
+                    <a className="link" href="#top">Back to top</a>
                 </section>
             </div>
         </div>
