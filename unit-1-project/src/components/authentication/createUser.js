@@ -8,7 +8,8 @@ export default function createUser(firstName, lastName, email, password) {
         userFirst: firstName,
         userLast: lastName,
         userEmail: email,
-        userPassword: password
+        userPassword: password,
+        userSubscribed: false
     };
 
     onyxUsers.push(newUser);

@@ -3,10 +3,10 @@ import { useNavigate, Link } from 'react-router';
 import ModalWindow from '../common/ModalWindow.jsx';
 import './settings.css';
 
-function AppearanceDisplay({ currentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+function AppearanceDisplay({ isSubscribed, setIsSubscribed, currentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
 
-    return(
+    return (
         <div>
             <p><em> Coming soon...</em></p>
 

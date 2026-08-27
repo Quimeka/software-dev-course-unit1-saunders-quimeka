@@ -47,7 +47,7 @@
     margin: 8px 0;
     color: #1a202c;
     font-weight: 200;
-    width: clamp(280px, 45vw, 500px);
+    width: max-content;
     max-width: 100%;
     display: flex;
     padding: clamp(6px, 1vw, 12px) clamp(8px, 1.5vw, 16px);
@@ -58,6 +58,7 @@
     justify-content: center;
     text-align: center;
     box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
 .moodHeader {
