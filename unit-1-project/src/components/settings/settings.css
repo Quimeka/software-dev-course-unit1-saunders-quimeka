@@ -13,13 +13,12 @@
 .settingsBar {
     width: 200px;
     max-width: 200px;
-    background-color: #4a556821;
+    background-color: color-mix(in srgb, var(--bg-button) 50%, transparent);
     text-align: left;
     padding: 20px 0px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.02);
-
-    position:sticky;
-    top:0;
+    border-right: 1px dashed var(--bg-barAccent);
+    position: sticky;
+    top: 0;
     height: 100vh;
     overflow-y: auto;
 }
@@ -28,6 +27,11 @@
     .settingsBar {
         width: 60px;
         max-width: 60px;
+    }
+
+    #themeSelection,
+    #fontSelection {
+        max-width: 100%;
     }
 }
 
@@ -46,6 +50,7 @@
 
 .settingsBarItem {
     width: 100%;
+    color: var(--text-primary);
     display: block;
     padding: 12px 0px;
     text-align: left;
@@ -58,8 +63,8 @@
 }
 
 .settingsBarItem:hover {
-    color: #000 !important;
-    background-color: #c6e7e4 !important
+    color: var(--text-other) !important;
+    background-color: var(--bg-accent) !important
 }
 
 
@@ -84,9 +89,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #c6e7e4;
-    -webkit-transition: .4s;
-    transition: .4s;
+    background-color: var(--bg-accent);
 }
 
 .slider:before {
@@ -96,7 +99,7 @@
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: var(--text-primary);
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -119,4 +122,26 @@
 
 html {
     scroll-behavior: smooth;
+}
+
+#themeSelection,
+#fontSelection {
+    width: 100%;
+    max-width: 280px;
+    padding: 10px 14px;
+    margin-top: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: var(--font-selected);
+    color: var(--text-primary);
+    background-color: var(--bg-modal);
+    border: 2px solid var(--bg-accent);
+    border-radius: 6px;
+}
+
+#themeSelection option,
+#fontSelection option {
+    background-color: var(--bg-modal);
+    color: var(--text-primary);
+    padding: 10px;
 }

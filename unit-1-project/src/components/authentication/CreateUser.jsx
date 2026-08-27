@@ -102,7 +102,7 @@ export default function CreateUser({ isSubscribed, setIsSubscribed, setCurrentUs
       </form>
 
 
-      <p>Already have an account? <Link to="/Login">Log in </Link></p>
+      <p>Already have an account? <Link className="link" to="/Login">Log in </Link></p>
     </div>
   );
 }
