@@ -21,7 +21,10 @@ export default function CalendarPage({ currentUser, date, setDate, message, setM
 
     const getTileClass = ({ date, view }) => {
         if (view === 'month') {
-            const tileDate = date.toISOString().substring(0, 10);
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const year = date.getFullYear();
+            const tileDate = `${month}-${day}-${year}`;
 
             const latestMood = journalUpdate.findLast(entry => entry.userId === currentUser && entry.date === tileDate)?.mood;
 

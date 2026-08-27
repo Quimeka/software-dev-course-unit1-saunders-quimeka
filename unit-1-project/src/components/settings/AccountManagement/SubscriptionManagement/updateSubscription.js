@@ -1,4 +1,4 @@
-import { onyxUsers } from '../common/userGlobals.js';
+import { onyxUsers } from '../../../common/userGlobals.js';
 
 export default function updateSubscription(id) {
     const user = onyxUsers.find(user => user.userId === id);

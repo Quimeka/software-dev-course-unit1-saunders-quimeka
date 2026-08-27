@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link, Outlet } from 'react-router';
 import ModalWindow from '../common/ModalWindow.jsx';
-import AccountPrivacy from './AccountPrivacy.jsx';
+import AccountInformation from './AccountManagement/AccountInformation.jsx'
 import './settings.css';
 
 function Settings({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate}) {

@@ -4,18 +4,19 @@ import { useNavigate } from 'react-router';
 import updateJournalEntryPage from './updateJournalEntry.jsx';
 import { loggedJournalEntries } from '../common/userGlobals.js';
 import './journal-custom.css';
+import { getDate } from '../common/getTodaysDate.js';
 
 export default function JournalReview({ currentUser, date, firstName, journalUpdate, setJournalUpdate, entryData, setEntryData, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
 
-    //structure date for user readability purposes 
-    const formattedDate = date.toISOString().substring(0, 10);
-    const [year, month, day] = formattedDate.split('-');
-    const formattedDateDisplay = `${month}-${day}-${year}`;
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+    const formattedDate = `${month}-${day}-${year}`;
 
     //pull logged journals and filter based on user and date 
     const entryList = loggedJournalEntries.filter(entry => entry.userId === currentUser && entry.date === formattedDate);
-    const currentDate = new Date().toISOString().substring(0, 10);
+    const currentDate = getDate();
 
     //make current date entries editable for user 
     const showEditButton = formattedDate === currentDate;
@@ -43,7 +44,7 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
     //check entry type; change depth 1,2 to an array; bold questions for depth 3; make current day entries editable 
     return (
         <div className="mainJournal">
-            <h2>Details for {formattedDateDisplay}</h2>
+            <h2>Details for {formattedDate}</h2>
             <div className="modalJournalSection">
                 {entryList.length === 0 ? (
                     <p>No records or journal entries for this day, {firstName}!</p>

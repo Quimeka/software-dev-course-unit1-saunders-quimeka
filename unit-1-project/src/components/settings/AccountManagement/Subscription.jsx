@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link, Outlet } from 'react-router';
-import ModalWindow from '../common/ModalWindow.jsx';
-import './settings.css';
-import updateSubscription from './updateSubscription.js';
-import registerSubscription from './registerSubscription.js';
-import cancelSubscription from './cancelSubscription.js';
-import getSubscriptionInfo from './getSubscriptionInfo.js';
-import getUserInfo from '../authentication/getUserInfo.js';
+import ModalWindow from '../../common/ModalWindow.jsx';
+import '../settings.css';
+import updateSubscription from './SubscriptionManagement/updateSubscription.js';
+import registerSubscription from './SubscriptionManagement/registerSubscription.js';
+import cancelSubscription from './SubscriptionManagement/cancelSubscription.js';
+import getSubscriptionInfo from './SubscriptionManagement/getSubscriptionInfo.js';
+import getUserInfo from '../../authentication/getUserInfo.js';
 
 function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();

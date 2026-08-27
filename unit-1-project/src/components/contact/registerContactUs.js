@@ -1,14 +1,16 @@
 import { contactUsData} from '../common/userGlobals.js';
+import { getDate } from '../common/getTodaysDate.js';
 
 export default function registerContactUs(id, message) {
 
     const number = contactUsData.length + 1;
+    const date = getDate();
     
 
     const newMessage = {
         entryNumber: number,
         userId: id,
-        date: new Date().toISOString().substring(0, 10),
+        date: date,
         userMessage: message
     };
 

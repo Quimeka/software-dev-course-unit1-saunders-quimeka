@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router';
-import ModalWindow from '../common/ModalWindow.jsx';
-import './settings.css';
-import deleteUser from '../authentication/deleteUser.js';
-import getUserInfo from '../authentication/getUserInfo.js';
-import { loggedJournalEntries } from '../common/userGlobals.js';
+import ModalWindow from '../../common/ModalWindow.jsx';
+import '../settings.css';
+import deleteUser from '../../authentication/deleteUser.js';
+import getUserInfo from '../../authentication/getUserInfo.js';
+import { loggedJournalEntries } from '../../common/userGlobals.js';
 
 function AccountDeletion({ currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
     const navigate = useNavigate();

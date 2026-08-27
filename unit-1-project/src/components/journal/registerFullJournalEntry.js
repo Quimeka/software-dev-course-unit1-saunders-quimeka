@@ -1,10 +1,11 @@
 import { loggedJournalEntries } from '../common/userGlobals.js';
 import { findUser } from '../user/findUser.js';
+import { getDate } from '../common/getTodaysDate.js';
 
 
 export default function registerFullJournalEntry(id, mood, depth, journalEntry) {
 
-    const currentDate = new Date();
+    const currentDate = getDate();
     const user = findUser(id);
 
     if (!user) {
@@ -27,7 +28,7 @@ export default function registerFullJournalEntry(id, mood, depth, journalEntry) 
     const newJournalEntry = {
         userId: id,
         journalEntryNumber: lastNumber + 1,
-        date: currentDate.toISOString().substring(0, 10),
+        date: currentDate,
         mood: mood,
         depth: depth,
         entry: formattedEntry

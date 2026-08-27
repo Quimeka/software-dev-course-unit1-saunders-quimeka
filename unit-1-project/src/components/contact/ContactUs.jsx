@@ -2,6 +2,7 @@ import { useState } from 'react';
 import registerContactUs from './registerContactUs.js';
 import getUserInfo from '../authentication/getUserInfo.js';
 import ModalWindow from '../common/ModalWindow.jsx';
+import { getDate } from '../common/getTodaysDate.js';
 
 function ContactUs({ currentUser, message, setMessage, showModalWindow, setShowModalWindow }) {
     const userInformation = getUserInfo(currentUser);
@@ -39,7 +40,7 @@ function ContactUs({ currentUser, message, setMessage, showModalWindow, setShowM
 
         setFormData((prevData) => ({
             ...prevData,
-            contactMessage:"",
+            contactMessage: "",
         }));
 
     };
@@ -57,6 +58,7 @@ function ContactUs({ currentUser, message, setMessage, showModalWindow, setShowM
                     </ModalWindow>
                 )}
 
+                <p><strong> Date: </strong>{getDate()}</p>
                 <p><strong> Name: </strong>{formData.name}</p>
                 <p><strong> Email: </strong>{formData.email}</p>
 
