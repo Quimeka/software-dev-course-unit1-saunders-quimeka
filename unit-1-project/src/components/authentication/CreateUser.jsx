@@ -5,9 +5,9 @@ import isEmailAvailable from './isEmailAvailable.js';
 import { useNavigate, Link } from 'react-router';
 import ModalWindow from '../common/ModalWindow.jsx';
 import { CREATE_USER_FIELDS } from '../common/userGlobals.js';
+import enrollSubscription from '../settings/AccountManagement/SubscriptionManagement/enrollSubscription.js';
 
-
-export default function CreateUser({ isSubscribed, setIsSubscribed, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+export default function CreateUser({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
   const navigate = useNavigate();
 
   const [goNext, setGoNext] = useState(false);
@@ -91,6 +91,7 @@ export default function CreateUser({ isSubscribed, setIsSubscribed, setCurrentUs
     //create new user account, set prop values for application use. 
     const newUserCreated = createUser(formData.userFirst.trim(), formData.userLast.trim(), formData.userEmail.trim(), formData.userPassword.trim());
     setCurrentUser(newUserCreated);
+    enrollSubscription(currentUser);
     setIsSubscribed(newUserCreated.userSubscribed);
     const userFirstName = formData.userFirst.trim();
     setFirstName(userFirstName);

@@ -3,7 +3,7 @@ import verifyUserLogin from './verifyUserLogin.js';
 import { useNavigate, Link } from 'react-router';
 import ModalWindow from '../common/ModalWindow.jsx';
 
-function LoginUser({ isSubscribed, setIsSubscribed, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+function LoginUser({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
 
     const [goNext, setGoNext] = useState(false);
