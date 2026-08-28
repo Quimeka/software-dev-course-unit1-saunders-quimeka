@@ -29,6 +29,16 @@ function LoginUser({ isSubscribed, setIsSubscribed, setCurrentUser, firstName, s
             return;
         }
 
+        //check for valid email address
+        const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.userEmail.trim());
+
+        if (!isEmailValid) {
+            setMessage("Please  enter a valid email address.");
+            setShowModalWindow(true);
+            return;
+
+        }
+
         //check for login credentials and provide an error message to the user. 
         const loggedUser = verifyUserLogin(formData.userEmail, formData.userPassword);
 

@@ -77,7 +77,7 @@ function App() {
 
         <Route path="/create-account" element={
           <Home>
-            <CreateUser setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+            <CreateUser isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
           </Home>
         } />
 

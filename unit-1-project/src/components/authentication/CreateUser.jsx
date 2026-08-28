@@ -37,7 +37,41 @@ export default function CreateUser({ isSubscribed, setIsSubscribed, setCurrentUs
       setShowModalWindow(true);
       return;
     }
-    //check for exsiting user account. and provide an error message to the user. 
+
+    const isFirstNameValid = /^[A-Za-z]+$/.test(formData.userFirst.trim());
+    const isLastNameValid = /^[A-Za-z]+$/.test(formData.userLast.trim());
+
+    if (!isFirstNameValid && isLastNameValid) {
+      setMessage("Please enter a valid first name");
+      setShowModalWindow(true);
+      setFormData({ userFirst: "", userLast: formData.userLast, userEmail: formData.userEmail, userPassword: "" });
+      return;
+
+    }
+
+    if (!isLastNameValid && isFirstNameValid) {
+      setMessage("Please  enter a valid last name.");
+      setShowModalWindow(true);
+      setFormData({ userFirst: formData.userFirst, userLast: "", userEmail: formData.userEmail, userPassword: "" });
+      return;
+    }
+    if (!isFirstNameValid && !isLastNameValid) {
+      setMessage("Please  enter a valid first and last name.");
+      setShowModalWindow(true);
+      setFormData({ userFirst: "", userLast: "", userEmail: formData.userEmail, userPassword: "" });
+      return;
+    }
+
+    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.userEmail.trim());
+
+    if (!isEmailValid) {
+      setMessage("Please  enter a valid email address.");
+      setShowModalWindow(true);
+      setFormData({ userFirst: formData.userFirst, userLast: formData.userLast, userEmail: "", userPassword: "" });
+      return;
+    }
+
+    //check for existing user account. and provide an error message to the user. 
     if (!isEmailAvailable(formData.userEmail)) {
       setMessage("Email address already registered. Please try again.");
       setShowModalWindow(true);
@@ -45,9 +79,9 @@ export default function CreateUser({ isSubscribed, setIsSubscribed, setCurrentUs
       return;
     }
     //check for valid password for security purposes.
-    const isValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(formData.userPassword.trim());
+    const isPasswordValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(formData.userPassword.trim());
 
-    if (!isValid) {
+    if (!isPasswordValid) {
       setMessage("Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, and a number.");
       setShowModalWindow(true);
       setFormData({ userFirst: formData.userFirst, userLast: formData.userLast, userEmail: formData.userEmail, userPassword: "" });
