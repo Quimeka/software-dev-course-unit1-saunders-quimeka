@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link, Outlet } from 'react-router';
 import ModalWindow from '../../common/ModalWindow.jsx';
 import '../settings.css';
-import updateSubscription from './SubscriptionManagement/updateSubscription.js';
 import registerSubscription from './SubscriptionManagement/registerSubscription.js';
 import cancelSubscription from './SubscriptionManagement/cancelSubscription.js';
 import getSubscriptionInfo from './SubscriptionManagement/getSubscriptionInfo.js';
@@ -17,6 +16,7 @@ function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, s
     const [subscribedButton, setSubscribedButton] = useState((false));
     const [subscriptionFee, setSubscriptionFee] = useState((userSubscriptionInformation?.fee || "0.00"));
     const [subscriptionState, setSubscriptionState] = useState((userSubscriptionInformation?.status || "free"));
+    const [subscriptionStartDate, setSubscriptionStartDate] = useState((userSubscriptionInformation?.startdate || "Not enrolled"))
 
     useEffect(() => {
         if (!currentUser) {
@@ -69,7 +69,7 @@ function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, s
             setShowModalWindow(true);
             return;
         }
-        
+
         //Cardholder name validation
         if (!/^[a-zA-Z\s\-\']{2,26}$/.test(cardFormData.cardholder.trim())) {
             setMessage("Please ensure your cardholder name is correct.");
@@ -98,17 +98,16 @@ function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, s
             return;
         }
 
-
         //CVV validation
         if (!/^\d{3}$/.test(cardFormData.cvv.replace(/\s+/g, ''))) {
             setMessage("Please ensure your CVV is accurate");
             setShowModalWindow(true);
             return;
         }
-        const userRegistered = updateSubscription(currentUser);
 
-        if (userRegistered) {
+        if (!isSubscribed) {
             const subscriptionStatus = registerSubscription(currentUser);
+            setSubscriptionStartDate(subscriptionStatus.startdate);
             setSubscriptionFee(subscriptionStatus.fee);
             setSubscriptionState(subscriptionStatus.status);
             setIsSubscribed(true);
@@ -145,9 +144,7 @@ function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, s
             setSubscriptionFormData({ cancel: "" });
             setIsSubscribed(false);
 
-            const changedSubscription = updateSubscription(currentUser);
-
-            if (!changedSubscription) {
+            if (!isSubscribed) {
                 setMessage(`We're sad to see you change your subscription, but hope you enjoy the free version, ${firstName}!`);
                 setShowModalWindow(true);
             }
@@ -180,8 +177,8 @@ function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, s
                         <h4 className="switchText">
                             {subscribedButton ? " Cancel Subscription" : "Maintain Subscription"}
                         </h4>
-                        <p> <em>Enrollment date:</em> {userSubscriptionInformation.startdate} </p>
-                        <p> <em>Monthly subscription cost:</em> ${userSubscriptionInformation.fee}.</p>
+                        <p> <em>Enrollment date:</em> {subscriptionStartDate} </p>
+                        <p> <em>Monthly subscription cost:</em> ${subscriptionFee}.</p>
                     </div>
                 )}
 
