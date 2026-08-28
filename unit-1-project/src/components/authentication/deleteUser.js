@@ -1,17 +1,25 @@
-import { onyxUsers, loggedJournalEntries } from '../common/userGlobals.js';
+import { onyxUsers, loggedJournalEntries, subscriptionData } from '../common/userGlobals.js';
 
 export default function deleteUser(id) {
+    //Filter and update Journal Entries
+    const newJournalEntries = loggedJournalEntries.filter(entry => entry.userId !== id);
+    loggedJournalEntries.length = 0;
+    loggedJournalEntries.push(...newJournalEntries);
 
-    //filter out current user requesting account deletion, repopulate log)
-    const newloggedJournalEntries = loggedJournalEntries.filter(entry => entry.userId !== id);
-    loggedJournalEntries.length = 0; 
-    loggedJournalEntries.push(...newloggedJournalEntries);
-    
-    const userIndex = onyxUsers.findIndex(user => user.userId === id);
+    //Filter and update Users
+    const remainingUsers = onyxUsers.filter(user => user.userId !== id);
+    onyxUsers.length = 0;
+    onyxUsers.push(...remainingUsers);
 
-    if (userIndex !== -1) {
-        onyxUsers.splice(userIndex, 1);
-        return true;
-    }
-    return false;
+    //Filter and update Subscriptions
+    const remainingSubscribers = subscriptionData.filter(user => user.userId !== id);
+    subscriptionData.length = 0;
+    subscriptionData.push(...remainingSubscribers);
+
+    //Confirm removal of user from all arrays
+    const inJournals = loggedJournalEntries.some(entry => entry.userId === id);
+    const inUsers = onyxUsers.some(user => user.userId === id);
+    const inSubs = subscriptionData.some(user => user.userId === id);
+
+    return !inJournals && !inUsers && !inSubs;
 }
