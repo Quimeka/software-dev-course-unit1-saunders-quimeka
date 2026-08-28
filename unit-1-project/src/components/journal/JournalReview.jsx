@@ -15,7 +15,7 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
     const formattedDate = `${month}-${day}-${year}`;
 
     //pull logged journals and filter based on user and date 
-    const entryList = loggedJournalEntries.filter(entry => entry.userId === currentUser && entry.date === formattedDate);
+    const entryList = journalUpdate.filter(entry => entry.userId === currentUser && entry.date === formattedDate);
     const currentDate = getDate();
 
     //make current date entries editable for user 
@@ -24,13 +24,12 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
 
     //delete entries based on user feedback; update logged journal 
     const handleDelete = (journalItem) => {
-        setDeletingEntry(true);
-        const deleteItemIndex = loggedJournalEntries.findIndex(item => item.journalEntryNumber === journalItem.journalEntryNumber);
-        if (deleteItemIndex !== -1) {
-            loggedJournalEntries.splice(deleteItemIndex, 1);
-            setJournalUpdate([...loggedJournalEntries]);
-        }
-        setDeletingEntry(false);
+        const updatedEntries = loggedJournalEntries.filter(item => item.journalEntryNumber !== journalItem.journalEntryNumber);
+
+        loggedJournalEntries.length = 0;
+        loggedJournalEntries.push(...updatedEntries);
+
+        setJournalUpdate(updatedEntries);
     };
 
     //edit entry based on user feedback; update logged journal 
