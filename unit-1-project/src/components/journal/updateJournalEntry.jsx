@@ -3,7 +3,7 @@ import { loggedJournalEntries, MOOD_PROMPTS } from '../common/userGlobals.js';
 import { useNavigate } from 'react-router';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
-import registerFullJournalEntry from './registerFullJournalEntry.js';
+import updateFullJournalEntry from './updateFullJournalEntry.js';
 import setText from './setTextForEntries.js';
 import { getDate } from '../common/getTodaysDate.js';
 
@@ -76,9 +76,9 @@ ${promptsForToday[3]}
 ${prompt4Clean || "No answer provided."}`;
         }
 
-        registerFullJournalEntry(currentUser, entryData.mood, entryData.depth, finalEntry);
+        updateFullJournalEntry(entryData, finalEntry);
         //update global props to ensure logged journals remains accurate for application
-        setJournalUpdate(loggedJournalEntries);
+        setJournalUpdate([...loggedJournalEntries]);
 
         //clear global props
         setUserJournalEntry("");

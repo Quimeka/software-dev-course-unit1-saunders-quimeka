@@ -35,7 +35,6 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
     //edit entry based on user feedback; update logged journal 
     const handleEdit = (journalItem) => {
         setEntryData(journalItem);
-        handleDelete(journalItem);
         setJournalUpdate([...loggedJournalEntries]);
         setShowModalWindow(false);
         navigate('/edit-entry');
