@@ -7,6 +7,7 @@ import registerSubscription from './SubscriptionManagement/registerSubscription.
 import cancelSubscription from './SubscriptionManagement/cancelSubscription.js';
 import getSubscriptionInfo from './SubscriptionManagement/getSubscriptionInfo.js';
 import getUserInfo from '../../authentication/getUserInfo.js';
+import validateExpirationDate from './SubscriptionManagement/validateExpirationDate.js';
 
 function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
@@ -62,12 +63,48 @@ function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, s
         e.preventDefault();
         setMessage("");
 
+        //Ensure everything is filled in
         if (!cardFormData.cardholder.trim() || !cardFormData.number.trim() || !cardFormData.exp.trim() || !cardFormData.zip.trim() || !cardFormData.cvv.trim()) {
             setMessage("Please be sure to complete the card information for processing.");
             setShowModalWindow(true);
             return;
         }
+        
+        //Cardholder name validation
+        if (!/^[a-zA-Z\s\-\']{2,26}$/.test(cardFormData.cardholder.trim())) {
+            setMessage("Please ensure your cardholder name is correct.");
+            setShowModalWindow(true);
+            return;
+        }
 
+        // Card number length validation
+        if (!/^\d{13,19}$/.test(cardFormData.number.replace(/\s+/g, ''))) {
+            setMessage("Please ensure your card number has between 13 and 19 digits.");
+            setShowModalWindow(true);
+            return;
+        }
+
+        //Expiration date validation
+        if (!validateExpirationDate(cardFormData.exp)) {
+            setMessage("Please ensure your Expiration date is accurate.");
+            setShowModalWindow(true);
+            return;
+        }
+
+        //Zip code validation
+        if ((Number(cardFormData.zip.trim()) < 501 || Number(cardFormData.zip.trim()) > 99950) || cardFormData.zip.trim().length < 5) {
+            setMessage("Please ensure your Zip code is accurate (between 00501 to 99950).");
+            setShowModalWindow(true);
+            return;
+        }
+
+
+        //CVV validation
+        if (!/^\d{3}$/.test(cardFormData.cvv.replace(/\s+/g, ''))) {
+            setMessage("Please ensure your CVV is accurate");
+            setShowModalWindow(true);
+            return;
+        }
         const userRegistered = updateSubscription(currentUser);
 
         if (userRegistered) {
@@ -111,7 +148,7 @@ function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, s
             const changedSubscription = updateSubscription(currentUser);
 
             if (!changedSubscription) {
-                setMessage(`We're sad to see you change your subscription, but hope you enjoy the free version ${firstName}!`);
+                setMessage(`We're sad to see you change your subscription, but hope you enjoy the free version, ${firstName}!`);
                 setShowModalWindow(true);
             }
 
@@ -195,7 +232,7 @@ function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, s
                     </label>
 
                     <label className="formLabel">
-                        CVV Code:
+                        CVV:
                         <input
                             className="formInput"
                             name="cvv"
