@@ -77,7 +77,7 @@ function App() {
 
         <Route path="/create-account" element={
           <Home>
-            <CreateUser isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+            <CreateUser isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
           </Home>
         } />
 
@@ -113,9 +113,9 @@ function App() {
           <Settings isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate}font={font} setFont={setFont}/>
         } >
 
-          <Route index element={<Navigate to="account-privacy" replace />} />
+          <Route index element={<Navigate to="account-information" replace />} />
 
-          <Route path="account-privacy" element={
+          <Route path="account-information" element={
             <AccountInformation isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
           } />
 

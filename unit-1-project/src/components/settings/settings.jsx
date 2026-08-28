@@ -11,7 +11,7 @@ function Settings({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, 
         <div className="main settingsLayout">
             <div className="settingsBar">
                 <h3>Menu</h3>
-                <Link to="account-privacy" className="settingsBarItem">Account & Profile</Link>
+                <Link to="account-information" className="settingsBarItem">Account & Profile</Link>
                 <Link to="security" className="settingsBarItem">Security & Privacy</Link>
                 <Link to="appearance" className="settingsBarItem">Appearance & Display</Link>
                 <Link to="notifications" className="settingsBarItem">Notifications</Link>

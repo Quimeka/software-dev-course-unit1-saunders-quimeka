@@ -15,8 +15,8 @@ function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, s
     const userInformation = getUserInfo(currentUser);
     //Populate form based on user data
     const [subscribedButton, setSubscribedButton] = useState((false));
-    const [subscriptionFee, setSubscriptionFee] = useState((userSubscriptionInformation.fee));
-    const [subscriptionState, setSubscriptionState] = useState((userSubscriptionInformation.status));
+    const [subscriptionFee, setSubscriptionFee] = useState((userSubscriptionInformation?.fee || "0.00"));
+    const [subscriptionState, setSubscriptionState] = useState((userSubscriptionInformation?.status || "free"));
 
     useEffect(() => {
         if (!currentUser) {
