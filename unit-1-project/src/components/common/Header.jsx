@@ -18,13 +18,17 @@ function Header({ currentUser, handleLogout }) {
             <nav>
                 {currentUser !== null ? (
                     <div className="HeaderBar">
+                        <Link to="/about-us">[About Onyx Reflections]</Link>
                         <Link to="/mood">[New Journal Entry]</Link>
                         <Link to="/calendar">[View Calendar]</Link>
                         <Link to="/contact-us">[Contact Us]</Link>
                         <Link to="/settings"> [Settings]</Link>
                         <Link to="/" onClick={handleLogout}>[Log Out]</Link>
                     </div>
-                ) : null}
+                ) : <div className="HeaderBar">
+                    <Link to="/about-us">[About Onyx Reflections]</Link>
+                </div>
+                }
             </nav>
 
             <hr />

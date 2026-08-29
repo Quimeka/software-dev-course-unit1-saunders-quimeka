@@ -24,7 +24,7 @@ import SecurityPrivacy from "./components/settings/SecurityPrivacy.jsx";
 import Subscription from "./components/settings/AccountManagement/Subscription.jsx";
 import AccountDeletion from "./components/settings/AccountManagement/AccountDeletion.jsx";
 import { getDate } from "./components/common/getTodaysDate.js";
-
+import AboutUs from "./components/common/AboutUs.jsx";
 
 function App() {
   const navigate = useNavigate();
@@ -81,6 +81,10 @@ function App() {
           </Home>
         } />
 
+        <Route path="/about-us" element={
+          <AboutUs currentUser={currentUser} firstName={firstName} />
+        } />
+
         <Route path="/mood" element={
           <UserMood currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
         } />
@@ -110,7 +114,7 @@ function App() {
         } />
 
         <Route path="/Settings" element={
-          <Settings isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate}font={font} setFont={setFont}/>
+          <Settings isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} font={font} setFont={setFont} />
         } >
 
           <Route index element={<Navigate to="account-information" replace />} />
