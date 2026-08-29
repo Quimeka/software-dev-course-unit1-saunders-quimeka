@@ -314,7 +314,8 @@ label {
 .journalButton,
 .closeButton,
 .deleteButton,
-.editButton {
+.editButton,
+.generalButton {
     width: auto;
     font-family: var(--font-selected);
     align-content: center;
@@ -426,4 +427,93 @@ label {
 .link:hover {
     color: var(--text-primary);
     text-decoration: underline;
+}
+
+
+#AboutUs,
+#SupportLegal {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    width: 100%;
+    gap: 0px !important;
+}
+
+.AboutUsLinks,
+.SupportLegalLinks {
+    display: flex;
+    justify-content: flex-start;
+    gap: clamp(10px, 2vw, 25px);
+    margin: 0 0 15px 0;
+    flex-wrap: wrap;
+    border-bottom: 1px dashed var(--text-phrase);
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+.AboutUsLinks .link,
+.SupportLegalLinks .link {
+    font-family: var(--font-selected);
+    text-decoration: none;
+    font-size: clamp(13px, 1.1vw, 15px);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 6px 14px;
+    background-color: var(--bg-body-trans);
+    border: 1px solid var(--bg-accent);
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+.AboutUsLinks .link:hover,
+.SupportLegalLinks .link:hover {
+    background-color: var(--bg-accent);
+    color: var(--text-primary);
+}
+
+.onyxQuote {
+    background-color: var(--bg-body-trans);
+    border-left: 4px solid var(--bg-barAccent);
+    padding: 12px clamp(15px, 2vw, 24px);
+    margin: 15px 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    border-top: 1px solid var(--bg-accent);
+    border-right: 1px solid var(--bg-accent);
+    border-bottom: 1px solid var(--bg-accent);
+    width: 100%;
+}
+
+
+#AboutUs section .link,
+#SupportLegal section .link  {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+#AboutUs hr,
+#SupportLegal hr {
+    border: 0;
+    height: 1px;
+    border-top: 1px dashed var(--bg-accent);
+    margin: 15px 0;
+    width: 100%;
+}
+
+.NavigationPanel {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--bg-accent);
+    width: 100%;
 }
