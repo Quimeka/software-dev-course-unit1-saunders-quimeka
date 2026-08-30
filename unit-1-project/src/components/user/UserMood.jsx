@@ -1,24 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
 import { MOOD_OPTIONS } from '../common/userGlobals.js';
+import getUserInfo from '../authentication/getUserInfo.js';
 
 
-function UserMood({ currentUser, moodData, setMoodData, firstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+function UserMood({ isSubscribed, setIsSubscribed, currentUser, moodData, setMoodData, firstName, message, setMessage, showModalWindow, setShowModalWindow }) {
   const navigate = useNavigate();
 
 
   useEffect(() => {
     if (!currentUser) {
       navigate('/');
+      return;
     }
-  }, [currentUser, navigate]);
+
+    const subscription = getUserInfo(currentUser).userSubscribed;
+    setIsSubscribed(subscription);
+
+  }, [currentUser, navigate, setIsSubscribed]);
 
   useEffect(() => {
     setMoodData(null);
   }, [setMoodData]);
-
 
   const handleChange = (e) => {
     const chosenMood = e.target.value;

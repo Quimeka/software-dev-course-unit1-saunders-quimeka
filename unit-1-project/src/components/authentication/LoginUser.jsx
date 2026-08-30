@@ -6,7 +6,6 @@ import ModalWindow from '../common/ModalWindow.jsx';
 function LoginUser({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
 
-    const [goNext, setGoNext] = useState(false);
     const [formData, setFormData] = useState({
         userEmail: "",
         userPassword: "",
@@ -53,8 +52,8 @@ function LoginUser({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser,
         setIsSubscribed(loggedUser.userSubscribed);
         const userFirstName = loggedUser.userFirst;
         setFirstName(userFirstName);
+        navigate('/Mood')
         setMessage(`Welcome back, ${userFirstName}!`);
-        setGoNext(true);
         setShowModalWindow(true);
 
         setFormData({
@@ -67,17 +66,10 @@ function LoginUser({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser,
         <div className="LoginUser">
             <h3>Log In</h3>
 
-            {showModalWindow && !goNext && (
+            {showModalWindow && (
                 <ModalWindow
                     message={message}
                     onClose={() => setShowModalWindow(false)}>
-                </ModalWindow>
-            )}
-
-            {showModalWindow && goNext && (
-                <ModalWindow
-                    message={message}
-                    onClose={() => (setShowModalWindow(false), navigate('/Mood'))}>
                 </ModalWindow>
             )}
 

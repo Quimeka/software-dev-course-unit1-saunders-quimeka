@@ -8,7 +8,7 @@ import getSubscriptionInfo from './SubscriptionManagement/getSubscriptionInfo.js
 import getUserInfo from '../../authentication/getUserInfo.js';
 import validateExpirationDate from './SubscriptionManagement/validateExpirationDate.js';
 
-function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, setMessage, setShowModalWindow }) {
     const navigate = useNavigate();
     const userSubscriptionInformation = getSubscriptionInfo(currentUser);
     const userInformation = getUserInfo(currentUser);
@@ -21,8 +21,13 @@ function Subscription({ isSubscribed, setIsSubscribed, currentUser, firstName, s
     useEffect(() => {
         if (!currentUser) {
             navigate('/');
+            return;
         }
-    }, [currentUser, navigate]);
+
+        const subscription = getUserInfo(currentUser).userSubscribed;
+        setIsSubscribed(subscription);
+
+    }, [currentUser, navigate, setIsSubscribed]);
 
     let [subscriptionFormData, setSubscriptionFormData] = useState({
         cancel: ""

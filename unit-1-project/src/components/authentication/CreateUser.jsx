@@ -10,8 +10,6 @@ import enrollSubscription from '../settings/AccountManagement/SubscriptionManage
 export default function CreateUser({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
   const navigate = useNavigate();
 
-  const [goNext, setGoNext] = useState(false);
-
   const [formData, setFormData] = useState({
     userFirst: "",
     userLast: "",
@@ -93,10 +91,11 @@ export default function CreateUser({ isSubscribed, setIsSubscribed, currentUser,
     setCurrentUser(newUserCreated);
     enrollSubscription(currentUser);
     setIsSubscribed(newUserCreated.userSubscribed);
-    const userFirstName = formData.userFirst.trim();
-    setFirstName(userFirstName);
-    setMessage(`Welcome to the Onxy Reflections community, ${userFirstName}!`);
-    setGoNext(true);
+    const userFirstNameTrim = formData.userFirst.trim();
+    const capitalizedFirstName = userFirstNameTrim.charAt(0).toUpperCase() + userFirstNameTrim.slice(1).toLowerCase();
+    setFirstName(capitalizedFirstName);
+    setMessage(`Welcome to the Onxy Reflections community, ${capitalizedFirstName}!`);
+    navigate('/Mood')
     setShowModalWindow(true);
     setFormData({ userFirst: "", userLast: "", userEmail: "", userPassword: "" });
   }
@@ -105,17 +104,10 @@ export default function CreateUser({ isSubscribed, setIsSubscribed, currentUser,
     <div className="CreateUser">
       <h3>Welcome to Onyx Reflections!</h3>
 
-      {showModalWindow && !goNext && (
+      {showModalWindow && (
         <ModalWindow
           message={message}
           onClose={() => setShowModalWindow(false)}>
-        </ModalWindow>
-      )}
-
-      {showModalWindow && goNext && (
-        <ModalWindow
-          message={message}
-          onClose={() => (setShowModalWindow(false), navigate('/Mood'))}>
         </ModalWindow>
       )}
 

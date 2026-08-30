@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import { loggedJournalEntries, MOOD_PROMPTS } from '../common/userGlobals.js';
+import { MOOD_PROMPTS } from '../common/userGlobals.js';
 import { useNavigate } from 'react-router';
 import SubmitGoBack from '../common/SubmitGoBack.jsx';
 import ModalWindow from '../common/ModalWindow.jsx';
 import updateFullJournalEntry from './updateFullJournalEntry.js';
 import setText from './setTextForEntries.js';
 import { getDate } from '../common/getTodaysDate.js';
+import getUserInfo from '../authentication/getUserInfo.js';
 
 
-function UpdateJournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, firstName, message, setMessage, showModalWindow, entryData, setShowModalWindow, setJournalUpdate }) {
+function UpdateJournalEntryPage({ isSubscribed, setIsSubscribed, currentUser, setUserJournalEntry, firstName, message, setMessage, showModalWindow, entryData, setShowModalWindow, setJournalUpdate }) {
     const navigate = useNavigate();
     const [entryMode, setEntryMode] = useState(entryData.depth);
     const [initialEntry, setInitialEntry] = useState(entryData.entry || " ");
@@ -24,8 +25,13 @@ function UpdateJournalEntryPage({ currentUser, userJournalEntry, setUserJournalE
     useEffect(() => {
         if (!currentUser) {
             navigate('/');
+            return;
         }
-    }, [currentUser, navigate]);
+
+        const subscription = getUserInfo(currentUser).userSubscribed;
+        setIsSubscribed(subscription);
+
+    }, [currentUser, navigate, setIsSubscribed]);
 
     const handleJournalTypeChange = (e) => {
         setInitialEntry(e.target.value);
@@ -76,9 +82,9 @@ ${promptsForToday[3]}
 ${prompt4Clean || "No answer provided."}`;
         }
 
-        updateFullJournalEntry(entryData, finalEntry);
+        const newJournalArray = updateFullJournalEntry(entryData, finalEntry);
         //update global props to ensure logged journals remains accurate for application
-        setJournalUpdate([...loggedJournalEntries]);
+        setJournalUpdate(newJournalArray);
 
         //clear global props
         setUserJournalEntry("");
@@ -107,7 +113,7 @@ ${prompt4Clean || "No answer provided."}`;
                 <p><strong>Your Space Today: </strong>{todayMoodDisplay}</p>
                 <p><strong>Your Reflection Style: </strong>{todayDepthDisplay}</p>
 
-                <p><strong>Date:</strong> {formattedDateDisplay}</p>
+                <p><strong>Entry Date:</strong> {entryData.date}</p>
 
                 {showModalWindow && (
                     <ModalWindow

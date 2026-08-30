@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link, Outlet } from 'react-router';
+import { useNavigate } from 'react-router';
 import getUserInfo from '../authentication/getUserInfo.js';
 import updateUserPassword from '../authentication/updateUserPassword.js';
 import ModalWindow from '../common/ModalWindow.jsx';
 import './settings.css';
 
-function SecurityPrivacy({ currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+function SecurityPrivacy({ currentUser, setCurrentUser, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
 
     const userInformation = getUserInfo(currentUser);
@@ -20,6 +20,7 @@ function SecurityPrivacy({ currentUser, setCurrentUser, firstName, setFirstName,
     useEffect(() => {
         if (!currentUser) {
             navigate('/');
+            return;
         }
     }, [currentUser, navigate]);
 

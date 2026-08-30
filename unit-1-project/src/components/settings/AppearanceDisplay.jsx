@@ -1,16 +1,22 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router';
-import ModalWindow from '../common/ModalWindow.jsx';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import './settings.css';
+import getUserInfo from '../authentication/getUserInfo.js';
 
-function AppearanceDisplay({ isSubscribed, setIsSubscribed, currentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow, theme, setTheme, font, setFont }) {
+function AppearanceDisplay({ isSubscribed, setIsSubscribed, currentUser, message, setMessage, showModalWindow, setShowModalWindow, theme, setTheme, font, setFont }) {
     const navigate = useNavigate();
 
     useEffect(() => {
         if (!currentUser) {
             navigate('/');
+            return;
         }
-    }, [currentUser, navigate]);
+
+        const subscription = getUserInfo(currentUser).userSubscribed;
+        setIsSubscribed(subscription);
+
+    }, [currentUser, navigate, setIsSubscribed]);
+
     //update theme for application
     const handleThemeChange = (e) => {
         setTheme(e.target.value);

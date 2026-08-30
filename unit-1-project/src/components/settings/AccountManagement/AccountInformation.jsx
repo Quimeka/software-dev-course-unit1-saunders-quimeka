@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link, Outlet } from 'react-router';
+import { useNavigate } from 'react-router';
 import ModalWindow from '../../common/ModalWindow.jsx';
 import isEmailAvailable from '../../authentication/isEmailAvailable.js';
 import getUserInfo from '../../authentication/getUserInfo.js';
 import updateUser from '../../authentication/updateUser.js';
 import Subscription from './Subscription.jsx';
 import AccountDeletion from './AccountDeletion.jsx';
-import { CREATE_USER_FIELDS, onyxUsers } from '../../common/userGlobals.js';
+import { CREATE_USER_FIELDS } from '../../common/userGlobals.js';
 import '../settings.css';
 
 function AccountInformation({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
@@ -24,8 +24,13 @@ function AccountInformation({ isSubscribed, setIsSubscribed, currentUser, setCur
     useEffect(() => {
         if (!currentUser) {
             navigate('/');
+            return;
         }
-    }, [currentUser, navigate]);
+
+        const subscription = getUserInfo(currentUser).userSubscribed;
+        setIsSubscribed(subscription);
+
+    }, [currentUser, navigate, setIsSubscribed]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -56,10 +61,11 @@ function AccountInformation({ isSubscribed, setIsSubscribed, currentUser, setCur
         //ensure user information is updated for use within global props and within array for retrieval and accuracy purposes.
         const updateUserInformation = updateUser(userInformation.userId, formData.userFirst.trim(), formData.userLast.trim(), formData.userEmail.trim());
         setCurrentUser(updateUserInformation);
-        const userFirstName = formData.userFirst.trim();
-        setFirstName(userFirstName);
+        const userFirstNameTrim = formData.userFirst.trim();
+        const capitalizedFirstName = userFirstNameTrim.charAt(0).toUpperCase() + userFirstNameTrim.slice(1).toLowerCase();
+        setFirstName(capitalizedFirstName);
 
-        setMessage(`Update Successful, ${formData.userFirst.trim()}!`);
+        setMessage(`Update Successful, ${capitalizedFirstName}!`);
         setShowModalWindow(true);
     }
     //allow user to update account information, subscribe, and/or delete account
@@ -93,7 +99,7 @@ function AccountInformation({ isSubscribed, setIsSubscribed, currentUser, setCur
                 <button className="submitButton" type="submit">Submit</button>
             </form>
             < Subscription isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
-            <AccountDeletion isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate}/>
+            <AccountDeletion isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
         </div >
     );
 }
