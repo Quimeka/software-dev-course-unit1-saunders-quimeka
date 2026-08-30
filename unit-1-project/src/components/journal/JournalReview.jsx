@@ -1,13 +1,24 @@
 import { useState, useEffect } from 'react';
 import setText from '../journal/setTextForEntries.js';
 import { useNavigate } from 'react-router';
-import updateJournalEntryPage from './updateJournalEntry.jsx';
 import { loggedJournalEntries } from '../common/userGlobals.js';
 import './journal-custom.css';
 import { getDate } from '../common/getTodaysDate.js';
+import getUserInfo from '../authentication/getUserInfo.js';
 
-export default function JournalReview({ currentUser, date, firstName, journalUpdate, setJournalUpdate, entryData, setEntryData, message, setMessage, showModalWindow, setShowModalWindow }) {
+export default function JournalReview({ isSubscribed, setIsSubscribed, currentUser, date, firstName, journalUpdate, setJournalUpdate, entryData, setEntryData, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
+
+
+    useEffect(() => {
+        if (!currentUser) {
+            navigate('/');
+            return;
+        }
+        const subscription = getUserInfo(currentUser).userSubscribed;
+        setIsSubscribed(subscription);
+
+    }, [currentUser, navigate, setIsSubscribed]);
 
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
@@ -15,7 +26,7 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
     const formattedDate = `${month}-${day}-${year}`;
 
     //pull logged journals and filter based on user and date 
-    const entryList = journalUpdate.filter(entry => entry.userId === currentUser && entry.date === formattedDate);
+    const entryList = journalUpdate.filter(entry => String(entry.userId) === String(currentUser) && entry.date === formattedDate);
     const currentDate = getDate();
 
     //make current date entries editable for user 
@@ -24,12 +35,12 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
 
     //delete entries based on user feedback; update logged journal 
     const handleDelete = (journalItem) => {
-        const updatedEntries = loggedJournalEntries.filter(item => item.journalEntryNumber !== journalItem.journalEntryNumber);
+        const updatedEntries = loggedJournalEntries.filter(item => String(item.journalEntryNumber) !== String(journalItem.journalEntryNumber));
 
         loggedJournalEntries.length = 0;
         loggedJournalEntries.push(...updatedEntries);
 
-        setJournalUpdate(updatedEntries);
+        setJournalUpdate([...updatedEntries]);
     };
 
     //edit entry based on user feedback; update logged journal 
@@ -65,7 +76,9 @@ export default function JournalReview({ currentUser, date, firstName, journalUpd
                                         </p>
                                     ))}
                                 </div>
-                                {showEditButton &&
+                                {showEditButton && !isSubscribed &&
+                                    <button className="editButton" type="button" disabled={deletingEntry} onClick={() => handleEdit(item)}>Edit</button >}
+                                {isSubscribed &&
                                     <button className="editButton" type="button" disabled={deletingEntry} onClick={() => handleEdit(item)}>Edit</button >}
                                 <button className="deleteButton" type="button" disabled={deletingEntry} onClick={() => handleDelete(item)}>Delete Session #{index + 1}</button>
                             </div>

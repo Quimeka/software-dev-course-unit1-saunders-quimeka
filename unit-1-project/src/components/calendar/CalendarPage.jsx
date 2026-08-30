@@ -1,18 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Calendar from 'react-calendar';
 import './mood-custom-calendar.css';
 import { useNavigate } from 'react-router';
 import JournalReview from '../journal/JournalReview.jsx';
 import { MOOD_OPTIONS } from '../common/userGlobals.js';
+import getUserInfo from '../authentication/getUserInfo.js';
 
-export default function CalendarPage({ currentUser, date, setDate, message, setMessage, showModalWindow, setShowModalWindow, journalUpdate, setJournalUpdate, entryData, setEntryData }) {
+export default function CalendarPage({ isSubscribed, setIsSubscribed, currentUser, date, setDate, message, setMessage, showModalWindow, setShowModalWindow, journalUpdate, setJournalUpdate, entryData, setEntryData }) {
     const navigate = useNavigate();
 
     useEffect(() => {
         if (!currentUser) {
             navigate('/');
+            return;
         }
-    }, [currentUser, navigate]);
+        const subscription = getUserInfo(currentUser).userSubscribed;
+        setIsSubscribed(subscription);
+
+    }, [currentUser, navigate, setIsSubscribed]);
 
     const handleDateClick = (selectedDate) => {
         setDate(selectedDate);
@@ -67,7 +72,7 @@ export default function CalendarPage({ currentUser, date, setDate, message, setM
                 {showModalWindow && (
                     <div className="modal-overlay" onClick={() => setShowModalWindow(false)}>
                         <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-                            <JournalReview currentUser={currentUser} date={date} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} message={message} setMessage={setMessage} entryData={entryData} setEntryData={setEntryData} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+                            <JournalReview isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} date={date} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} entryData={entryData} setEntryData={setEntryData} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
                             <button className="closeButton" onClick={() => setShowModalWindow(false)}>Close</button>
                         </div>
                     </div>

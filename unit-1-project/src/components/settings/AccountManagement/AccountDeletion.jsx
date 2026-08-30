@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router';
-import ModalWindow from '../../common/ModalWindow.jsx';
+import { useNavigate } from 'react-router';
 import '../settings.css';
 import deleteUser from '../../authentication/deleteUser.js';
 import getUserInfo from '../../authentication/getUserInfo.js';
 import { loggedJournalEntries } from '../../common/userGlobals.js';
 
-function AccountDeletion({ currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
+function AccountDeletion({ currentUser, setCurrentUser, firstName, setMessage, setShowModalWindow, setJournalUpdate }) {
     const navigate = useNavigate();
 
     const userInformation = getUserInfo(currentUser);
@@ -21,6 +20,7 @@ function AccountDeletion({ currentUser, setCurrentUser, firstName, setFirstName,
     useEffect(() => {
         if (!currentUser) {
             navigate('/');
+            return;
         }
     }, [currentUser, navigate]);
 

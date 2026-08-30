@@ -6,9 +6,10 @@ import ModalWindow from '../common/ModalWindow.jsx';
 import registerFullJournalEntry from './registerFullJournalEntry.js';
 import setText from './setTextForEntries.js';
 import { getDate } from '../common/getTodaysDate.js';
+import getUserInfo from '../authentication/getUserInfo.js';
 
 
-function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
+function JournalEntryPage({ isSubscribed, setIsSubscribed, currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
     const navigate = useNavigate();
     const [entryMode, setEntryMode] = useState(null);
     //establish prop for prompts
@@ -23,8 +24,12 @@ function JournalEntryPage({ currentUser, userJournalEntry, setUserJournalEntry, 
     useEffect(() => {
         if (!currentUser) {
             navigate('/');
+            return;
         }
-    }, [currentUser, navigate]);
+        const subscription = getUserInfo(currentUser).userSubscribed;
+        setIsSubscribed(subscription);
+
+    }, [currentUser, navigate, setIsSubscribed]);
 
     const handleJournalTypeChange = (e) => {
         setUserJournalEntry(e.target.value);
