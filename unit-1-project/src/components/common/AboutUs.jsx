@@ -18,7 +18,7 @@ function AboutUs({ currentUser, firstName }) {
             {user && (
                 <div className="greeting">
                     <h2> Welcome to Onyx Reflections!</h2>
-                    <h3>Thank you for being here, {firstName}!</h3>
+                    <h3>Thank you for being here, {firstName}.</h3>
                 </div>
             )}
             {!user && (
@@ -36,14 +36,16 @@ function AboutUs({ currentUser, firstName }) {
             <section id="appIntro">
                 <h4>Built for Real Days, Not Perfect Classrooms</h4>
                 <p>
-                    If you have ever opened a therapy or journaling app only to close it immediately out of sheer exhaustion, you are not alone.
-                    Many wellness tools are built around rigid templates, complex psychological lingo, and overwhelming checklists of specific emotions.
+                    There is so much pressure to get things right everywhere else. At work, in society, at home, within family dynamics, and inside relationships. It feels like we always have to perform. When it came to my own thoughts, and just needing a safe space to be vulnerable, I didn't want more labels. I didn't want to force myself into a box just to process the conflicted parts between my head and my heart. Journaling should be a gentle landing, not a test. You shouldn't have to figure out what "thinking trap" you’re stuck in before you even open your heart to write.
                 </p>
                 <p>
-                    Instead of letting you freely document your thoughts, they force you to spend your limited mental energy figuring out how to fit your messy, real-world feelings into a pre-defined box. When a prompt doesn't fit your mood, trying to force it is exhausting.
+                    That’s why I built Onyx Reflections. Being in therapy for years made me realize I needed a space that respected my daily mental energy to support my journey. I wanted a blank page where I could simply exhale and get my thoughts out. Free from clinical jargon, rigid dropdown menus, or the pressure to perform and label emotions I couldn't explain. But I also wanted gentle prompts on the days I actually feel up for some structure, serving as a quiet, low-pressure accountability partner to help me process.
                 </p>
                 <p>
-                    Onyx Reflections was created to solve this exact problem. This space is designed to lower the barrier to self-expression. We believe that healing requires breathing room, not homework. Your journal should meet you exactly where you are today—without demands, jargon, or forced vulnerability.
+                    I created this platform to be a quiet, uncomplicated place to vent, clear your head, and just take a breath. Your healing journey doesn't have a syllabus, and you don’t have to do it perfectly for it to count. Whether you have pages of thoughts to unload or only have the energy to tap your current mood and close the tab, you are still showing up for yourself and that's enough. 
+                    
+                    From one healing soul to another... 
+                    <strong>Happy Journaling</strong>
                 </p>
                 <a className="link" href="#AboutUs">Back to top</a>
             </section>
@@ -52,17 +54,17 @@ function AboutUs({ currentUser, firstName }) {
                 <h3> Our Story: A Note From the Founder</h3>
                 <blockquote className="onyxQuote">
                     <p>
-                        I did therapy for several years, and one of the hardest parts was simply facing myself long enough to want to journal. The apps I tried used clinical lingo I didn't understand, forcing me to choose from emotions I didn't even recognize at face value. It was discouraging sometimes because I spent more time trying to self-diagnose what thinking pattern I was trapped in or what emotion I was feeling when nothing fit perfectly, instead of just releasing them or sitting with them. There is so much pressure to put a label on things or fit into a box before you can even get through processing what you are actually going to write.
+                        There is so much pressure to get things right everywhere else. At work, in society, at home, within family dynamics, and inside relationships. It feels like we always have to perform. When it came to my own thoughts, and just needing a safe space to be vulnerable, I didn't want more labels. I didn't want to force myself into a box just to process the conflicted parts between my head and my heart. Journaling should be a gentle landing, not a test. You shouldn't have to figure out what "thinking trap" you’re stuck in before you even open your heart to write.
                     </p>
                     <p>
-                        I built Onyx Reflections to lift that pressure. I needed a space that respected my mental bandwidth—something that would give me a totally blank page to just express myself when I was completely exhausted, but also offer guided prompts when I actively wanted that structure. This platform is a breath of fresh air for that struggle, built for anyone who just wants a safe, uncomplicated place to vent, clear their head, and breathe.
+                        That’s why I built Onyx Reflections. Being in therapy for years made me realize I just needed a space that respected my daily mental energy. I wanted a blank page where I could simply exhale and get my thoughts out—free from clinical jargon, rigid dropdown menus, or the pressure to perform and label emotions I couldn't easily explain. Instead of forcing you to pick specific emotions like anger or sadness, Onyx simply checks in on your energy level and asks how you want to process your thoughts today. If you're completely drained, you can write freely in an open-ended space or just log your mood and close the tab. But on the days you actually feel up for some structure, you can grab guided prompts that act like a quiet, low-pressure accountability partner to help you process.
                     </p>
                     <p>
-                        Your healing journey doesn't have a syllabus, and you don’t have to get it right to make it count. Whether you have pages of thoughts to unload or only have the energy to tap your current mood and close the tab, you are doing the work. Showing up exactly as you are today is enough.
+                        I created this platform to be a quiet, uncomplicated place to vent, clear your head, and just take a breath. Your healing journey doesn't have a syllabus, and you don’t have to do it perfectly for it to count. Whether you have pages of thoughts to unload or just enough energy to tap your mood and close the tab, you are still showing up for yourself. Exactly as you are today is enough.
                     </p>
                     <br />
                     <p style={{opacity: 0.50}}>
-                        From one healing soul to another...
+                        From one healing soul to another... 
                     </p>
                 </blockquote>
                 <a className="link" href="#AboutUs">Back to top</a>
@@ -77,21 +79,16 @@ function AboutUs({ currentUser, firstName }) {
                     </li>
                     <li>
                         <strong>Choose Your Depth</strong>
-                        <p>Decide if you want a guided path or just a space to unload.</p>
-                    </li>
-                    <li>
-                        <strong>The Blank Canvas</strong>
-                        <p>Get a completely empty page to vent freely when you are exhausted.
-                        </p>
+                        <p>Decide if you want a completely blank canvas to write freely, or if you prefer guided prompts.</p>
                     </li>
                     <li>
                         <strong>Simple Prompts</strong>
-                        <p>Access gentle guiding questions only if you actively want them.
+                        <p>Access low-pressure guiding questions only on the days you actively want them.
                         </p>
                     </li>
                     <li>
-                        <strong>Visual Pattern Tracking</strong>
-                        <p>Log your daily mood quickly to populate a simple monthly calendar view.
+                        <strong>Simple Mood Tracking</strong>
+                        <p>Log your emotional state quickly to populate a visual monthly view without the pressure of labels.
                         </p>
                     </li>
                 </ul>
@@ -106,17 +103,17 @@ function AboutUs({ currentUser, firstName }) {
                         <p>We use simple, universal language so you can focus on writing, not decoding.</p>
                     </li>
                     <li>
-                        <strong>No Forced Boxes</strong>
-                        <p>We never force you to label or categorize your emotions on face value.</p>
+                        <strong>No Forced Emotion Boxes</strong>
+                        <p>We never make you label or categorize how you feel just to get access to a blank page.</p>
                     </li>
                     <li>
                         <strong>Protects Your Bandwidth</strong>
-                        <p>Your energy levels dictate the app experience, never the other way around.
+                        <p>Your energy level dictates how the app responds to you—never the other way around.
                         </p>
                     </li>
                     <li>
                         <strong>Honors Free Expression</strong>
-                        <p>Provides a judgment-free zone meant for raw, unfiltered thought processing.
+                        <p>Provides a completely safe, quiet space meant for raw, unfiltered processing.
                         </p>
                     </li>
                 </ul>
