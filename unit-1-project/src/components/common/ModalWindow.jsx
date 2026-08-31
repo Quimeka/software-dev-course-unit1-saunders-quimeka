@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function ModalWindow({message, onClose}) {
   //display modal window and message passed from current page

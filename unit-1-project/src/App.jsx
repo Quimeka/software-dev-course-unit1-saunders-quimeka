@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, Outlet, Navigate } from "react-router";
+import { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router";
 
 import Home from "./components/common/Home.jsx";
 import LoginUser from "./components/authentication/LoginUser.jsx";
@@ -17,17 +17,11 @@ import UpdateJournalEntryPage from "./components/journal/updateJournalEntry.jsx"
 import Settings from "./components/settings/settings.jsx";
 import AccountInformation from "./components/settings/AccountManagement/AccountInformation.jsx";
 import AppearanceDisplay from "./components/settings/AppearanceDisplay.jsx";
-import Notifications from "./components/settings/Notifications.jsx";
 import SupportLegal from "./components/settings/SupportLegal.jsx";
-import SystemLocal from "./components/settings/SystemLocal.jsx";
 import SecurityPrivacy from "./components/settings/SecurityPrivacy.jsx";
-import Subscription from "./components/settings/AccountManagement/Subscription.jsx";
-import AccountDeletion from "./components/settings/AccountManagement/AccountDeletion.jsx";
-import { getDate } from "./components/common/getTodaysDate.js";
 import AboutUs from "./components/common/AboutUs.jsx";
 
 function App() {
-  const navigate = useNavigate();
 
   const [currentUser, setCurrentUser] = useState(null);
   const [firstName, setFirstName] = useState("");
@@ -65,19 +59,19 @@ function App() {
       <Routes>
         <Route path="/" element={
           <Home>
-            <LoginUser isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+            <LoginUser setIsSubscribed={setIsSubscribed} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
           </Home>
         } />
 
-        <Route path="/Login" element={
+        <Route path="/login" element={
           <Home>
-            <LoginUser isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+            <LoginUser setIsSubscribed={setIsSubscribed} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
           </Home>
         } />
 
         <Route path="/create-account" element={
           <Home>
-            <CreateUser isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+            <CreateUser setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
           </Home>
         } />
 
@@ -86,11 +80,11 @@ function App() {
         } />
 
         <Route path="/mood" element={
-          <UserMood isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+          <UserMood setIsSubscribed={setIsSubscribed} currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
         } />
 
         <Route path="/depth" element={
-          <UserDepth isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} moodData={moodData} depthData={depthData} setDepthData={setDepthData} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
+          <UserDepth setIsSubscribed={setIsSubscribed} currentUser={currentUser} moodData={moodData} depthData={depthData} setDepthData={setDepthData} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
         } />
 
         <Route path="/contact-us" element={
@@ -98,7 +92,7 @@ function App() {
         } />
 
         <Route path="/journal-entry" element={
-          <JournalEntryPage isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} depthData={depthData} setDepthData={setDepthData} userJournalEntry={userJournalEntry} setUserJournalEntry={setUserJournalEntry} entryMode={entryMode} setEntryMode={setEntryMode} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
+          <JournalEntryPage setIsSubscribed={setIsSubscribed} currentUser={currentUser} moodData={moodData} setMoodData={setMoodData} depthData={depthData} setDepthData={setDepthData} userJournalEntry={userJournalEntry} setUserJournalEntry={setUserJournalEntry} entryMode={entryMode} setEntryMode={setEntryMode} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
         } />
 
         <Route path="/calendar" element={
@@ -106,15 +100,15 @@ function App() {
         } />
 
         <Route path="/journal-review" element={
-          <JournalReview isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} date={date} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} entryData={entryData} setEntryData={setEntryData} />
+          <JournalReview isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} date={date} firstName={firstName} journalUpdate={journalUpdate} setJournalUpdate={setJournalUpdate} setEntryData={setEntryData} setShowModalWindow={setShowModalWindow} />
         } />
 
         <Route path="/edit-entry" element={
-          <UpdateJournalEntryPage isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setUserJournalEntry={setUserJournalEntry} entryMode={entryMode} setEntryMode={setEntryMode} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} entryData={entryData} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
+          <UpdateJournalEntryPage setIsSubscribed={setIsSubscribed} currentUser={currentUser} setUserJournalEntry={setUserJournalEntry} entryMode={entryMode} setEntryMode={setEntryMode} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} entryData={entryData} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
         } />
 
-        <Route path="/Settings" element={
-          <Settings isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} font={font} setFont={setFont} />
+        <Route path="/settings" element={
+          <Settings currentUser={currentUser} />
         } >
 
           <Route index element={<Navigate to="account-information" replace />} />
@@ -123,28 +117,12 @@ function App() {
             <AccountInformation isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
           } />
 
-          <Route path="subscription" element={
-            <Subscription isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setMessage={setMessage} setShowModalWindow={setShowModalWindow} />
-          } />
-
-          <Route path="account-deletion" element={
-            <AccountDeletion currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setMessage={setMessage} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
-          } />
-
           <Route path="appearance-display" element={
-            <AppearanceDisplay isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} theme={theme} setTheme={setTheme} font={font} setFont={setFont} />
-          } />
-
-          <Route path="notifications" element={
-            <Notifications isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
-          } />
-
-          <Route path="system" element={
-            <SystemLocal currentUser={currentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+            <AppearanceDisplay setIsSubscribed={setIsSubscribed} currentUser={currentUser} theme={theme} setTheme={setTheme} font={font} setFont={setFont} />
           } />
 
           <Route path="support" element={
-            <SupportLegal currentUser={currentUser} firstName={firstName} setFirstName={setFirstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
+            <SupportLegal />
           } />
 
           <Route path="security" element={

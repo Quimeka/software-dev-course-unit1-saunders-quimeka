@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router';
+import { useNavigate } from 'react-router';
 
 function AboutUs({ currentUser, firstName }) {
     const navigate = useNavigate();
@@ -34,18 +34,14 @@ function AboutUs({ currentUser, firstName }) {
                 <a className="link" href="#different">Why Onyx is Different</a>
             </div>
             <section id="appIntro">
-                <h4>Built for Real Days, Not Perfect Classrooms</h4>
                 <p>
-                    There is so much pressure to get things right everywhere else. At work, in society, at home, within family dynamics, and inside relationships. It feels like we always have to perform. When it came to my own thoughts, and just needing a safe space to be vulnerable, I didn't want more labels. I didn't want to force myself into a box just to process the conflicted parts between my head and my heart. Journaling should be a gentle landing, not a test. You shouldn't have to figure out what "thinking trap" you’re stuck in before you even open your heart to write.
+                    If you’ve ever opened a journaling app and closed it right away because it felt like too much work, you’re not alone.
                 </p>
                 <p>
-                    That’s why I built Onyx Reflections. Being in therapy for years made me realize I needed a space that respected my daily mental energy to support my journey. I wanted a blank page where I could simply exhale and get my thoughts out. Free from clinical jargon, rigid dropdown menus, or the pressure to perform and label emotions I couldn't explain. But I also wanted gentle prompts on the days I actually feel up for some structure, serving as a quiet, low-pressure accountability partner to help me process.
+                    Many wellness tools are full of rigid templates, clinical terms, and checklists of emotions. Instead of letting you freely write your thoughts, they ask you to fit your real feelings into a box.
                 </p>
                 <p>
-                    I created this platform to be a quiet, uncomplicated place to vent, clear your head, and just take a breath. Your healing journey doesn't have a syllabus, and you don’t have to do it perfectly for it to count. Whether you have pages of thoughts to unload or only have the energy to tap your current mood and close the tab, you are still showing up for yourself and that's enough. 
-                    
-                    From one healing soul to another... 
-                    <strong>Happy Journaling</strong>
+                    Onyx Reflections is just a space to breathe and write.
                 </p>
                 <a className="link" href="#AboutUs">Back to top</a>
             </section>
@@ -63,8 +59,8 @@ function AboutUs({ currentUser, firstName }) {
                         I created this platform to be a quiet, uncomplicated place to vent, clear your head, and just take a breath. Your healing journey doesn't have a syllabus, and you don’t have to do it perfectly for it to count. Whether you have pages of thoughts to unload or just enough energy to tap your mood and close the tab, you are still showing up for yourself. Exactly as you are today is enough.
                     </p>
                     <br />
-                    <p style={{opacity: 0.50}}>
-                        From one healing soul to another... 
+                    <p style={{ opacity: 0.50 }}>
+                        From one healing soul to another...
                     </p>
                 </blockquote>
                 <a className="link" href="#AboutUs">Back to top</a>

@@ -1,10 +1,6 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router';
-import ModalWindow from '../common/ModalWindow.jsx';
 import './settings.css';
 
-function SupportLegal({ currentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
-    const navigate = useNavigate();
+function SupportLegal() {
     //provide disclosures and disclaimers regarding app usage. 
     return (
         <div className="main" id="SupportLegal">

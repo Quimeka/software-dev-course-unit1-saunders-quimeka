@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import './settings.css';
 import getUserInfo from '../authentication/getUserInfo.js';
 
-function AppearanceDisplay({ isSubscribed, setIsSubscribed, currentUser, message, setMessage, showModalWindow, setShowModalWindow, theme, setTheme, font, setFont }) {
+function AppearanceDisplay({ setIsSubscribed, currentUser, theme, setTheme, font, setFont }) {
     const navigate = useNavigate();
 
     useEffect(() => {

@@ -2,16 +2,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import '../settings.css';
 import deleteUser from '../../authentication/deleteUser.js';
-import getUserInfo from '../../authentication/getUserInfo.js';
 import { loggedJournalEntries } from '../../common/userGlobals.js';
 
 function AccountDeletion({ currentUser, setCurrentUser, firstName, setMessage, setShowModalWindow, setJournalUpdate }) {
     const navigate = useNavigate();
 
-    const userInformation = getUserInfo(currentUser);
-    const [accountDelete, setAccountDelete] = useState(false);
     const [isSetForDeletion, setIsSetForDeletion] = useState(false);
-
 
     let [formData, setFormData] = useState({
         deleteAccount: ""
@@ -52,7 +48,7 @@ function AccountDeletion({ currentUser, setCurrentUser, firstName, setMessage, s
         const isDeleted = deleteUser(currentUser);
 
         if (isDeleted) {
-            setMessage(`We're sad to see you go, but wish you well ${firstName}!`);
+            setMessage(`We're sad to see you go, but wish you well, ${firstName}!`);
             setShowModalWindow(true);
             setJournalUpdate([...loggedJournalEntries]);
             setCurrentUser(null);

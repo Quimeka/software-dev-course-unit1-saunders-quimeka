@@ -6,7 +6,7 @@ import { DEPTH_OPTIONS, loggedJournalEntries } from '../common/userGlobals.js';
 import registerFullJournalEntry from '../journal/registerFullJournalEntry.js';
 import getUserInfo from '../authentication/getUserInfo.js';
 
-function UserDepth({ isSubscribed, setIsSubscribed, currentUser, moodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
+function UserDepth({ setIsSubscribed, currentUser, moodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
   const navigate = useNavigate();
 
 
@@ -44,9 +44,9 @@ function UserDepth({ isSubscribed, setIsSubscribed, currentUser, moodData, depth
     if (depthData === "3") {
       registerFullJournalEntry(currentUser, moodData, depthData, `No journal data available.`);
       setJournalUpdate([...loggedJournalEntries]);
-      navigate('/Calendar');
+      navigate('/calendar');
     } else {
-      navigate('/Journal-Entry');
+      navigate('/journal-entry');
     }
   };
   //display depth options to user and process input via submittal.
