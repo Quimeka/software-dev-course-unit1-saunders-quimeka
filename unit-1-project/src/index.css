@@ -12,8 +12,8 @@ body {
     user-select: none;
 }
 
-input, 
-textarea, 
+input,
+textarea,
 [contenteditable="true"] {
     -webkit-user-select: text;
     -ms-user-select: text;
@@ -338,6 +338,8 @@ label {
     border-radius: 3px;
     cursor: pointer;
     font-size: clamp(12px, 1vw, 14px);
+
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .submitButton:hover,
