@@ -6,7 +6,7 @@ import './journal-custom.css';
 import { getDate } from '../common/getTodaysDate.js';
 import getUserInfo from '../authentication/getUserInfo.js';
 
-export default function JournalReview({ isSubscribed, setIsSubscribed, currentUser, date, firstName, journalUpdate, setJournalUpdate, entryData, setEntryData, message, setMessage, showModalWindow, setShowModalWindow }) {
+export default function JournalReview({ isSubscribed, setIsSubscribed, currentUser, date, firstName, journalUpdate, setJournalUpdate, setEntryData, setShowModalWindow }) {
     const navigate = useNavigate();
 
 

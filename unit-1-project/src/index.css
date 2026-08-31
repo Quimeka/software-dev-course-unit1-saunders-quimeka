@@ -7,6 +7,17 @@
 
 body {
     font-family: var(--font-selected);
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input, 
+textarea, 
+[contenteditable="true"] {
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 :root,
@@ -488,7 +499,7 @@ label {
 
 
 #AboutUs section .link,
-#SupportLegal section .link  {
+#SupportLegal section .link {
     display: inline-block;
     margin-top: 8px;
     font-size: 0.8rem;

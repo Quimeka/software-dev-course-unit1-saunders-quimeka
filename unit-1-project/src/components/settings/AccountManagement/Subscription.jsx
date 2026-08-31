@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link, Outlet } from 'react-router';
-import ModalWindow from '../../common/ModalWindow.jsx';
+import { useNavigate } from 'react-router';
 import '../settings.css';
 import registerSubscription from './SubscriptionManagement/registerSubscription.js';
 import cancelSubscription from './SubscriptionManagement/cancelSubscription.js';

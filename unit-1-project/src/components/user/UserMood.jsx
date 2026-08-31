@@ -6,7 +6,7 @@ import { MOOD_OPTIONS } from '../common/userGlobals.js';
 import getUserInfo from '../authentication/getUserInfo.js';
 
 
-function UserMood({ isSubscribed, setIsSubscribed, currentUser, moodData, setMoodData, firstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+function UserMood({ setIsSubscribed, currentUser, moodData, setMoodData, firstName, message, setMessage, showModalWindow, setShowModalWindow }) {
   const navigate = useNavigate();
 
 
@@ -39,7 +39,7 @@ function UserMood({ isSubscribed, setIsSubscribed, currentUser, moodData, setMoo
       setShowModalWindow(true);
       return;
     }
-    navigate('/Depth');
+    navigate('/depth');
   };
 
   //display mood options to user and process input via submittal.

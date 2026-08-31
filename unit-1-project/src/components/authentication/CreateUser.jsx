@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import createUser from './CreateUser.js';
 import isEmailAvailable from './isEmailAvailable.js';
@@ -7,7 +6,7 @@ import ModalWindow from '../common/ModalWindow.jsx';
 import { CREATE_USER_FIELDS } from '../common/userGlobals.js';
 import enrollSubscription from '../settings/AccountManagement/SubscriptionManagement/enrollSubscription.js';
 
-export default function CreateUser({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+export default function CreateUser({ setIsSubscribed, currentUser, setCurrentUser, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -95,7 +94,7 @@ export default function CreateUser({ isSubscribed, setIsSubscribed, currentUser,
     const capitalizedFirstName = userFirstNameTrim.charAt(0).toUpperCase() + userFirstNameTrim.slice(1).toLowerCase();
     setFirstName(capitalizedFirstName);
     setMessage(`Welcome to the Onxy Reflections community, ${capitalizedFirstName}!`);
-    navigate('/Mood')
+    navigate('/mood')
     setShowModalWindow(true);
     setFormData({ userFirst: "", userLast: "", userEmail: "", userPassword: "" });
   }

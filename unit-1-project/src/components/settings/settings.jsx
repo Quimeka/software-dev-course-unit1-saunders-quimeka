@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useNavigate, Link, Outlet } from 'react-router';
 import './settings.css';
 
-function Settings({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
+function Settings({ currentUser }) {
     const navigate = useNavigate();
 
     useEffect(() => {
         if (!currentUser) {
-            navigate('/Login');
+            navigate('/');
         }
     }, [currentUser, navigate]);
 
@@ -18,8 +18,6 @@ function Settings({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, 
                 <Link to="account-information" className="settingsBarItem">Account & Profile</Link>
                 <Link to="security" className="settingsBarItem">Security & Privacy</Link>
                 <Link to="appearance-display" className="settingsBarItem">Appearance & Display</Link>
-                <Link to="notifications" className="settingsBarItem">Notifications</Link>
-                <Link to="system" className="settingsBarItem">System & Localization</Link>
                 <Link to="support" className="settingsBarItem">Support & Legal</Link>
             </div>
 

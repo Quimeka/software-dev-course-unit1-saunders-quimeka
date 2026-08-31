@@ -9,7 +9,7 @@ import { getDate } from '../common/getTodaysDate.js';
 import getUserInfo from '../authentication/getUserInfo.js';
 
 
-function JournalEntryPage({ isSubscribed, setIsSubscribed, currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
+function JournalEntryPage({ setIsSubscribed, currentUser, userJournalEntry, setUserJournalEntry, moodData, setMoodData, depthData, setDepthData, firstName, message, setMessage, showModalWindow, setShowModalWindow, setJournalUpdate }) {
     const navigate = useNavigate();
     const [entryMode, setEntryMode] = useState(null);
     //establish prop for prompts
@@ -94,7 +94,7 @@ ${prompt4Clean || "No answer provided."}`;
             q4: ""
         });
 
-        navigate('/Calendar');
+        navigate('/calendar');
     };
 
     const formattedDateDisplay = getDate();

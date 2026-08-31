@@ -3,7 +3,7 @@ import verifyUserLogin from './verifyUserLogin.js';
 import { useNavigate, Link } from 'react-router';
 import ModalWindow from '../common/ModalWindow.jsx';
 
-function LoginUser({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser, firstName, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
+function LoginUser({ setIsSubscribed, setCurrentUser, setFirstName, message, setMessage, showModalWindow, setShowModalWindow }) {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -52,7 +52,7 @@ function LoginUser({ isSubscribed, setIsSubscribed, currentUser, setCurrentUser,
         setIsSubscribed(loggedUser.userSubscribed);
         const userFirstName = loggedUser.userFirst;
         setFirstName(userFirstName);
-        navigate('/Mood')
+        navigate('/mood')
         setMessage(`Welcome back, ${userFirstName}!`);
         setShowModalWindow(true);
 

@@ -121,9 +121,6 @@ function SecurityPrivacy({ currentUser, setCurrentUser, message, setMessage, sho
                 <button className="submitButton" type="submit">Submit</button>
             </form>
 
-            <h4>Two-Factor Authentication </h4>
-            <p><em>Coming soon...</em></p>
-
         </div>
     );
 

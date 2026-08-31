@@ -13,7 +13,6 @@ function AccountInformation({ isSubscribed, setIsSubscribed, currentUser, setCur
     const navigate = useNavigate();
 
     const userInformation = getUserInfo(currentUser);
-    const [accountDelete, setAccountDelete] = useState(false);
 
     let [formData, setFormData] = useState({
         userFirst: userInformation?.userFirst || "",
@@ -98,8 +97,8 @@ function AccountInformation({ isSubscribed, setIsSubscribed, currentUser, setCur
 
                 <button className="submitButton" type="submit">Submit</button>
             </form>
-            < Subscription isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} />
-            <AccountDeletion isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} message={message} setMessage={setMessage} showModalWindow={showModalWindow} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
+            <Subscription isSubscribed={isSubscribed} setIsSubscribed={setIsSubscribed} currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setMessage={setMessage} setShowModalWindow={setShowModalWindow} />
+            <AccountDeletion currentUser={currentUser} setCurrentUser={setCurrentUser} firstName={firstName} setMessage={setMessage} setShowModalWindow={setShowModalWindow} setJournalUpdate={setJournalUpdate} />
         </div >
     );
 }
